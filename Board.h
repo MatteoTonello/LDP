@@ -1,8 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
-#include "Piece.h"
 #include <vector>
 using namespace std;
+class Piece;
 class Board
 {
 	public:

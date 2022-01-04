@@ -1,6 +1,7 @@
 class Piece
 {
 	public:
+		const char piece;
 		int number;
 		int letter;
 		Board b;

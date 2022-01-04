@@ -1,5 +1,6 @@
 class Pawn:: public Piece
 {
+	//   ciao
 	public:
 		Pawn(int n, int l, char color, Board myBoard);
 		bool can_move()

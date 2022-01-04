@@ -1,4 +1,4 @@
-
+#include "Board.cpp"
 #include "Pawn.cpp"
 using namespace std;
 int main()

@@ -6,7 +6,8 @@ Pawn::Pawn(int n, int l, char col, Board& myBoard)
 	letter=l;
 	color=col;
 	b=myBoard;
-	if(color=='w') piece=
+	if(color=='w') piece='p';
+	else piece='P';
 }
 bool Pawn::can_move()
 		{

@@ -1,3 +1,4 @@
+#include<Pawn.h>
 class Pawn:: public Piece
 {
 	//   ciao mici

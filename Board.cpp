@@ -1,3 +1,5 @@
+#ifndef BOARD_CPP
+#define BOARD_CPP
 #include "Board.h"
 using namespace std;
 //Board::Board()
@@ -45,3 +47,4 @@ bool Board::is_draw()
 {
     return 0;
 }
+#endif

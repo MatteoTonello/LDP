@@ -1,10 +1,7 @@
-
-class Pawn:: public Piece
-{
-	//   ciao mici
-	public:
-		Pawn(int n, int l, char color, Board myBoard);
-		bool can_move()
+#include "Pawn.h"
+using namespace std;
+Pawn::Pawn(int n, int l, char color, Board myBoard);
+Pawn::bool can_move()
 		{
 			if(color=='w')
 			{
@@ -13,7 +10,7 @@ class Pawn:: public Piece
 				return false;
 			}
 		}
-		void move(int n, int l)
+Pawn::void move(int n, int l)
 		{
 			
 			if(color=='w')

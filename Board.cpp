@@ -1,7 +1,7 @@
 #include "Board.h"
 using namespace std;
-Board::Board()
-{
+//Board::Board()
+//{
    /* gameboard=new Piece*[8][8];
     gameboard[0][0]=new Rock();
     gameboard[1][0]=new Knight();
@@ -24,7 +24,7 @@ Board::Board()
     for(int i=0;i<7;i++)
      gameboard[i][6]=new Pawn(i,6,'w',this);
 */
-}
+//}
 int Board::check_draw_for_ripetions()
 {
     return 0;

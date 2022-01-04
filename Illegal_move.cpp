@@ -1,0 +1,3 @@
+class Illegal_move
+{
+};

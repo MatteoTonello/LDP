@@ -32,37 +32,11 @@ bool Pawn::can_move()
 void Pawn::move(int n, int l)
 		{
 			if(!can_move()) throw illegal_move();
-			if(color=='w')
+			if(color=='b')
 			{
 				if(n-number>2 || l-letter<-1 || l-letter>1) throw illegal_move();
 				if(n-number==2 && number!=2) throw illegal_move;
 				if((l-letter==1 || l-letter==-1)&& n-number==1)
-				{
-					if(b.gameboard[l][n]->color=='b')
-					{
-						*(b.gameboard[letter][number])=nullptr;
-						number=n;
-						letter=l;
-						*(b.gameboard[l][n])=this;
-						return;
-					}
-					else
-					{
-						throw illegal_move();
-					}
-				}
-				if((l-letter==1||l-letter==-1)&& n-number==2) throw illegal_move();
-				if(*(b.gameboard[l][n])==nullptr) throw illegal_move();
-				if(b.gameboard[l][n]->color=='w') throw illegal_move();
-				*(b.gameboard[letter][number])=nullptr;
-				letter=l;number=n;
-				*(b.gameboard[l][n])=this;
-			}
-			if(color=='b')
-			{
-				if(n-number<-2 || l-letter<-1 || l-letter>1) throw illegal_move();
-				if(n-number==-2 && number!=7) throw illegal_move;
-				if((l-letter==1 || l-letter==-1)&& n-number==-1)
 				{
 					if(b.gameboard[l][n]->color=='w')
 					{
@@ -77,9 +51,35 @@ void Pawn::move(int n, int l)
 						throw illegal_move();
 					}
 				}
-				if((l-letter==1||l-letter==-1)&& n-number==-2) throw illegal_move();
+				if((l-letter==1||l-letter==-1)&& n-number==2) throw illegal_move();
 				if(*(b.gameboard[l][n])==nullptr) throw illegal_move();
 				if(b.gameboard[l][n]->color=='b') throw illegal_move();
+				*(b.gameboard[letter][number])=nullptr;
+				letter=l;number=n;
+				*(b.gameboard[l][n])=this;
+			}
+			if(color=='w')
+			{
+				if(n-number<-2 || l-letter<-1 || l-letter>1) throw illegal_move();
+				if(n-number==-2 && number!=7) throw illegal_move;
+				if((l-letter==1 || l-letter==-1)&& n-number==-1)
+				{
+					if(b.gameboard[l][n]->color=='b')
+					{
+						*(b.gameboard[letter][number])=nullptr;
+						number=n;
+						letter=l;
+						*(b.gameboard[l][n])=this;
+						return;
+					}
+					else
+					{
+						throw illegal_move();
+					}
+				}
+				if((l-letter==1||l-letter==-1)&& n-number==-2) throw illegal_move();
+				if(*(b.gameboard[l][n])==nullptr) throw illegal_move();
+				if(b.gameboard[l][n]->color=='w') throw illegal_move();
 				*(b.gameboard[letter][number])=nullptr;
 				letter=l;number=n;
 				*(b.gameboard[l][n])=this;

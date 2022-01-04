@@ -1,12 +1,18 @@
 #include "Pawn.h"
 using namespace std;
-Pawn::Pawn(int n, int l, char color, Board myBoard);
+Pawn::Pawn(int n, int l, char col, Board& myBoard)
+{
+	number=n;
+	letter=l;
+	color=col;
+	b=myBoard;
+}
 Pawn::bool can_move()
 		{
 			if(color=='w')
 			{
-				if((*b[l][n+1]).color=='0') return true;
-				if((*b[l+1][n+1]).color=='b'||(*b[l-1][n+1]).color=='b') return true;
+				if((b.gameboard[l][n+1]->color=='0') return true;
+				if(b.gameboard[l+1][n+1]->color=='b'||(b.gameboard[l-1][n+1]->color=='b') return true;
 				return false;
 			}
 		}
@@ -19,7 +25,7 @@ Pawn::void move(int n, int l)
 				if(n-number==2 && number!=2) throw illegal_move;
 				if((l-letter==1 || l-letter==-1)&& n-number==1)
 				{
-					if((*b[l][n]).color=='b')
+					if(b.gameboard[l][n]->color=='b')
 					{
 						number=n;
 						letter=l;
@@ -31,7 +37,7 @@ Pawn::void move(int n, int l)
 					}
 				}
 				if((l-letter==1||l-letter==-1)&& n-number==2) throw illegal_move();
-				if((*b[l][n]).color=='w') throw illegal_move();
+				if(b.gameboard[l][n]->color=='w') throw illegal_move();
 				letter=l;number=n;
 			}
 			if(color=='b')
@@ -40,7 +46,7 @@ Pawn::void move(int n, int l)
 				if(n-number==-2 && number!=7) throw illegal_move;
 				if((l-letter==1 || l-letter==-1)&& n-number==-1)
 				{
-					if((*b[l][n]).color=='w')
+					if(b.gameboard[l][n]->color=='w')
 					{
 						number=n;
 						letter=l;
@@ -52,7 +58,7 @@ Pawn::void move(int n, int l)
 					}
 				}
 				if((l-letter==1||l-letter==-1)&& n-number==-2) throw illegal_move();
-				if((*b[l][n]).color=='b') throw illegal_move();
+				if(b.gameboard[l][n]->color=='b') throw illegal_move();
 				letter=l;number=n;
 			}
 		}

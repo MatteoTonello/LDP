@@ -1,3 +1,3 @@
-class Pawn
+class Pawn::public Piece
 {
 };

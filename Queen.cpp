@@ -12,9 +12,9 @@ Queen::Queen(int n, int l, char col, Board& myBoard )
 }
 bool Queen:: can_move()
 {
-	*(b.gameboard[letter][number])=nullptr;
+	b.gameboard[letter][number]=nullptr;
 	if(b.is_check()) return false;
-	*(b.gameboard[letter][number])=this;
+	b.gameboard[letter][number]=this;
 	for(int i=-1; i<=1; i++)
 	{
 		for(int j=-1;j<=1;j++)
@@ -33,17 +33,17 @@ void Queen:: move(int l, int n)
 {
 	if(b.is_check()) throw invalid_move();
 	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw invalid_move();
-	int vertical, horizontal ;
+	int vertical=number, horizontal=letter ;
 	if(number!=n && letter=l)
 	{
 		if(n>number)
 		{
 			vertical++;
-			while(vertical<=n && b.gameboard[letter][vertical]==nullptr)
+			while(vertical<n && b.gameboard[letter][vertical]==nullptr)
 			{
 				vertical++;
 			}
-			if(vertical!=n && b.gameboard[letter][vertical]==nullptr) throw invalid_move();
+			if(vertical!=n) throw invalid_move();
 		}
 		else
 		{
@@ -52,12 +52,12 @@ void Queen:: move(int l, int n)
 			{
 				vertical--;
 			}
-			if(vertical!=n || b.gameboard[letter][vertical]!=nullptr) throw invalid_move();
+			if(vertical!=n) throw invalid_move();
 		}
 	}
 	if(letter!=l && number==n)
 	{
-		if(n>number)
+		if(l>letter)
 		{
 			horizontal++;
 			while(horizontal<l && b.gameboard[horizontal][n]==nullptr)
@@ -114,7 +114,7 @@ void Queen:: move(int l, int n)
 	{
 		if(b.gameboard[l][n]->color==color)throw invalid_move();
 	}
-	b.gameboard[letter][number]=null;
+	b.gameboard[letter][number]=nullptr;
 	letter=l; number=n;
-	*(b.gameboard[l][n])=this;
+	b.gameboard[l][n]=this;
 }

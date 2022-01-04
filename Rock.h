@@ -1,3 +1,3 @@
-class Rock
+class Rock::public Piece
 {
 };

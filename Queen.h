@@ -1,3 +1,3 @@
-class Queen
+class Queen::public Piece
 {
 };

@@ -1,4 +1,4 @@
 class Pawn::public Piece
 {
-    Pawn(int n, int l, char col, Board& myBoard);
+    Pawn(int l, int n, char col, Board& myBoard);
 };

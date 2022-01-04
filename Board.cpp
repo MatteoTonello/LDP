@@ -1,6 +1,8 @@
+#include "Board.h"
+using namespace std;
 Board::Board()
 {
-    gameboard=new Piece*[8][8];
+   /* gameboard=new Piece*[8][8];
     gameboard[0][0]=new Rock();
     gameboard[1][0]=new Knight();
     gameboard[2][0]=new Bishop();
@@ -18,20 +20,36 @@ Board::Board()
     gameboard[6][7]=new Knight();
     gameboard[7][7]=new Rock();
     for(int i=0;i<7;i++)
-     gameboard[i][1]=new Pawn();
+     gameboard[i][1]=new Pawn(i,1,'b',this);
     for(int i=0;i<7;i++)
-     gameboard[i][6]=new Pawn();
-
+     gameboard[i][6]=new Pawn(i,6,'w',this);
+*/
 }
-int Board::check_draw_for_ripetions();
+int Board::check_draw_for_ripetions()
+{
+    return 0;
+}
 bool Board::is_check_mate(char c)
 {
     if(is_check(c))
     {
         
     }
+    return 0;
 }
-bool Board::is_check(char c);
-bool Board::is_draw();
-int Board::white_pieces;
-int Board::black_pieces;
+bool Board::is_check(char c)
+{
+    return 0;
+}
+bool Board::is_draw()
+{
+    return 0;
+}
+int Board::white_pieces
+{
+    return 0;
+}
+int Board::black_pieces
+{
+    return 0;
+}

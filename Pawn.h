@@ -1,4 +1,15 @@
-class Pawn::public Piece
+
+#ifndef PAWN_H
+#define PAWN_H
+#include <iostream>
+#include "Piece.h"
+using namespace std;
+class Pawn : public Piece
 {
-    Pawn(int n, int l, char col, Board& myBoard);
+    public:
+    Pawn(int l, int n, char col, Board& myBoard);
+    void move(int n, int l);
+    bool can_move();
+
 };
+#endif

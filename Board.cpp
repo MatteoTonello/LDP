@@ -45,11 +45,3 @@ bool Board::is_draw()
 {
     return 0;
 }
-int Board::white_pieces
-{
-    return 0;
-}
-int Board::black_pieces
-{
-    return 0;
-}

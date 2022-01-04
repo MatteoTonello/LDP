@@ -1,6 +1,6 @@
 #include "Pawn.h"
 using namespace std;
-Pawn::Pawn(int n, int l, char col, Board& myBoard)
+Pawn::Pawn(int l, int n, char col, Board& myBoard)
 {
 	number=n;
 	letter=l;

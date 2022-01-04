@@ -1,3 +1,3 @@
-class Knight
+class Knight::public Piece
 {
 };

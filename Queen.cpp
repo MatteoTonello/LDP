@@ -89,7 +89,7 @@ void Queen:: move(int l, int n)
 		{
 			for(int i=number, j=letter; i<=n; i++, j--)
 			{
-				if(b.gameboard[i][j]) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
 			}
 		}
 	}
@@ -106,7 +106,7 @@ void Queen:: move(int l, int n)
 		{
 			for(int i=number, j=letter; i<=n; i--, j--)
 			{
-				if(b.gameboard[i][j]) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
 			}
 		}
 	}

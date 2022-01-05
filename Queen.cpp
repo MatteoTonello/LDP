@@ -34,8 +34,8 @@ int abs_value(int j)
 }
 void Queen:: move(int l, int n)
 {
-	if(b.is_check()) throw invalid_move();
-	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw invalid_move();
+	if(!can_move()) throw new Illegal_move();
+	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw new Illegal_move();
 	int vertical=number, horizontal=letter ;
 	if(number!=n && letter=l)
 	{
@@ -46,7 +46,7 @@ void Queen:: move(int l, int n)
 			{
 				vertical++;
 			}
-			if(vertical!=n) throw invalid_move();
+			if(vertical!=n) throw new Illegal_move();
 		}
 		else
 		{
@@ -55,7 +55,7 @@ void Queen:: move(int l, int n)
 			{
 				vertical--;
 			}
-			if(vertical!=n) throw invalid_move();
+			if(vertical!=n) throw new Illegal_move();
 		}
 	}
 	if(letter!=l && number==n)
@@ -67,7 +67,7 @@ void Queen:: move(int l, int n)
 			{
 				horizontal++;
 			}
-			if(horizontal!=l) throw invalid_move();
+			if(horizontal!=l) throw new Illegal_move();
 		}
 		else
 		{
@@ -76,7 +76,7 @@ void Queen:: move(int l, int n)
 			{
 				horizontal--;
 			}
-			if(horizontal!=l) throw invalid_move();
+			if(horizontal!=l) throw new Illegal_move();
 		}
 	}
 	if(n>number)
@@ -85,14 +85,14 @@ void Queen:: move(int l, int n)
 		{
 			for(int i=number, j=letter; i<=n; i++, j++)
 			{
-				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
 			}
 		}
 		else
 		{
 			for(int i=number, j=letter; i<=n; i++, j--)
 			{
-				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
 			}
 		}
 	}
@@ -102,20 +102,20 @@ void Queen:: move(int l, int n)
 		{
 			for(int i=number, j=letter; i<=n; i--, j++)
 			{
-				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
 			}
 		}
 		else
 		{
 			for(int i=number, j=letter; i<=n; i--, j--)
 			{
-				if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+				if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
 			}
 		}
 	}
 	if(b.gameboard[l][n]!=nullptr)
 	{
-		if(b.gameboard[l][n]->color==color)throw invalid_move();
+		if(b.gameboard[l][n]->color==color)throw new Illegal_move();
 	}
 	b.gameboard[letter][number]=nullptr;
 	letter=l; number=n;

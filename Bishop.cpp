@@ -32,8 +32,8 @@ using namespace std;
 
    void Bishop::move(int l, int n)
    {
-      if(b.is_check()) throw invalid_move();
-      if((abs(l-letter))!=(abs(n-number))) throw invalid_move();
+      if(b.is_check()) throw new Illegal_move();
+      if((abs(l-letter))!=(abs(n-number))) throw new Illegal_move();
       
       if(n>number)
       {
@@ -41,14 +41,14 @@ using namespace std;
          {
             for(int i=number, j=letter; i<=n; i++, j++)
             {
-               if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
          else
          {
             for(int i=number, j=letter; i<=n; i++, j--)
             {
-               if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
       }
@@ -58,20 +58,20 @@ using namespace std;
          {
             for(int i=number, j=letter; i<=n; i--, j++)
             {
-               if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
          else
          {
             for(int i=number, j=letter; i<=n; i--, j--)
             {
-               if(b.gameboard[i][j]!=nullptr) throw invalid_move();
+               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
       }
       if(b.gameboard[l][n]!=nullptr)
       {
-         if(b.gameboard[l][n]->color==color)throw invalid_move();
+         if(b.gameboard[l][n]->color==color)throw new Illegal_move();
       }
       b.gameboard[letter][number]=nullptr;
       letter=l; number=n;

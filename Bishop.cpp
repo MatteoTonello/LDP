@@ -5,7 +5,7 @@
 #include "Board.cpp"
 #include <cstdlib>
 using namespace std;
-   Bishop::Bishop(int l, int n, char col, Board* myBoard)
+   Bishop::Bishop(int n, int l, char col, Board* myBoard)
    {
       number=n;
       letter=l;

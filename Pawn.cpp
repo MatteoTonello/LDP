@@ -4,7 +4,7 @@
 #include "Pawn.h"
 #include "Board.cpp"
 using namespace std;
-Pawn::Pawn(int l, int n, char col, Board* myBoard)
+Pawn::Pawn(int n, int l, char col, Board* myBoard)
 {
 	number=n;
 	letter=l;
@@ -18,14 +18,14 @@ bool Pawn::can_move()
 			b->gameboard[letter][number]=nullptr;
 			if(b->is_check(color))return false;
 			b->gameboard[letter][number+1]=this;
-			if(color=='w')
+			if(color=='b')
 			{
 				if(b->gameboard[letter][number+1]==nullptr) return true;
 				if(b->gameboard[letter+1][number+1]==nullptr||(b->gameboard[letter-1][number+1]==nullptr)) return false;
 				if(b->gameboard[letter+1][number+1]->color=='b'||b->gameboard[letter-1][number+1]->color=='b') return true;
 				return false;
 			}
-			if(color=='b')
+			if(color=='w')
 			{
 				if(b->gameboard[letter][number-1]==nullptr) return true;
 				if(b->gameboard[letter+1][number-1]==nullptr|| b->gameboard[letter-1][number-1]==nullptr) return false;

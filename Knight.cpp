@@ -4,7 +4,7 @@
 #include "Knight.h"
 #include <cstdlib>
 using namespace std;
-Knight::Knight(int l, int n, char col, Board* myBoard)
+Knight::Knight(int n, int l, char col, Board* myBoard)
 {
 	number=n;
 	letter=l;

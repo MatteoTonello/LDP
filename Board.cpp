@@ -27,25 +27,25 @@ Board::Board()
     vector<Piece*> second(16);
     blacks=second;
     gameboard[0][0]=new Rock(0,0,'b',this);
-    gameboard[1][0]=new Knight(1,0,'b',this);
-    gameboard[2][0]=new Bishop(2,0,'b',this);
-    gameboard[3][0]=new Queen(3,0,'b',this);
-    gameboard[4][0]=new Queen(4,0,'b',this);
-    gameboard[5][0]=new Bishop(5,0,'b',this);
-    gameboard[6][0]=new Knight(6,0,'b',this);
-    gameboard[7][0]=new Rock(7,0,'b',this);
-    gameboard[0][7]=new Rock(0,7,'w',this);
-    gameboard[1][7]=new Knight(1,7,'w',this);
-    gameboard[2][7]=new Bishop(2,7,'w',this);
-    gameboard[3][7]=new Queen(3,7,'w',this);
-    gameboard[4][7]=new Queen(4,7,'w',this);
-    gameboard[5][7]=new Bishop(5,7,'w',this);
-    gameboard[6][7]=new Knight(6,7,'w',this);
+    gameboard[0][1]=new Knight(0,1,'b',this);
+    gameboard[0][2]=new Bishop(0,2,'b',this);
+    gameboard[0][3]=new Queen(0,3,'b',this);
+    gameboard[0][4]=new Queen(0,4,'b',this);
+    gameboard[0][5]=new Bishop(0,5,'b',this);
+    gameboard[0][6]=new Knight(0,6,'b',this);
+    gameboard[0][7]=new Rock(0,7,'b',this);
+    gameboard[7][0]=new Rock(0,7,'w',this);
+    gameboard[7][1]=new Knight(1,7,'w',this);
+    gameboard[7][2]=new Bishop(2,7,'w',this);
+    gameboard[7][3]=new Queen(3,7,'w',this);
+    gameboard[7][4]=new Queen(4,7,'w',this);
+    gameboard[7][5]=new Bishop(5,7,'w',this);
+    gameboard[7][6]=new Knight(6,7,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);
     for(int i=0;i<=7;i++)
-     gameboard[i][1]=new Pawn(i,1,'b',this);
+        gameboard[1][i]=new Pawn(1,i,'b',this);
     for(int i=0;i<=7;i++)
-     gameboard[i][6]=new Pawn(i,6,'w',this);
+        gameboard[6][i]=new Pawn(6,i,'w',this);
     for(int j=0;j<2;j++){
         for(int i=0;i<=7;i++){
             whites.push_back(gameboard[i][7-j]);

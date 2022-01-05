@@ -2,6 +2,7 @@
 #define KNIGHT_CPP
 #include "Illegal_move.cpp"
 #include "Knight.h"
+#include "Board.cpp"
 #include <cstdlib>
 using namespace std;
 Knight::Knight(int l, int n, char col, Board& myBoard)
@@ -12,7 +13,7 @@ Knight::Knight(int l, int n, char col, Board& myBoard)
 	b=myBoard;
 	if(color=='w') piece='c';
 	else piece='C';
-};
+}
 
 bool Knight::can_move()
 	{

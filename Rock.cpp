@@ -2,6 +2,7 @@
 #define ROCK_CPP
 #include "Illegal_move.cpp"
 #include "Rock.h"
+#include "Board.cpp"
 using namespace std;
 
 Rock::Rock(int n, int l, char col, Board& myBoard )
@@ -17,7 +18,7 @@ Rock::Rock(int n, int l, char col, Board& myBoard )
 bool Rock:: can_move()
 {
 	b.gameboard[letter][number]=nullptr;
-	if(b.is_check()) return false;
+	if(b.is_check(color)) return false;
 	b.gameboard[letter][number]=this;
 	for(int i=-1; i<=1; i++)
 	{
@@ -29,10 +30,10 @@ bool Rock:: can_move()
 
 void Rock:: move(int l, int n)
 {
-	if(b.is_check()) throw invalid_move();
-	if(letter!=l && number!=n) throw invalid_move();
+	if(b.is_check(color)) throw new Illegal_move();
+	if(letter!=l && number!=n) throw new Illegal_move();
 	int vertical=number, horizontal=letter ;
-	if(number!=n && letter=l)
+	if(number!=n && letter==l)
 	{
 		if(n>number)
 		{
@@ -41,7 +42,7 @@ void Rock:: move(int l, int n)
 			{
 				vertical++;
 			}
-			if(vertical!=n) throw invalid_move();
+			if(vertical!=n) throw new Illegal_move();
 		}
 		else
 		{
@@ -50,7 +51,7 @@ void Rock:: move(int l, int n)
 			{
 				vertical--;
 			}
-			if(vertical!=n) throw invalid_move();
+			if(vertical!=n) throw new Illegal_move();
 		}
 	}
 	if(letter!=l && number==n)
@@ -62,7 +63,7 @@ void Rock:: move(int l, int n)
 			{
 				horizontal++;
 			}
-			if(horizontal!=l) throw invalid_move();
+			if(horizontal!=l) throw new Illegal_move();
 		}
 		else
 		{
@@ -71,7 +72,7 @@ void Rock:: move(int l, int n)
 			{
 				horizontal--;
 			}
-			if(horizontal!=l) throw invalid_move();
+			if(horizontal!=l) throw new Illegal_move();
 		}
 	}
 	#endif

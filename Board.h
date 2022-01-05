@@ -18,6 +18,7 @@ class Board
 		bool is_draw();
 		int white_pieces;
 		int black_pieces;
+		void print();
 		
 };
 #endif

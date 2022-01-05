@@ -5,7 +5,7 @@
 #include "Board.cpp"
 #include <cstdlib>
 using namespace std;
-   Bishop::Bishop(int l, int n, char col, Board& myBoard)
+   Bishop::Bishop(int l, int n, char col, Board* myBoard)
    {
       number=n;
       letter=l;
@@ -17,15 +17,15 @@ using namespace std;
 
    bool Bishop::can_move()
    {
-      b.gameboard[letter][number]=nullptr;
-      if(b.is_check(color)) return false;
-      b.gameboard[letter][number]=this;
+      b->gameboard[letter][number]=nullptr;
+      if(b->is_check(color)) return false;
+      b->gameboard[letter][number]=this;
       for(int i=-1; i<=1; i+2)
       {
          for(int j=-1;j<=1;j+2)
          {
-            if(b.gameboard[letter+i][number+j]==nullptr) return true;
-            if(b.gameboard[letter+i][number+j]->color!=color) return true;
+            if(b->gameboard[letter+i][number+j]==nullptr) return true;
+            if(b->gameboard[letter+i][number+j]->color!=color) return true;
          }
       }
       return false;
@@ -42,14 +42,14 @@ using namespace std;
          {
             for(int i=number, j=letter; i<=n; i++, j++)
             {
-               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
+               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
          else
          {
             for(int i=number, j=letter; i<=n; i++, j--)
             {
-               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
+               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
       }
@@ -59,24 +59,24 @@ using namespace std;
          {
             for(int i=number, j=letter; i<=n; i--, j++)
             {
-               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
+               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
          else
          {
             for(int i=number, j=letter; i<=n; i--, j--)
             {
-               if(b.gameboard[i][j]!=nullptr) throw new Illegal_move();
+               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
             }
          }
       }
-      if(b.gameboard[l][n]!=nullptr)
+      if(b->gameboard[l][n]!=nullptr)
       {
-         if(b.gameboard[l][n]->color==color)throw new Illegal_move();
+         if(b->gameboard[l][n]->color==color)throw new Illegal_move();
       }
-      b.gameboard[letter][number]=nullptr;
+      b->gameboard[letter][number]=nullptr;
       letter=l; number=n;
-      b.gameboard[l][n]=this;
+      b->gameboard[l][n]=this;
       }
 
 

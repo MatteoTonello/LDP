@@ -1,3 +1,3 @@
-class King::public Piece
+class King:public Piece
 {
 };

@@ -30,7 +30,7 @@ bool Rock:: can_move()
 
 void Rock:: move(int l, int n)
 {
-	if(b.is_check(color)) throw new Illegal_move();
+	if(!can_move()) throw new Illegal_move();
 	if(letter!=l && number!=n) throw new Illegal_move();
 	int vertical=number, horizontal=letter ;
 	if(number!=n && letter==l)

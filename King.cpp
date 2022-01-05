@@ -1,3 +1,5 @@
+#ifndef KING_H
+#define KING_H
 #include "King.h"
 #include "Board.h"
 using namespace std;
@@ -19,3 +21,4 @@ bool King::can_move()
 {
     return 0;
 }
+#endif

@@ -23,6 +23,7 @@ bool Knight::can_move()
 	};
 void Knight::move(int n, int l)
 	{
+		if(!can_move()) throw new Illegal_move();
 		if((abs(l-letter)==3 && abs(n-number)==1) || (abs(l-letter)==1 && abs(n-number)==3)){ //controllo se non è una delle 8 caselle possibili
 			if(b.gameboard[l][n]==nullptr) if(b.gameboard[l][n]->color==color) throw new Illegal_move();	//controllo se è lo stesso colore
 			b.gameboard[letter][number]=nullptr;	//Se non è uguale effettuo la modifica

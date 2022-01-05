@@ -32,7 +32,7 @@ using namespace std;
 
    void Bishop::move(int l, int n)
    {
-      if(b.is_check()) throw new Illegal_move();
+      if(!can_move()) throw new Illegal_move();
       if((abs(l-letter))!=(abs(n-number))) throw new Illegal_move();
       
       if(n>number)

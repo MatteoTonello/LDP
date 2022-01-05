@@ -1,0 +1,21 @@
+#include "King.h"
+#include "Board.h"
+using namespace std;
+
+King::King(int n, int l, char col, Board& myBoard)
+{
+    number=n;
+	letter=l;
+	color=col;
+	b=myBoard;
+	if(color=='w') piece='r';
+	else piece='R';
+}
+void King::move(int n, int l)
+{
+    return;
+}
+bool King::can_move()
+{
+    return 0;
+}

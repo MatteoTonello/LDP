@@ -1,28 +1,34 @@
 #ifndef BOARD_CPP
 #define BOARD_CPP
 #include "Board.h"
+#include "Pawn.cpp"
+#include "Rock.cpp"
+#include "Knight.cpp"
+#include "Queen.cpp"
+#include "King.cpp"
+#include "Bishop.cpp"
 using namespace std;
-//Board::Board()
-//{
-   /* gameboard=new Piece*[8][8];
+Board::Board()
+{
+    gameboard=new Piece*[8][8];
     whites(16);
     blacks(16);
-    gameboard[0][0]=new Rock();
-    gameboard[1][0]=new Knight();
-    gameboard[2][0]=new Bishop();
-    gameboard[3][0]=new Queen();
-    gameboard[4][0]=new King();
-    gameboard[5][0]=new Bishop();
-    gameboard[6][0]=new Knight();
-    gameboard[7][0]=new Rock();
-    gameboard[0][7]=new Rock();
-    gameboard[1][7]=new Knight();
-    gameboard[2][7]=new Bishop();
-    gameboard[3][7]=new Queen();
-    gameboard[4][7]=new King();
-    gameboard[5][7]=new Bishop();
-    gameboard[6][7]=new Knight();
-    gameboard[7][7]=new Rock();
+    gameboard[0][0]=new Rock(0,0,'b',this);
+    gameboard[1][0]=new Knight(1,0,'b',this);
+    gameboard[2][0]=new Bishop(2,0,'b',this);
+    gameboard[3][0]=new Queen(3,0,'b',this);
+    gameboard[4][0]=new King(4,0,'b',this);
+    gameboard[5][0]=new Bishop(5,0,'b',this);
+    gameboard[6][0]=new Knight(6,0,'b',this);
+    gameboard[7][0]=new Rock(7,0,'b',this);
+    gameboard[0][7]=new Rock(0,7,'w',this);
+    gameboard[1][7]=new Knight(1,7,'w',this);
+    gameboard[2][7]=new Bishop(2,7,'w',this);
+    gameboard[3][7]=new Queen(3,7,'w',this);
+    gameboard[4][7]=new King(4,7,'w',this);
+    gameboard[5][7]=new Bishop(5,7,'w',this);
+    gameboard[6][7]=new Knight(6,7,'w',this);
+    gameboard[7][7]=new Rock(7,7,'w',this);
 
     for(int i=0;i<7;i++)
      gameboard[i][1]=new Pawn(i,1,'b',this);
@@ -35,8 +41,8 @@ using namespace std;
             blacks.push_back(gameboard[i][0+j]);
         }
     }
-*/
-//}
+
+}
 int Board::check_draw_for_ripetions()
 {
     return 0;

@@ -121,3 +121,4 @@ void Queen:: move(int l, int n)
 	letter=l; number=n;
 	b.gameboard[l][n]=this;
 }
+#endif

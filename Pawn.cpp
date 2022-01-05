@@ -17,26 +17,27 @@ bool Pawn::can_move()
 		{
 			b->gameboard[number][letter]=nullptr;
 			if(b->is_check(color))return false;
-			b->gameboard[letter][number+1]=this;
+			b->gameboard[number][letter]=this;
 			if(color=='b')
 			{
-				if(b->gameboard[letter][number+1]==nullptr) return true;
-				if(b->gameboard[letter+1][number+1]==nullptr||(b->gameboard[letter-1][number+1]==nullptr)) return false;
-				if(b->gameboard[letter+1][number+1]->color=='b'||b->gameboard[letter-1][number+1]->color=='b') return true;
+				if(b->gameboard[number+1][letter]==nullptr) return true;
+				//if(b->gameboard[number+1][letter+1]==nullptr||(b->gameboard[number+1][letter-1]==nullptr)) return false;
+				//if(b->gameboard[number+1][letter+1]->color=='b'||b->gameboard[number+1][letter-1]->color=='b') return true;
 				return false;
 			}
 			if(color=='w')
 			{
-				if(b->gameboard[letter][number-1]==nullptr) return true;
-				if(b->gameboard[letter+1][number-1]==nullptr|| b->gameboard[letter-1][number-1]==nullptr) return false;
-				if(b->gameboard[letter+1][number-1]->color=='w'|| b->gameboard[letter-1][number-1]->color=='w') return true;
+				if(b->gameboard[number-1][letter]==nullptr) return true;
+				
+				//if(b->gameboard[number-1][letter+1]==nullptr|| b->gameboard[number-1][letter-1]==nullptr) return false;
+				//if(b->gameboard[number-1][letter+1]->color=='w'|| b->gameboard[number-1][letter-1]->color=='w') return true;
 				return false;
 			}
 			return false;
 		};
 void Pawn::move(int n, int l)
 		{
-			//if(!can_move()) throw new Illegal_move();
+			if(!can_move()) throw new Illegal_move();
 			if(color=='b')
 			{
 				if(n-number>2 || l-letter<-1 || l-letter>1) throw new Illegal_move();

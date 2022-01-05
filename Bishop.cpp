@@ -18,7 +18,7 @@ using namespace std;
    bool Bishop::can_move()
    {
       b.gameboard[letter][number]=nullptr;
-      if(b.is_check()) return false;
+      if(b.is_check(color)) return false;
       b.gameboard[letter][number]=this;
       for(int i=-1; i<=1; i+2)
       {
@@ -79,5 +79,5 @@ using namespace std;
       b.gameboard[l][n]=this;
       }
 
-}
+
 #endif

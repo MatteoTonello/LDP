@@ -7,6 +7,7 @@ class Piece;
 class Board
 {
 	public:
+		Board();
 		Piece* gameboard[8][8];
 		vector<Board> last_bs;
 		vector<Piece*> whites;

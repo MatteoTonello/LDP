@@ -17,7 +17,7 @@ Queen::Queen(int n, int l, char col, Board& myBoard )
 bool Queen:: can_move()
 {
 	b.gameboard[letter][number]=nullptr;
-	if(b.is_check()) return false;
+	if(b.is_check(color)) return false;
 	b.gameboard[letter][number]=this;
 	for(int i=-1; i<=1; i++)
 	{
@@ -38,7 +38,7 @@ void Queen:: move(int l, int n)
 	if(!can_move()) throw new Illegal_move();
 	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw new Illegal_move();
 	int vertical=number, horizontal=letter ;
-	if(number!=n && letter=l)
+	if(number!=n && letter==l)
 	{
 		if(n>number)
 		{

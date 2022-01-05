@@ -74,4 +74,5 @@ void Rock:: move(int l, int n)
 			if(horizontal!=l) throw new Illegal_move();
 		}
 	}
+}
 	#endif

@@ -35,12 +35,12 @@ Board::Board()
     gameboard[0][6]=new Knight(0,6,'b',this);
     gameboard[0][7]=new Rock(0,7,'b',this);
     gameboard[7][0]=new Rock(0,7,'w',this);
-    gameboard[7][1]=new Knight(1,7,'w',this);
-    gameboard[7][2]=new Bishop(2,7,'w',this);
-    gameboard[7][3]=new Queen(3,7,'w',this);
-    gameboard[7][4]=new Queen(4,7,'w',this);
-    gameboard[7][5]=new Bishop(5,7,'w',this);
-    gameboard[7][6]=new Knight(6,7,'w',this);
+    gameboard[7][1]=new Knight(7,1,'w',this);
+    gameboard[7][2]=new Bishop(7,2,'w',this);
+    gameboard[7][3]=new Queen(7,3,'w',this);
+    gameboard[7][4]=new Queen(7,4,'w',this);
+    gameboard[7][5]=new Bishop(7,5,'w',this);
+    gameboard[7][6]=new Knight(7,6,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);
     for(int i=0;i<=7;i++)
         gameboard[1][i]=new Pawn(1,i,'b',this);
@@ -79,17 +79,18 @@ ostream& operator<<(ostream& os, Board& b)
     string out="";
     for(int i=0;i<8;i++)
     {
-        out=out+to_string(8-i)+" ";
+        out=out+to_string(i)+to_string(8-i)+" ";
         for(int j=0;j<8;j++)
         {
-            if(b.gameboard[j][i]==nullptr)
+            if(b.gameboard[i][j]==nullptr)
                 out=out+" ";
             else
-                out=out+b.gameboard[j][i]->piece;
+                out=out+b.gameboard[i][j]->piece;
         }
         out=out+"\n";
     }
-    out=out+"  ABCDEFGH\n";
+    out=out+"   ABCDEFGH\n";
+    out=out+"   01234567\n";
     os<<out;
     return os ;
 }

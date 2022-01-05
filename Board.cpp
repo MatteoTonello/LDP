@@ -30,7 +30,7 @@ Board::Board()
     gameboard[1][0]=new Knight(1,0,'b',this);
     gameboard[2][0]=new Bishop(2,0,'b',this);
     gameboard[3][0]=new Queen(3,0,'b',this);
-    gameboard[4][0]=new King(4,0,'b',this);
+    gameboard[4][0]=new Queen(4,0,'b',this);
     gameboard[5][0]=new Bishop(5,0,'b',this);
     gameboard[6][0]=new Knight(6,0,'b',this);
     gameboard[7][0]=new Rock(7,0,'b',this);
@@ -38,7 +38,7 @@ Board::Board()
     gameboard[1][7]=new Knight(1,7,'w',this);
     gameboard[2][7]=new Bishop(2,7,'w',this);
     gameboard[3][7]=new Queen(3,7,'w',this);
-    gameboard[4][7]=new King(4,7,'w',this);
+    gameboard[4][7]=new Queen(4,7,'w',this);
     gameboard[5][7]=new Bishop(5,7,'w',this);
     gameboard[6][7]=new Knight(6,7,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);
@@ -89,7 +89,7 @@ ostream& operator<<(ostream& os, Board& b)
         }
         out=out+"\n";
     }
-    out=out+"  ABCDEFGH";
+    out=out+"  ABCDEFGH\n";
     os<<out;
     return os ;
 }

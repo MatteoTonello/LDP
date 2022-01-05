@@ -1,3 +1,6 @@
+#ifndef QUEEN_CPP
+#define QUEEN_CPP
+#include "Illegal_move.cpp"
 #include "Queen.h"
 using namespace std;
 
@@ -7,8 +10,8 @@ Queen::Queen(int n, int l, char col, Board& myBoard )
 	letter=l;
 	color=col;
 	b=myBoard;
-	if(color=='w') piece='D';
-	else piece='d';
+	if(color=='w') piece='d';
+	else piece='D';
 }
 bool Queen:: can_move()
 {

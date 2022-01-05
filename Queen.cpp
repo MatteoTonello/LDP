@@ -2,6 +2,7 @@
 #define QUEEN_CPP
 #include "Illegal_move.cpp"
 #include "Queen.h"
+#include "Board.cpp"
 using namespace std;
 
 Queen::Queen(int n, int l, char col, Board& myBoard )

@@ -11,19 +11,25 @@
 using namespace std;
 Board::Board()
 {
+    
     Piece* matrix[8][8];
     for(int i=0;i<8;i++)
+    {
         for(int j=0;j<8;j++)
             gameboard[i][j]=matrix[i][j];
+    }
+     cout<<"6";
     vector<Piece*> first(16);
     whites=first;
     vector<Piece*> second(16);
     blacks=second;
+     cout<<"1";
     gameboard[0][0]=new Rock(0,0,'b',*this);
+     cout<<"3";
     gameboard[1][0]=new Knight(1,0,'b',*this);
     gameboard[2][0]=new Bishop(2,0,'b',*this);
     gameboard[3][0]=new Queen(3,0,'b',*this);
-    gameboard[4][0]=new King(4,0,'b',*this);
+    gameboard[4][0]=new Queen(4,0,'b',*this);
     gameboard[5][0]=new Bishop(5,0,'b',*this);
     gameboard[6][0]=new Knight(6,0,'b',*this);
     gameboard[7][0]=new Rock(7,0,'b',*this);
@@ -31,16 +37,15 @@ Board::Board()
     gameboard[1][7]=new Knight(1,7,'w',*this);
     gameboard[2][7]=new Bishop(2,7,'w',*this);
     gameboard[3][7]=new Queen(3,7,'w',*this);
-    gameboard[4][7]=new King(4,7,'w',*this);
+    gameboard[4][7]=new Queen(4,7,'w',*this);
     gameboard[5][7]=new Bishop(5,7,'w',*this);
     gameboard[6][7]=new Knight(6,7,'w',*this);
     gameboard[7][7]=new Rock(7,7,'w',*this);
-
     for(int i=0;i<=7;i++)
      gameboard[i][1]=new Pawn(i,1,'b',*this);
     for(int i=0;i<=7;i++)
      gameboard[i][6]=new Pawn(i,6,'w',*this);
-
+ cout<<"2";
     for(int j=0;j<2;j++){
         for(int i=0;i<=7;i++){
             whites.push_back(gameboard[i][7-j]);
@@ -68,5 +73,40 @@ bool Board::is_check(char c)
 bool Board::is_draw()
 {
     return 0;
+}
+void Board::print()
+{
+    cout<<"boh";
+    string out="";
+    for(int i=0;i<8;i++)
+    {
+        for(int j=0;j<8;j++)
+        {
+            if(gameboard[j][i]==nullptr)
+                out=out+" ";
+            else
+                out=out+gameboard[j][i]->piece;
+        }
+        out=out+"\n";
+    }
+    cout<<out;
+}
+ostream& operator<<(ostream& os, Board& b)
+{
+    cout<<"ciao";
+    string out="";
+    for(int i=0;i<8;i++)
+    {
+        for(int j=0;j<8;j++)
+        {
+            if(b.gameboard[j][i]==nullptr)
+                out=out+" ";
+            else
+                out=out+b.gameboard[j][i]->piece;
+        }
+        out=out+"\n";
+    }
+    os<<out;
+    return os ;
 }
 #endif

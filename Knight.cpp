@@ -19,6 +19,7 @@ bool Knight::can_move()
 		b.gameboard[letter][number]=nullptr;
 		if(b.is_check(color))return false;	//controllo scacco
 		b.gameboard[letter][number+1]=this;
+		return 0;
 	};
 void Knight::move(int n, int l)
 	{

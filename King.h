@@ -5,9 +5,10 @@
 using namespace std;
 class King:public Piece
 {
-   public:
-      King(int n, int l, char col, Board& myBoard);
-      void move(int n, int l);
-      bool can_move();
+	bool is_already_move;
+	public:
+		King(int n, int l, char col, Board& myBoard);
+		void move(int n, int l);
+		bool can_move();
 };
 #endif

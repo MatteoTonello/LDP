@@ -2,6 +2,7 @@
 #define BISHOP_CPP
 #include "Illegal_move.cpp"
 #include "Bishop.h"
+#include "Board.cpp"
 #include <cstdlib>
 using namespace std;
    Bishop::Bishop(int l, int n, char col, Board& myBoard)

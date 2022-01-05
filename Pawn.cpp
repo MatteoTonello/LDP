@@ -2,6 +2,7 @@
 #define PAWN_CPP
 #include "Illegal_move.cpp"
 #include "Pawn.h"
+#include "Board.cpp"
 using namespace std;
 Pawn::Pawn(int l, int n, char col, Board& myBoard)
 {

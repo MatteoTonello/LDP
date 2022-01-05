@@ -4,7 +4,7 @@
 #include "Rock.h"
 using namespace std;
 
-Rock::Rock(int n, int l, char col, Board& myBoard )
+Rock::Rock(int n, int l, char col, Board* myBoard )
 {
 	number=n;
 	letter=l;
@@ -16,13 +16,13 @@ Rock::Rock(int n, int l, char col, Board& myBoard )
 
 bool Rock:: can_move()
 {
-	b.gameboard[letter][number]=nullptr;
-	if(b.is_check(color)) return false;
-	b.gameboard[letter][number]=this;
+	b->gameboard[letter][number]=nullptr;
+	if(b->is_check(color)) return false;
+	b->gameboard[letter][number]=this;
 	for(int i=-1; i<=1; i++)
 	{
-			if(b.gameboard[letter][number+i]==nullptr || b.gameboard[letter+i][number]==nullptr) return true;
-			if(b.gameboard[letter][number+i]->color!=color || b.gameboard[letter+i][number]->color!=color) return true;
+			if(b->gameboard[letter][number+i]==nullptr || b->gameboard[letter+i][number]==nullptr) return true;
+			if(b->gameboard[letter][number+i]->color!=color || b->gameboard[letter+i][number]->color!=color) return true;
 	}
 	return false;
 };
@@ -37,7 +37,7 @@ void Rock:: move(int l, int n)
 		if(n>number)
 		{
 			vertical++;
-			while(vertical<n && b.gameboard[letter][vertical]==nullptr)
+			while(vertical<n && b->gameboard[letter][vertical]==nullptr)
 			{
 				vertical++;
 			}
@@ -46,7 +46,7 @@ void Rock:: move(int l, int n)
 		else
 		{
 			vertical--;
-			while(vertical>=n && b.gameboard[letter][vertical]==nullptr)
+			while(vertical>=n && b->gameboard[letter][vertical]==nullptr)
 			{
 				vertical--;
 			}
@@ -58,7 +58,7 @@ void Rock:: move(int l, int n)
 		if(l>letter)
 		{
 			horizontal++;
-			while(horizontal<l && b.gameboard[horizontal][n]==nullptr)
+			while(horizontal<l && b->gameboard[horizontal][n]==nullptr)
 			{
 				horizontal++;
 			}
@@ -67,7 +67,7 @@ void Rock:: move(int l, int n)
 		else
 		{
 			horizontal--;
-			while(horizontal>=n && b.gameboard[horizontal][n]==nullptr)
+			while(horizontal>=n && b->gameboard[horizontal][n]==nullptr)
 			{
 				horizontal--;
 			}

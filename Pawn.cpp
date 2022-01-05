@@ -4,7 +4,7 @@
 #include "Pawn.h"
 #include "Board.cpp"
 using namespace std;
-Pawn::Pawn(int l, int n, char col, Board& myBoard)
+Pawn::Pawn(int l, int n, char col, Board* myBoard)
 {
 	number=n;
 	letter=l;
@@ -15,21 +15,21 @@ Pawn::Pawn(int l, int n, char col, Board& myBoard)
 };
 bool Pawn::can_move()
 		{
-			b.gameboard[letter][number]=nullptr;
-			if(b.is_check(color))return false;
-			b.gameboard[letter][number+1]=this;
+			b->gameboard[letter][number]=nullptr;
+			if(b->is_check(color))return false;
+			b->gameboard[letter][number+1]=this;
 			if(color=='w')
 			{
-				if(b.gameboard[letter][number+1]==nullptr) return true;
-				if(b.gameboard[letter+1][number+1]==nullptr||(b.gameboard[letter-1][number+1]==nullptr)) return false;
-				if(b.gameboard[letter+1][number+1]->color=='b'||b.gameboard[letter-1][number+1]->color=='b') return true;
+				if(b->gameboard[letter][number+1]==nullptr) return true;
+				if(b->gameboard[letter+1][number+1]==nullptr||(b->gameboard[letter-1][number+1]==nullptr)) return false;
+				if(b->gameboard[letter+1][number+1]->color=='b'||b->gameboard[letter-1][number+1]->color=='b') return true;
 				return false;
 			}
 			if(color=='b')
 			{
-				if(b.gameboard[letter][number-1]==nullptr) return true;
-				if(b.gameboard[letter+1][number-1]==nullptr|| b.gameboard[letter-1][number-1]==nullptr) return false;
-				if(b.gameboard[letter+1][number-1]->color=='w'|| b.gameboard[letter-1][number-1]->color=='w') return true;
+				if(b->gameboard[letter][number-1]==nullptr) return true;
+				if(b->gameboard[letter+1][number-1]==nullptr|| b->gameboard[letter-1][number-1]==nullptr) return false;
+				if(b->gameboard[letter+1][number-1]->color=='w'|| b->gameboard[letter-1][number-1]->color=='w') return true;
 				return false;
 			}
 			return false;
@@ -43,12 +43,12 @@ void Pawn::move(int n, int l)
 				if(n-number==2 && number!=2) throw new Illegal_move();
 				if((l-letter==1 || l-letter==-1)&& n-number==1)
 				{
-					if(b.gameboard[l][n]->color=='w')
+					if(b->gameboard[l][n]->color=='w')
 					{
-						b.gameboard[letter][number]=nullptr;
+						b->gameboard[letter][number]=nullptr;
 						number=n;
 						letter=l;
-						b.gameboard[l][n]=this;
+						b->gameboard[l][n]=this;
 						return;
 					}
 					else
@@ -57,11 +57,11 @@ void Pawn::move(int n, int l)
 					}
 				}
 				if((l-letter==1||l-letter==-1)&& n-number==2) throw new Illegal_move();
-				if(b.gameboard[l][n]==nullptr) throw new Illegal_move();
-				if(b.gameboard[l][n]->color=='b') throw new Illegal_move();
-				b.gameboard[letter][number]=nullptr;
+				if(b->gameboard[l][n]==nullptr) throw new Illegal_move();
+				if(b->gameboard[l][n]->color=='b') throw new Illegal_move();
+				b->gameboard[letter][number]=nullptr;
 				letter=l;number=n;
-				b.gameboard[l][n]=this;
+				b->gameboard[l][n]=this;
 			}
 			if(color=='w')
 			{
@@ -69,12 +69,12 @@ void Pawn::move(int n, int l)
 				if(n-number==-2 && number!=7) throw new Illegal_move();
 				if((l-letter==1 || l-letter==-1)&& n-number==-1)
 				{
-					if(b.gameboard[l][n]->color=='b')
+					if(b->gameboard[l][n]->color=='b')
 					{
-						b.gameboard[letter][number]=nullptr;
+						b->gameboard[letter][number]=nullptr;
 						number=n;
 						letter=l;
-						b.gameboard[l][n]=this;
+						b->gameboard[l][n]=this;
 						return;
 					}
 					else
@@ -83,11 +83,11 @@ void Pawn::move(int n, int l)
 					}
 				}
 				if((l-letter==1||l-letter==-1)&& n-number==-2) throw new Illegal_move();
-				if(b.gameboard[l][n]==nullptr) throw new Illegal_move();
-				if(b.gameboard[l][n]->color=='w') throw new Illegal_move();
-				b.gameboard[letter][number]=nullptr;
+				if(b->gameboard[l][n]==nullptr) throw new Illegal_move();
+				if(b->gameboard[l][n]->color=='w') throw new Illegal_move();
+				b->gameboard[letter][number]=nullptr;
 				letter=l;number=n;
-				b.gameboard[l][n]=this;
+				b->gameboard[l][n]=this;
 			}
 		
 		};

@@ -4,7 +4,7 @@
 #include "Board.cpp"
 using namespace std;
 
-King::King(int n, int l, char col, Board& myBoard)
+King::King(int n, int l, char col, Board* myBoard)
 {
     number=n;
 	letter=l;

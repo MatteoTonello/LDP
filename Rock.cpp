@@ -2,7 +2,6 @@
 #define ROCK_CPP
 #include "Illegal_move.cpp"
 #include "Rock.h"
-#include "Board.cpp"
 using namespace std;
 
 Rock::Rock(int n, int l, char col, Board& myBoard )
@@ -13,7 +12,7 @@ Rock::Rock(int n, int l, char col, Board& myBoard )
 	b=myBoard;
 	if(color=='w') piece='t';
 	else piece='T';
-}
+};
 
 bool Rock:: can_move()
 {
@@ -26,7 +25,7 @@ bool Rock:: can_move()
 			if(b.gameboard[letter][number+i]->color!=color || b.gameboard[letter+i][number]->color!=color) return true;
 	}
 	return false;
-}
+};
 
 void Rock:: move(int l, int n)
 {

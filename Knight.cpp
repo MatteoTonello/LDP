@@ -2,7 +2,6 @@
 #define KNIGHT_CPP
 #include "Illegal_move.cpp"
 #include "Knight.h"
-#include "Board.cpp"
 #include <cstdlib>
 using namespace std;
 Knight::Knight(int l, int n, char col, Board& myBoard)

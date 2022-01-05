@@ -5,6 +5,7 @@
 using namespace std;
 class Knight:public Piece
 {
+    public:
     Knight(int l, int n, char col, Board& myBoard);
     void move(int n, int l);
     bool can_move();

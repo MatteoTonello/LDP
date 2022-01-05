@@ -1,6 +1,6 @@
 #ifndef PIECE_H
 #define PIECE_H
-#include "Board.cpp"
+#include "Board.h"
 class Piece
 {
 	public:

@@ -11,7 +11,6 @@ class Board
 		vector<Board> last_bs;
 		vector<Piece*> whites;
 		vector<Piece*> blacks;
-	public:
 		int check_draw_for_ripetions();
 		bool is_check_mate(char c);
 		bool is_check(char c);

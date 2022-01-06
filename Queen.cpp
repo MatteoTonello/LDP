@@ -16,15 +16,15 @@ Queen::Queen(int n, int l, char col, Board* myBoard )
 }
 bool Queen:: can_move()
 {
-	b->gameboard[letter][number]=nullptr;
+	b->gameboard[number][letter]=nullptr;
 	if(b->is_check(color)) return false;
-	b->gameboard[letter][number]=this;
+	b->gameboard[number][letter]=this;
 	for(int i=-1; i<=1; i++)
 	{
 		for(int j=-1;j<=1;j++)
 		{
-			if(b->gameboard[letter+i][number+j]==nullptr) return true;
-			if(b->gameboard[letter+i][number+j]->color!=color) return true;
+			if(b->gameboard[number+i][letter+j]==nullptr) return true;
+			if(b->gameboard[number+i][letter+j]->color!=color) return true;
 		}
 	}
 	return false;
@@ -33,7 +33,7 @@ int abs_value(int j)
 {
 	if(j>0) return j;return -j;
 }
-void Queen:: move(int l, int n)
+void Queen:: move(int n, int l)
 {
 	if(!can_move()) throw new Illegal_move();
 	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw new Illegal_move();
@@ -43,7 +43,7 @@ void Queen:: move(int l, int n)
 		if(n>number)
 		{
 			vertical++;
-			while(vertical<n && b->gameboard[letter][vertical]==nullptr)
+			while(vertical<n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical++;
 			}
@@ -52,7 +52,7 @@ void Queen:: move(int l, int n)
 		else
 		{
 			vertical--;
-			while(vertical>=n && b->gameboard[letter][vertical]==nullptr)
+			while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
 			}
@@ -64,7 +64,7 @@ void Queen:: move(int l, int n)
 		if(l>letter)
 		{
 			horizontal++;
-			while(horizontal<l && b->gameboard[horizontal][n]==nullptr)
+			while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal++;
 			}
@@ -73,7 +73,7 @@ void Queen:: move(int l, int n)
 		else
 		{
 			horizontal--;
-			while(horizontal>=n && b->gameboard[horizontal][n]==nullptr)
+			while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}
@@ -114,12 +114,12 @@ void Queen:: move(int l, int n)
 			}
 		}
 	}
-	if(b->gameboard[l][n]!=nullptr)
+	if(b->gameboard[n][l]!=nullptr)
 	{
-		if(b->gameboard[l][n]->color==color)throw new Illegal_move();
+		if(b->gameboard[n][l]->color==color)throw new Illegal_move();
 	}
-	b->gameboard[letter][number]=nullptr;
+	b->gameboard[number][letter]=nullptr;
 	letter=l; number=n;
-	b->gameboard[l][n]=this;
+	b->gameboard[n][l]=this;
 }
 #endif

@@ -16,18 +16,18 @@ Rock::Rock(int n, int l, char col, Board* myBoard )
 
 bool Rock:: can_move()
 {
-	b->gameboard[letter][number]=nullptr;
+	b->gameboard[number][letter]=nullptr;
 	if(b->is_check(color)) return false;
-	b->gameboard[letter][number]=this;
+	b->gameboard[number][letter]=this;
 	for(int i=-1; i<=1; i++)
 	{
-			if(b->gameboard[letter][number+i]==nullptr || b->gameboard[letter+i][number]==nullptr) return true;
-			if(b->gameboard[letter][number+i]->color!=color || b->gameboard[letter+i][number]->color!=color) return true;
+			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number+i][letter]==nullptr) return true;
+			if(b->gameboard[number][letter+i]->color!=color || b->gameboard[number+i][letter]->color!=color) return true;
 	}
 	return false;
 };
 
-void Rock:: move(int l, int n)
+void Rock:: move(int n, int l)
 {
 	if(!can_move()) throw new Illegal_move();
 	if(letter!=l && number!=n) throw new Illegal_move();
@@ -37,7 +37,7 @@ void Rock:: move(int l, int n)
 		if(n>number)
 		{
 			vertical++;
-			while(vertical<n && b->gameboard[letter][vertical]==nullptr)
+			while(vertical<n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical++;
 			}
@@ -46,7 +46,7 @@ void Rock:: move(int l, int n)
 		else
 		{
 			vertical--;
-			while(vertical>=n && b->gameboard[letter][vertical]==nullptr)
+			while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
 			}
@@ -58,7 +58,7 @@ void Rock:: move(int l, int n)
 		if(l>letter)
 		{
 			horizontal++;
-			while(horizontal<l && b->gameboard[horizontal][n]==nullptr)
+			while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal++;
 			}
@@ -67,12 +67,15 @@ void Rock:: move(int l, int n)
 		else
 		{
 			horizontal--;
-			while(horizontal>=n && b->gameboard[horizontal][n]==nullptr)
+			while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}
 			if(horizontal!=l) throw new Illegal_move();
 		}
 	}
+	b->gameboard[number][letter]=nullptr;
+	letter=l; number=n;
+	b->gameboard[n][l]=this;
 }
 	#endif

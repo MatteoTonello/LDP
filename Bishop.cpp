@@ -17,21 +17,21 @@ using namespace std;
 
    bool Bishop::can_move()
    {
-      b->gameboard[letter][number]=nullptr;
+      b->gameboard[number][letter]=nullptr;
       if(b->is_check(color)) return false;
-      b->gameboard[letter][number]=this;
+      b->gameboard[number][letter]=this;
       for(int i=-1; i<=1; i+2)
       {
          for(int j=-1;j<=1;j+2)
          {
-            if(b->gameboard[letter+i][number+j]==nullptr) return true;
-            if(b->gameboard[letter+i][number+j]->color!=color) return true;
+            if(b->gameboard[number+i][letter+j]==nullptr) return true;
+            if(b->gameboard[number+i][letter+j]->color!=color) return true;
          }
       }
       return false;
    }
 
-   void Bishop::move(int l, int n)
+   void Bishop::move(int n, int l)
    {
       if(!can_move()) throw new Illegal_move();
       if((abs(l-letter))!=(abs(n-number))) throw new Illegal_move();
@@ -42,8 +42,8 @@ using namespace std;
          {
             for(int i=number, j=letter; i<=n; i++, j++)
             {
-               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
-            }
+               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();  //secondo me (DAN) qui bisogna partire
+            }                                                           //da posizioni +1
          }
          else
          {
@@ -70,13 +70,13 @@ using namespace std;
             }
          }
       }
-      if(b->gameboard[l][n]!=nullptr)
+      if(b->gameboard[n][l]!=nullptr)
       {
-         if(b->gameboard[l][n]->color==color)throw new Illegal_move();
+         if(b->gameboard[n][l]->color==color)throw new Illegal_move();
       }
-      b->gameboard[letter][number]=nullptr;
+      b->gameboard[number][letter]=nullptr;
       letter=l; number=n;
-      b->gameboard[l][n]=this;
+      b->gameboard[n][l]=this;
       }
 
 

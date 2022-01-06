@@ -25,34 +25,34 @@ bool King::can_move()
 				if(b->gameboard[i][j]==nullptr)
 				{
 					b->gameboard[i][j]=this;
-					b->gameboard[letter][number]=nullptr;
-					letter=i; number=j;
+					b->gameboard[number][letter]=nullptr;
+					number=i; letter=j;
 					if(!b->is_check(color))
 					{
 						b->gameboard[i][j]=nullptr;
-						b->gameboard[save_letter][save_number]=this;
+						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
 						return true;
 					}
 					b->gameboard[i][j]=nullptr;
-					b->gameboard[save_letter][save_number]=this;
+					b->gameboard[save_number][save_letter]=this;
 					letter=save_letter; number=save_number;
 				}
 				if(b->gameboard[i][j]->color!=color)
 				{
 					Piece* p=b->gameboard[i][j];
 					b->gameboard[i][j]=this;
-					b->gameboard[letter][number]=nullptr;
-					letter=i; number=j;
+					b->gameboard[number][letter]=nullptr;
+					number=i; letter=j;
 					if(!b->is_check(color))
 					{
 						b->gameboard[i][j]=p;
-						b->gameboard[save_letter][save_number]=this;
+						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number
 						return true;
 					}
 					b->gameboard[i][j]=p;
-					b->gameboard[save_letter][save_number]=this;
+					b->gameboard[save_number][save_letter]=this;
 					letter=save_letter; number=save_number;
 				}
 				j++;
@@ -65,48 +65,48 @@ void King::move(int n, int l)
 {
 	if(abs_value(n-number)!=1 || abs_value(l-letter)!=1) throw new Illegal_move();
 	int save_letter=letter, save_number=number;
-	if(b->gameboard[l][n]==nullptr)
+	if(b->gameboard[n][l]==nullptr)
 				{
-					b->gameboard[l][n]=this;
-					b->gameboard[letter][number]=nullptr;
+					b->gameboard[n][l]=this;
+					b->gameboard[number][letter]=nullptr;
 					letter=l; number=n;
 					if(b->is_check(color))
 					{
-						b->gameboard[l][n]=nullptr;
-						b->gameboard[save_letter][save_number]=this;
+						b->gameboard[n][l]=nullptr;
+						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
 						throw new Illegal_move();
 					}
-					b->gameboard[l][n]=nullptr;
-					b->gameboard[save_letter][save_number]=this;
+					b->gameboard[n][l]=nullptr;
+					b->gameboard[save_number][save_letter]=this;
 					letter=save_letter; number=save_number;
 				}
-				if(b->gameboard[l][n]->color!=color)
+				if(b->gameboard[n][l]->color!=color)
 				{
-					Piece* p=b->gameboard[l][n];
-					b->gameboard[l][n]=this;
-					b->gameboard[letter][number]=nullptr;
+					Piece* p=b->gameboard[n][l];
+					b->gameboard[n][l]=this;
+					b->gameboard[number][letter]=nullptr;
 					letter=l; number=n;
 					if(b->is_check(color))
 					{
-						b->gameboard[l][n]=p;
-						b->gameboard[save_letter][save_number]=this;
+						b->gameboard[n][l]=p;
+						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
 						throw new Illegal_move();
 					}
-					b->gameboard[l][n]=p;
-					b->gameboard[save_letter][save_number]=this;
+					b->gameboard[n][l]=p;
+					b->gameboard[save_number][save_letter]=this;
 					letter=save_letter; number=save_number;
 				}
-	if(b->gameboard[l][n]->color==color)
+	if(b->gameboard[n][l]->color==color)
 	{
 		throw new Illegal_move();
 	}
-	b->gameboard[letter][number]=nullptr;
+	b->gameboard[number][letter]=nullptr;
 	number=n;
 	letter=l;
 	
-	b->gameboard[l][n]=this;
+	b->gameboard[n][l]=this;
 	is_already_move=true;
 	return;
 	

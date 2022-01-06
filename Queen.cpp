@@ -37,10 +37,10 @@ int abs_value(int j)
 {
 	if(j>0) return j;return -j;
 }
-void Queen:: move(int n, int l)
+bool:: Queen try_move(int l, int n)
 {
-	if(!can_move()) throw new Illegal_move();
-	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) throw new Illegal_move();
+	if(!can_move()) return false;
+	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) return false;;
 	int vertical=number, horizontal=letter ;
 	if(number!=n && letter==l)
 	{
@@ -51,7 +51,7 @@ void Queen:: move(int n, int l)
 			{
 				vertical++;
 			}
-			if(vertical!=n) throw new Illegal_move();
+			if(vertical!=n) return false;;
 		}
 		else
 		{
@@ -60,7 +60,7 @@ void Queen:: move(int n, int l)
 			{
 				vertical--;
 			}
-			if(vertical!=n) throw new Illegal_move();
+			if(vertical!=n) return false;;
 		}
 	}
 	if(letter!=l && number==n)
@@ -72,7 +72,7 @@ void Queen:: move(int n, int l)
 			{
 				horizontal++;
 			}
-			if(horizontal!=l) throw new Illegal_move();
+			if(horizontal!=l) return false;
 		}
 		else
 		{
@@ -81,7 +81,7 @@ void Queen:: move(int n, int l)
 			{
 				horizontal--;
 			}
-			if(horizontal!=l) throw new Illegal_move();
+			if(horizontal!=l) return false;
 		}
 	}
 	if(n>number)
@@ -90,14 +90,14 @@ void Queen:: move(int n, int l)
 		{
 			for(int i=number, j=letter; i<=n; i++, j++)
 			{
-				if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
+				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 		else
 		{
 			for(int i=number, j=letter; i<=n; i++, j--)
 			{
-				if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
+				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 	}
@@ -107,23 +107,32 @@ void Queen:: move(int n, int l)
 		{
 			for(int i=number, j=letter; i<=n; i--, j++)
 			{
-				if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
+				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 		else
 		{
 			for(int i=number, j=letter; i<=n; i--, j--)
 			{
-				if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
+				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 	}
 	if(b->gameboard[n][l]!=nullptr)
 	{
-		if(b->gameboard[n][l]->color==color)throw new Illegal_move();
+		if(b->gameboard[n][l]->color==color)return false;
 	}
-	b->gameboard[number][letter]=nullptr;
-	letter=l; number=n;
-	b->gameboard[n][l]=this;
+	return true;
+}
+void Queen:: move(int n, int l)
+{
+	if(try_move(n, l))
+	{
+		b->gameboard[number][letter]=nullptr;
+		letter=l;number=n;
+		b->gameboard[n][l]=this;
+		return;
+	}
+	throw new Illegal_move();
 }
 #endif

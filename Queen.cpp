@@ -21,10 +21,14 @@ bool Queen:: can_move()
 	b->gameboard[number][letter]=this;
 	for(int i=-1; i<=1; i++)
 	{
-		for(int j=-1;j<=1;j++)
-		{
-			if(b->gameboard[number+i][letter+j]==nullptr) return true;
-			if(b->gameboard[number+i][letter+j]->color!=color) return true;
+		if(number+i>=0 && number+i<=7){
+			for(int j=-1;j<=1;j++)
+			{
+				if(letter+j>=0 && letter+j<=7){
+					if(b->gameboard[number+i][letter+j]==nullptr) return true;
+					if(b->gameboard[number+i][letter+j]->color!=color) return true;
+				}
+			}
 		}
 	}
 	return false;

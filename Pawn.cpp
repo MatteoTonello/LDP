@@ -20,17 +20,32 @@ bool Pawn::can_move()
 			b->gameboard[number][letter]=this;
 			if(color=='b')
 			{
-				if(b->gameboard[number+1][letter]==nullptr) return true;
-				//if(b->gameboard[number+1][letter+1]==nullptr||(b->gameboard[number+1][letter-1]==nullptr)) return false;
-				//if(b->gameboard[number+1][letter+1]->color=='b'||b->gameboard[number+1][letter-1]->color=='b') return true;
-				return false;
+				if(number+1<=7){
+					if(b->gameboard[number+1][letter]==nullptr) return true;
+					if(letter+1<=7){
+						if(b->gameboard[number+1][letter+1]==nullptr) return false;
+						if(b->gameboard[number+1][letter+1]->color=='b') return true;
+					}
+					else if(letter-1>=0)){
+						if(b->gameboard[number+1][letter-1]==nullptr) return false;
+						if(b->gameboard[number+1][letter-1]->color=='b') return true;
+					}
+					return false;
+				}
 			}
 			if(color=='w')
 			{
-				if(b->gameboard[number-1][letter]==nullptr) return true;
-				
-				//if(b->gameboard[number-1][letter+1]==nullptr|| b->gameboard[number-1][letter-1]==nullptr) return false;
-				//if(b->gameboard[number-1][letter+1]->color=='w'|| b->gameboard[number-1][letter-1]->color=='w') return true;
+				if(number-1>=0){
+					if(b->gameboard[number-1][letter]==nullptr) return true;
+					if(letter+1<=7){
+						if(b->gameboard[number-1][letter+1]==nullptr) return false;
+						if(b->gameboard[number-1][letter+1]->color=='w') return true;
+					}
+					else if(letter-1>=0){
+						if(b->gameboard[number-1][letter-1]==nullptr) return false;
+						if(b->gameboard[number-1][letter-1]->color=='w') return true;
+					}
+				}				
 				return false;
 			}
 			return false;

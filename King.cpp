@@ -1,5 +1,5 @@
-#ifndef KING_H
-#define KING_H
+#ifndef KING_CPP
+#define KING_CPP
 #include "King.h"
 #include "Board.cpp"
 using namespace std;

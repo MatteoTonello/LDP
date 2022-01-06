@@ -24,14 +24,23 @@ bool Knight::can_move()
 	
 void Knight::move(int n, int l)
 	{
-		if(try_move(n,l)){
-			b->gameboard[number][letter]=nullptr;	//Se non è uguale effettuo la modifica
-			number=n;
-			letter=l;
-			b->gameboard[n][l]=this;
-			return;
+		if(try_move(n, l))
+	{
+		int save_number=number, save_letter=letter;
+		Piece* temp=b->gameboard[n][l];
+		b->gameboard[number][letter]=nullptr;
+		letter=l;number=n;
+		b->gameboard[n][l]=this;
+		if(b.is_check(color))
+		{
+			b->gameboard[n][l]=temp;
+			b->gameboard[save_number][save_letter]=this;
+			number=save_number; letter=save_letter;
+			throw new Illegal_move();
 		}
-		throw new Illegal_move();
+		return;
+	}
+	throw new Illegal_move();
 	}
 
 bool Knight::try_move(int n, int l){

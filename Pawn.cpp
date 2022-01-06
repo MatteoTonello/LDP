@@ -106,11 +106,19 @@ void Pawn::move(int n, int l)
 {
 	if(try_move(n, l))
 	{
+		int save_number=number, save_letter=letter;
+		Piece* temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		if(b.is_check(color))
+		{
+			b->gameboard[n][l]=temp;
+			b->gameboard[save_number][save_letter]=this;
+			number=save_number; letter=save_letter;
+		}
 		return;
 	}
-    throw new Illegal_move();
+	throw new Illegal_move();
 }
 #endif

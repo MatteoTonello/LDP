@@ -12,6 +12,7 @@ Rock::Rock(int n, int l, char col, Board* myBoard )
 	b=myBoard;
 	if(color=='w') piece='t';
 	else piece='T';
+	is_already_move=false;
 };
 
 bool Rock:: can_move()
@@ -32,10 +33,21 @@ bool Rock:: can_move()
 
 void Rock:: move(int n, int l)
 {
-	if(try_move(n,l)){
+	if(try_move(n, l))
+	{
+		int save_number=number, save_letter=letter;
+		Piece* temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
-		letter=l; number=n;
+		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		if(b.is_check(color))
+		{
+			b->gameboard[n][l]=temp;
+			b->gameboard[save_number][save_letter]=this;
+			number=save_number; letter=save_letter;
+			throw new Illegal_move();
+		}
+		is_already_move=true;
 		return;
 	}
 	throw new Illegal_move();

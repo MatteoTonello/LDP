@@ -30,7 +30,7 @@ Board::Board()
     gameboard[0][1]=new Knight(0,1,'b',this);
     gameboard[0][2]=new Bishop(0,2,'b',this);
     gameboard[0][3]=new Queen(0,3,'b',this);
-    gameboard[0][4]=new Queen(0,4,'b',this);
+    gameboard[0][4]=new King(0,4,'b',this);
     gameboard[0][5]=new Bishop(0,5,'b',this);
     gameboard[0][6]=new Knight(0,6,'b',this);
     gameboard[0][7]=new Rock(0,7,'b',this);
@@ -38,7 +38,7 @@ Board::Board()
     gameboard[7][1]=new Knight(7,1,'w',this);
     gameboard[7][2]=new Bishop(7,2,'w',this);
     gameboard[7][3]=new Queen(7,3,'w',this);
-    gameboard[7][4]=new Queen(7,4,'w',this);
+    gameboard[7][4]=new King(7,4,'w',this);
     gameboard[7][5]=new Bishop(7,5,'w',this);
     gameboard[7][6]=new Knight(7,6,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);

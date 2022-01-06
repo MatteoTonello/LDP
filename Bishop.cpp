@@ -30,23 +30,13 @@ using namespace std;
 
    void Bishop::move(int n, int l)
    {
-	   if(try_move(n, l))
-	{
-		int save_number=number, save_letter=letter;
-		Piece* temp=b->gameboard[n][l];
-		b->gameboard[number][letter]=nullptr;
-		letter=l;number=n;
-		b->gameboard[n][l]=this;
-		if(b.is_check(color))
-		{
-			b->gameboard[n][l]=temp;
-			b->gameboard[save_number][save_letter]=this;
-			number=save_number; letter=save_letter;
-			throw new Illegal_move();
-		}
-		return;
-	}
-	throw new Illegal_move();
+      if(try_move(n,l)){
+         b->gameboard[number][letter]=nullptr;
+         letter=l; number=n;
+         b->gameboard[n][l]=this;
+         return;
+      }
+      throw new Illegal_move();
    }
 
    bool Bishop::try_move(int n, int l){
@@ -57,14 +47,14 @@ using namespace std;
          {
             if(l>letter)
             {
-               for(int i=number, j=letter; i<=n; i++, j++)
+               for(int i=number+1, j=letter+1; i<=n; i++, j++)
                {
-                  if(b->gameboard[i][j]!=nullptr) return false;  //secondo me (DAN) qui bisogna partire
-               }                                                           //da posizioni +1
+                  if(b->gameboard[i][j]!=nullptr) return false;  
+               }                                                           
             }
             else
             {
-               for(int i=number, j=letter; i<=n; i++, j--)
+               for(int i=number+1, j=letter-1; i<=n; i++, j--)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }
@@ -74,14 +64,14 @@ using namespace std;
          {
             if(l>letter)
             {
-               for(int i=number, j=letter; i<=n; i--, j++)
+               for(int i=number-1, j=letter+1; i<=n; i--, j++)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }
             }
             else
             {
-               for(int i=number, j=letter; i<=n; i--, j--)
+               for(int i=number-1, j=letter-1; i<=n; i--, j--)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }

@@ -40,7 +40,7 @@ void Rock:: move(int n, int l)
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
-		if(b.is_check(color))
+		if(b->is_check(color))
 		{
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;

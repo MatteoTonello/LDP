@@ -42,6 +42,7 @@ void Rock:: move(int n, int l)
 }
 
 bool Rock::try_move(int n, int l){
+	
 	if(!can_move()) return false;
 	if(letter!=l && number!=n) return false;
 	int vertical=number, horizontal=letter ;

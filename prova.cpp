@@ -21,5 +21,7 @@ int main()
     cout<<*b;
     b->gameboard[2][1]->move(3,0);
     cout<<*b;
+    b->gameboard[7][0]->move(3,0);
+    cout<<*b;
     return 0;
 }

@@ -48,7 +48,7 @@ bool King::can_move()
 					{
 						b->gameboard[i][j]=p;
 						b->gameboard[save_number][save_letter]=this;
-						letter=save_letter; number=save_number
+						letter=save_letter; number=save_number;
 						return true;
 					}
 					b->gameboard[i][j]=p;

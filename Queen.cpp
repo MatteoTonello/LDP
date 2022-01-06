@@ -37,7 +37,7 @@ int abs_value(int j)
 {
 	if(j>0) return j;return -j;
 }
-bool:: Queen try_move(int l, int n)
+bool Queen::try_move(int l, int n)
 {
 	if(!can_move()) return false;
 	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) return false;;

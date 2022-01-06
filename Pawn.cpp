@@ -26,7 +26,7 @@ bool Pawn::can_move()
 				if(b->gameboard[number+1][letter+1]==nullptr) return false;
 				if(b->gameboard[number+1][letter+1]->color=='b') return true;
 			}
-			else if(letter-1>=0)){
+			else if(letter-1>=0){
 				if(b->gameboard[number+1][letter-1]==nullptr) return false;
 				if(b->gameboard[number+1][letter-1]->color=='b') return true;
 			}
@@ -54,60 +54,62 @@ bool Pawn:: try_move(int n, int l)
 {
 	if(!can_move()) return false;
 	if(color=='b')
-{
-	if(n-number>2 || l-letter<-1 || l-letter>1) return false;
-	if(n-number==2 && number!=1) return false;
-	if((l-letter==1 || l-letter==-1)&& n-number==1)
 	{
-		if(b->gameboard[n][l]->color=='w')
+		if(n-number>2 || l-letter<-1 || l-letter>1) return false;
+		if(n-number==2 && number!=1) return false;
+		if((l-letter==1 || l-letter==-1)&& n-number==1)
 		{
-			return true;
+			if(b->gameboard[n][l]->color=='w')
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		if((l-letter==1||l-letter==-1)&& n-number==2) return false;
+		if(b->gameboard[n][l]!=nullptr)
+			if(b->gameboard[n][l]->color=='b') return false;
+		return true;
 	}
-	if((l-letter==1||l-letter==-1)&& n-number==2) return false;
-	if(b->gameboard[n][l]!=nullptr)
-		if(b->gameboard[n][l]->color=='b') return false;
-	return true;
-}
-if(color=='w')
-{
-	//controllo casella non raggiugibili
-	if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
+	if(color=='w')
+	{
+		//controllo casella non raggiugibili
+		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
 
-	if(n-number==-2 && number!=6) return false;
-	//controllo movimento diagonale
-	if((l-letter==1 || l-letter==-1)&& n-number==-1)
-	{
-		if(b->gameboard[n][l]->color=='b')
+		if(n-number==-2 && number!=6) return false;
+		//controllo movimento diagonale
+		if((l-letter==1 || l-letter==-1)&& n-number==-1)
 		{
-			return true;
+			if(b->gameboard[n][l]->color=='b')
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
-		else
-		{
-			return false;
-		}
-	}
-	//controllo movimento in avanti di 2 e diagonale
-	if((l-letter==1||l-letter==-1)&& n-number==-2) return false;
-	
-	
-	//controllo stesso colore
-	if(b->gameboard[n][l]!=nullptr)
-		if(b->gameboard[n][l]->color=='w') return false;
-	return true;	
-}			
+		//controllo movimento in avanti di 2 e diagonale
+		if((l-letter==1||l-letter==-1)&& n-number==-2) return false;
+		
+		
+		//controllo stesso colore
+		if(b->gameboard[n][l]!=nullptr)
+			if(b->gameboard[n][l]->color=='w') return false;
+		return true;	
+	}		
+	return false;	
 }
 void Pawn::move(int n, int l)
 {
-	if(try_move(n, l)
+	if(try_move(n, l))
 	{
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		return;
 	}
     throw new Illegal_move();
 }

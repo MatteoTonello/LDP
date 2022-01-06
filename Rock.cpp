@@ -36,59 +36,57 @@ void Rock:: move(int n, int l)
 		b->gameboard[number][letter]=nullptr;
 		letter=l; number=n;
 		b->gameboard[n][l]=this;
-	};
+		return;
+	}
+	throw new Illegal_move();
 }
 
 bool Rock::try_move(int n, int l){
-	try{
-		if(!can_move()) throw new Illegal_move();
-		if(letter!=l && number!=n) throw new Illegal_move();
-		int vertical=number, horizontal=letter ;
-		if(number!=n && letter==l)
+	if(!can_move()) return false;
+	if(letter!=l && number!=n) return false;
+	int vertical=number, horizontal=letter ;
+	if(number!=n && letter==l)
+	{
+		if(n>number)
 		{
-			if(n>number)
+			vertical++;
+			while(vertical<n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical++;
-				while(vertical<n && b->gameboard[vertical][letter]==nullptr)
-				{
-					vertical++;
-				}
-				if(vertical!=n) throw new Illegal_move();
 			}
-			else
+			if(vertical!=n) return false;
+		}
+		else
+		{
+			vertical--;
+			while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
-				while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
-				{
-					vertical--;
-				}
-				if(vertical!=n) throw new Illegal_move();
 			}
+			if(vertical!=n) return false;
 		}
-		if(letter!=l && number==n)
+	}
+	if(letter!=l && number==n)
+	{
+		if(l>letter)
 		{
-			if(l>letter)
+			horizontal++;
+			while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal++;
-				while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
-				{
-					horizontal++;
-				}
-				if(horizontal!=l) throw new Illegal_move();
 			}
-			else
+			if(horizontal!=l) return false;
+		}
+		else
+		{
+			horizontal--;
+			while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
-				while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
-				{
-					horizontal--;
-				}
-				if(horizontal!=l) throw new Illegal_move();
 			}
+			if(horizontal!=l) return false;
 		}
-		return true;
-	}catch(new Illegal_move())
-	{return false;}
-	return false;
+	}
+	return true;
 }
 	#endif

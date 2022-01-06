@@ -33,51 +33,58 @@ using namespace std;
 
    void Bishop::move(int n, int l)
    {
-      if(!can_move()) throw new Illegal_move();
-      if((abs(l-letter))!=(abs(n-number))) throw new Illegal_move();
-      
-      if(n>number)
-      {
-         if(l>letter)
-         {
-            for(int i=number, j=letter; i<=n; i++, j++)
-            {
-               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();  //secondo me (DAN) qui bisogna partire
-            }                                                           //da posizioni +1
-         }
-         else
-         {
-            for(int i=number, j=letter; i<=n; i++, j--)
-            {
-               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
-            }
-         }
+      if(try_move(n,l)){
+         b->gameboard[number][letter]=nullptr;
+         letter=l; number=n;
+         b->gameboard[n][l]=this;
+         return;
       }
-      else
-      {
-         if(l>letter)
-         {
-            for(int i=number, j=letter; i<=n; i--, j++)
-            {
-               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
-            }
-         }
-         else
-         {
-            for(int i=number, j=letter; i<=n; i--, j--)
-            {
-               if(b->gameboard[i][j]!=nullptr) throw new Illegal_move();
-            }
-         }
-      }
-      if(b->gameboard[n][l]!=nullptr)
-      {
-         if(b->gameboard[n][l]->color==color)throw new Illegal_move();
-      }
-      b->gameboard[number][letter]=nullptr;
-      letter=l; number=n;
-      b->gameboard[n][l]=this;
-      }
+      throw new Illegal_move();
+   }
 
+   bool Bishop::try_move(int n, int l){
+         if(!can_move()) return false;
+         if((abs(l-letter))!=(abs(n-number))) return false;
+         
+         if(n>number)
+         {
+            if(l>letter)
+            {
+               for(int i=number, j=letter; i<=n; i++, j++)
+               {
+                  if(b->gameboard[i][j]!=nullptr) return false;  //secondo me (DAN) qui bisogna partire
+               }                                                           //da posizioni +1
+            }
+            else
+            {
+               for(int i=number, j=letter; i<=n; i++, j--)
+               {
+                  if(b->gameboard[i][j]!=nullptr) return false;
+               }
+            }
+         }
+         else
+         {
+            if(l>letter)
+            {
+               for(int i=number, j=letter; i<=n; i--, j++)
+               {
+                  if(b->gameboard[i][j]!=nullptr) return false;
+               }
+            }
+            else
+            {
+               for(int i=number, j=letter; i<=n; i--, j--)
+               {
+                  if(b->gameboard[i][j]!=nullptr) return false;
+               }
+            }
+         }
+         if(b->gameboard[n][l]!=nullptr)
+         {
+            if(b->gameboard[n][l]->color==color)return false;
+         }
+         return true;
+   }
 
 #endif

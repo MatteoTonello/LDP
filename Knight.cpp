@@ -21,17 +21,26 @@ bool Knight::can_move()
 		b->gameboard[number][letter]=this;
 		return 0;
 	};
+	
 void Knight::move(int n, int l)
 	{
-		if(!can_move()) throw new Illegal_move();
-		if((abs(l-letter)==2 && abs(n-number)==1) || (abs(l-letter)==1 && abs(n-number)==2)){ //controllo se non è una delle 8 caselle possibili
-			if(b->gameboard[n][l]==nullptr) if(b->gameboard[n][l]->color==color) throw new Illegal_move();	//controllo se è lo stesso colore
+		if(try_move(n,l)){
 			b->gameboard[number][letter]=nullptr;	//Se non è uguale effettuo la modifica
 			number=n;
 			letter=l;
 			b->gameboard[n][l]=this;
 			return;
 		}
-		else throw new Illegal_move();
+		throw new Illegal_move();
 	}
+
+bool Knight::try_move(int n, int l){
+
+		if(!can_move()) return false;
+		if((abs(l-letter)==2 && abs(n-number)==1) || (abs(l-letter)==1 && abs(n-number)==2)){ //controllo se non è una delle 8 caselle possibili
+			if(b->gameboard[n][l]==nullptr) if(b->gameboard[n][l]->color==color) return false;	//controllo se è lo stesso colore
+				return true;
+		}
+		else return false;
+}
 #endif

@@ -16,10 +16,16 @@ Knight::Knight(int n, int l, char col, Board* myBoard)
 
 bool Knight::can_move()
 	{
-		b->gameboard[number][letter]=nullptr;
-		if(b->is_check(color))return false;	//controllo scacco
-		b->gameboard[number][letter]=this;
-		return 0;
+		if(b->gameboard[number+1][letter+2]==nullptr || b->gameboard[number+1][letter+2]->color!=color || number+1<0 || number+1>8 || letter+2<0 || letter+2>8) return true;
+		if(b->gameboard[number+1][letter-2]==nullptr || b->gameboard[number+1][letter-2]->color!=color || number+1<0 || number+1>8 || letter-2<0 || letter-2>8) return true;
+		if(b->gameboard[number-1][letter+2]==nullptr || b->gameboard[number-1][letter+2]->color!=color || number-1<0 || number-1>8 || letter+2<0 || letter+2>8) return true;
+		if(b->gameboard[number-1][letter-2]==nullptr || b->gameboard[number-1][letter-2]->color!=color || number-1<0 || number-1>8 || letter-2<0 || letter-2>8) return true;
+		if(b->gameboard[number+2][letter+1]==nullptr || b->gameboard[number+2][letter+1]->color!=color || number+2<0 || number+2>8 || letter+1<0 || letter+1>8) return true;
+		if(b->gameboard[number+2][letter-1]==nullptr || b->gameboard[number+2][letter-1]->color!=color || number+2<0 || number+2>8 || letter-1<0 || letter-1>8) return true;
+		if(b->gameboard[number-2][letter+1]==nullptr || b->gameboard[number-2][letter+1]->color!=color || number-2<0 || number-2>8 || letter+1<0 || letter+1>8) return true;
+		if(b->gameboard[number-2][letter-1]==nullptr || b->gameboard[number-2][letter-1]->color!=color || number-2<0 || number-2>8 || letter-1<0 || letter-1>8) return true;
+		
+		return true;
 	};
 	
 void Knight::move(int n, int l)
@@ -44,10 +50,11 @@ void Knight::move(int n, int l)
 	}
 
 bool Knight::try_move(int n, int l){
-
-		if(!can_move()) return false;
+	
+		//if(!can_move()) return false;
 		if((abs(l-letter)==2 && abs(n-number)==1) || (abs(l-letter)==1 && abs(n-number)==2)){ //controllo se non è una delle 8 caselle possibili
-			if(b->gameboard[n][l]==nullptr) if(b->gameboard[n][l]->color==color) return false;	//controllo se è lo stesso colore
+			if(b->gameboard[n][l]==nullptr) return true;
+			if(b->gameboard[n][l]->color==color) return false;	//controllo se è lo stesso colore
 				return true;
 		}
 		else return false;

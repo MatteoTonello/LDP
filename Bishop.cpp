@@ -21,8 +21,11 @@ using namespace std;
       {
          for(int j=-1;j<=1;j+2)
          {
-            if(b->gameboard[number+i][letter+j]==nullptr) return true;
-            if(b->gameboard[number+i][letter+j]->color!=color) return true;
+            if(number+i>=0 || number+i<=8 || letter+j>=0 || letter+j<=8)
+            {
+               if(b->gameboard[number+i][letter+j]==nullptr) return true;
+               if(b->gameboard[number+i][letter+j]->color!=color) return true;
+            }
          }
       }
       return false;

@@ -68,7 +68,9 @@ bool Board::is_check_mate(char c)
 }
 bool Board::is_check(char c)
 {
-    return 0;
+    return 0; //per lo scacco secondo me bisogna convertire tutti i move in "try_move" e poi se non dà eccezioni
+            //si muove. Poi si applica il try_move a tutte le caselle del colore opposto e se ce n'è una che non fa eccezioni
+            //allora è scacco
 }
 bool Board::is_draw()
 {

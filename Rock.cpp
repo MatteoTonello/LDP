@@ -19,7 +19,7 @@ bool Rock:: can_move()
 	b->gameboard[number][letter]=nullptr;
 	if(b->is_check(color)) return false;
 	b->gameboard[number][letter]=this;
-	for(int i=-1; i<=1; i++)
+	for(int i=-1; i<=1; i+2)
 	{
 			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number+i][letter]==nullptr) return true;
 			if(b->gameboard[number][letter+i]->color!=color || b->gameboard[number+i][letter]->color!=color) return true;

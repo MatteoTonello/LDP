@@ -106,12 +106,53 @@ void Pawn::move(int n, int l)
 {
 	if(try_move(n, l))
 	{
-		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->en_passant==true)
-
-		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true) 
+		Piece* temp;
+		if(color='b')
+		{
+			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true)))
+			{
+				int save_number=number, save_letter=letter;
+				temp=b->gameboard[n-1][l];
+				b->gameboard[number][letter]=nullptr;
+				letter=l;number=n;
+				b->gameboard[n][l]=this;
+				b->gameboard[n-1][l]=nullptr;
+				if(b->is_check(color))
+				{
+					b->gameboard[n-1][l]=temp;
+					b->gameboard[save_number][save_letter]=this;
+					b->gameboard[n][l]=nullptr;
+					number=save_number; letter=save_letter;
+					throw new Illegal_move();
+				}
+			}
+		}
+		if(color='w')
+		{
+			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true)))
+			{
+				int save_number=number, save_letter=letter;
+				temp=b->gameboard[n+1][l];
+				b->gameboard[number][letter]=nullptr;
+				letter=l;number=n;
+				b->gameboard[n][l]=this;
+				b->gameboard[n+1][l]=nullptr;
+				if(b->is_check(color))
+				{
+					b->gameboard[n+1][l]=temp;
+					b->gameboard[save_number][save_letter]=this;
+					b->gameboard[n][l]=nullptr;
+					number=save_number; letter=save_letter;
+					throw new Illegal_move();
+				}
+			}
 			
+		}
+		
 		int save_number=number, save_letter=letter;
-		Piece* temp=b->gameboard[n][l];
+		temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;

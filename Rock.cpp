@@ -65,6 +65,7 @@ void Rock:: move(int n, int l)
 				}
 			}
 			is_already_move=true;
+			remove_en_passant();
 			return;
 		}	
 	}

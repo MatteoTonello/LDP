@@ -138,8 +138,27 @@ void Queen:: move(int n, int l)
 			number=save_number; letter=save_letter;
 			throw new Illegal_move();
 		}
-		return;
+		else
+		{
+			if(temp!=nullptr)
+			{
+				if(color=='w')
+				{
+					for(int i=0;i<b->blacks.size();i++)
+					{
+						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+				if(color=='b')
+				{
+					for(int i=0;i<b->whites.size();i++)
+					{
+						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+			}
+			return;
+		}	
 	}
-	throw new Illegal_move();
 }
 #endif

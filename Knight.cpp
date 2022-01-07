@@ -29,8 +29,8 @@ bool Knight::can_move()
 	};
 	
 void Knight::move(int n, int l)
-	{
-		if(try_move(n, l))
+{
+	if(try_move(n, l))
 	{
 		int save_number=number, save_letter=letter;
 		Piece* temp=b->gameboard[n][l];
@@ -44,10 +44,29 @@ void Knight::move(int n, int l)
 			number=save_number; letter=save_letter;
 			throw new Illegal_move();
 		}
-		return;
+		else
+		{
+			if(temp!=nullptr)
+			{
+				if(color=='w')
+				{
+					for(int i=0;i<b->blacks.size();i++)
+					{
+						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+				if(color=='b')
+				{
+					for(int i=0;i<b->whites.size();i++)
+					{
+						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+			}
+			return;
+		}	
 	}
-	throw new Illegal_move();
-	}
+}
 
 bool Knight::try_move(int n, int l){
 	

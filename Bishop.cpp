@@ -33,14 +33,43 @@ using namespace std;
 
    void Bishop::move(int n, int l)
    {
-      if(try_move(n,l)){
-         b->gameboard[number][letter]=nullptr;
-         letter=l; number=n;
-         b->gameboard[n][l]=this;
-         return;
-      }
-      throw new Illegal_move();
-   }
+	if(try_move(n, l))
+	{
+		int save_number=number, save_letter=letter;
+		Piece* temp=b->gameboard[n][l];
+		b->gameboard[number][letter]=nullptr;
+		letter=l;number=n;
+		b->gameboard[n][l]=this;
+		if(b->is_check(color))
+		{
+			b->gameboard[n][l]=temp;
+			b->gameboard[save_number][save_letter]=this;
+			number=save_number; letter=save_letter;
+			throw new Illegal_move();
+		}
+		else
+		{
+			if(temp!=nullptr)
+			{
+				if(color=='w')
+				{
+					for(int i=0;i<b->blacks.size();i++)
+					{
+						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+				if(color=='b')
+				{
+					for(int i=0;i<b->whites.size();i++)
+					{
+						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+			}
+			return;
+		}	
+	}
+}
 
    bool Bishop::try_move(int n, int l){
          if(!can_move()) return false;

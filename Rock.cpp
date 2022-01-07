@@ -47,11 +47,31 @@ void Rock:: move(int n, int l)
 			number=save_number; letter=save_letter;
 			throw new Illegal_move();
 		}
-		is_already_move=true;
-		return;
+		else
+		{
+			if(temp!=nullptr)
+			{
+				if(color=='w')
+				{
+					for(int i=0;i<b->blacks.size();i++)
+					{
+						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+				if(color=='b')
+				{
+					for(int i=0;i<b->whites.size();i++)
+					{
+						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+					}
+				}
+			}
+			is_already_move=true;
+			return;
+		}	
 	}
-	throw new Illegal_move();
 }
+
 
 bool Rock::try_move(int n, int l){
 	

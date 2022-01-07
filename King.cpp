@@ -67,10 +67,12 @@ bool King::can_move()
 }
 void King::move(int n, int l)
 {
-	if(n==number && (l==letter+2 || l==letter-2) && !(b->is_check(color)))
+	if(n==number && (l==letter+2 || l==letter-2) )
 	{
+		if(b->is_check(color)) throw new Illegal_move();
 		if(l==6) short_castling();
 		if(l==2) long_castling();
+		return;
 	}
 	if(abs_value(n-number)!=1 || abs_value(l-letter)!=1) throw new Illegal_move();
 	int save_letter=letter, save_number=number;

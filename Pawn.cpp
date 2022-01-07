@@ -10,6 +10,7 @@ Pawn::Pawn(int n, int l, char col, Board* myBoard)
 	letter=l;
 	color=col;
 	b=myBoard;
+	en_passant=false;
 	if(color=='w') piece='p';
 	else piece='P';
 };
@@ -52,6 +53,8 @@ bool Pawn:: try_move(int n, int l)
 	if(!can_move()) return false;
 	if(color=='b')
 	{
+		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->en_passant==true) return true;
+		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true) return true;
 		if(n-number>2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==2 && number!=1) return false;
 		if((l-letter==1 || l-letter==-1)&& n-number==1)
@@ -103,6 +106,10 @@ void Pawn::move(int n, int l)
 {
 	if(try_move(n, l))
 	{
+		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->en_passant==true)
+
+		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true) 
+			
 		int save_number=number, save_letter=letter;
 		Piece* temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
@@ -135,6 +142,21 @@ void Pawn::move(int n, int l)
 				}
 			}
 		}	
+		remove_en_passant();
+		if(color=='w' && n-save_number==-2)
+		{
+			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->piece=='P')
+				this->en_passant=true;
+			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->piece=='P')
+				this->en_passant=true;
+		}
+		if(color=='b' && n-save_number==+2)
+		{
+			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->piece=='p')
+				this->en_passant=true;
+			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->piece=='p')
+				this->en_passant=true;
+		}
 	}
 }
 #endif

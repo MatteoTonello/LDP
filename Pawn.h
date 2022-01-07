@@ -6,6 +6,7 @@ using namespace std;
 class Pawn : public Piece
 {
     public:
+    bool en_passant;
     Pawn(int l, int n, char col, Board* myBoard);
     void move(int n, int l);
     bool try_move(int n, int l);

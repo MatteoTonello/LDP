@@ -50,8 +50,8 @@ Board::Board()
         gameboard[6][i]=new Pawn(6,i,'w',this);
     for(int j=0;j<2;j++){
         for(int i=0;i<=7;i++){
-            whites.push_back(gameboard[i][7-j]);
-            blacks.push_back(gameboard[i][0+j]);
+            whites.push_back(gameboard[7-j][i]);
+            blacks.push_back(gameboard[j][i]);
         }
     }
 	
@@ -551,6 +551,7 @@ bool Board::is_check(char c)
 		for(int i=0;i<blacks.size();i++)
 		{
             //qui non funziona
+			cout<<blacks[i]->piece<<" ";
 			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
 		}
 		return false;

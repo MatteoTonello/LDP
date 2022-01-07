@@ -76,6 +76,7 @@ bool Pawn:: try_move(int n, int l)
 		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==-2 && number!=6) return false;
 		//controllo movimento diagonale
+		
 		if((l-letter==1 || l-letter==-1)&& n-number==-1)
 		{
 			if(b->gameboard[n][l]->color=='b')

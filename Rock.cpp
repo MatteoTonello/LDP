@@ -17,11 +17,12 @@ Rock::Rock(int n, int l, char col, Board* myBoard )
 
 bool Rock:: can_move()
 {
-	for(int i=-1; i<=1; i+2)
+	for(int i=-1; i<=1; i=i+2)
 	{
 		if(letter+i>=0 && letter+i<=7 ){
 			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number][letter+i]->color!=color) return true;
-		}else if(number+i>=0 && number+i<=7){
+		}
+		if(number+i>=0 && number+i<=7){
 			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->color!=color) return true;
 		}			
 	}

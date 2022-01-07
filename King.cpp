@@ -20,7 +20,50 @@ bool King::try_move(int n,int l)
 }
 bool King::can_move()
 {
-	int j=-1; int i=-1;
+	int save_letter=letter;
+	int save_number=number;
+	for(int i=-1; i<=1; i++)
+	{
+		if(number+i>=0 && number+i<=7){
+			for(int j=-1;j<=1;j++)
+			{
+				if(b->gameboard[number+i][letter+j]==nullptr)
+				{
+					b->gameboard[number+i][letter+j]=this;
+					b->gameboard[number][letter]=nullptr;
+					number=number+i; letter=letter+j;
+					if(!b->is_check(color))
+					{
+						b->gameboard[number+i][letter+j]=nullptr;
+						b->gameboard[save_number][save_letter]=this;
+						letter=save_letter; number=save_number;
+						return false;
+					}
+					b->gameboard[number+i][letter+j]=nullptr;
+					b->gameboard[save_number][save_letter]=this;
+					letter=save_letter; number=save_number;
+				}
+				if(b->gameboard[number+i][letter+j]->color!=color)
+				{
+					Piece* p=b->gameboard[number+i][letter+j];
+					b->gameboard[number+i][letter+j]=this;
+					b->gameboard[number][letter]=nullptr;
+					number=number+i; letter=letter+j;
+					if(!b->is_check(color))
+					{
+						b->gameboard[number+i][letter+j]=p;
+						b->gameboard[save_number][save_letter]=this;
+						letter=save_letter; number=save_number;
+						return false;
+					}
+					b->gameboard[number+i][letter+j]=p;
+					b->gameboard[save_number][save_letter]=this;
+					letter=save_letter; number=save_number;
+				}
+			}
+		}
+	}
+	/*int j=-1; int i=-1;
 	int save_letter=letter, save_number=number;
 	while(i<=1)
 		{
@@ -28,9 +71,9 @@ bool King::can_move()
 			{
 				if(b->gameboard[i][j]==nullptr)
 				{
-					b->gameboard[i][j]=this;
+					b->gameboard[number+i][j]=this;
 					b->gameboard[number][letter]=nullptr;
-					number=i; letter=j;
+					number=number+i; letter=letter+j;
 					if(!b->is_check(color))
 					{
 						b->gameboard[i][j]=nullptr;
@@ -64,6 +107,8 @@ bool King::can_move()
 			i++;
 		}
 	return false;
+	*/
+	
 }
 void King::move(int n, int l)
 {

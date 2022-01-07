@@ -66,10 +66,9 @@ bool Board::is_check_mate(char c)
     if(c=='w')
 	{
 		cout<<(white_king->can_move());
-		cout<<"i";
 		if(is_check(c) && !(white_king->can_move()))
 		{
-			cout<<"i";
+			cout<<"i"<<endl;
 			for(int i=0;i<blacks.size();i++)
 			{
 				if(blacks[i]->try_move(white_king->number, white_king->letter))

@@ -16,6 +16,7 @@ int main()
     b->gameboard[7][5]->move(4,2);
     b->gameboard[7][3]->move(5,5);
     b->gameboard[5][5]->move(2,5);
+	cout<<*b<<endl;
     cout<<(b->is_check_mate('b'));
     return 0;
 }

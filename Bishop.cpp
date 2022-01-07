@@ -66,6 +66,7 @@ using namespace std;
 					}
 				}
 			}
+         remove_en_passant();
 			return;
 		}	
 	}

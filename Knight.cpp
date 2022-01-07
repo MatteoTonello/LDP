@@ -63,6 +63,7 @@ void Knight::move(int n, int l)
 					}
 				}
 			}
+			remove_en_passant();
 			return;
 		}	
 	}

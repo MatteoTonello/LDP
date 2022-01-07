@@ -122,6 +122,7 @@ void King::move(int n, int l)
 		throw new Illegal_move();
 	}
 	is_already_move=true;
+	remove_en_passant();
 	return;
 }
 void King::short_castling()

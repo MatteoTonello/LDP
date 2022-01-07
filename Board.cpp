@@ -43,7 +43,7 @@ Board::Board()
     gameboard[7][6]=new Knight(7,6,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);
     gameboard[7][4]=white_king;   
-	gameboard[0][4]=black_king;
+	 gameboard[0][4]=black_king;
     for(int i=0;i<=7;i++)
         gameboard[1][i]=new Pawn(1,i,'b',this);
     for(int i=0;i<=7;i++)
@@ -543,13 +543,7 @@ bool Board::is_check_mate(char c)
 		}
 		return true;
 }
-void Board:: long_castling(char c)
-{
-	if(is_check(c)) throw new Illegal_move();
-	if(c=='w')
-	{
-	}
-}
+
 bool Board::is_check(char c)
 {
 	if(c=='w')

@@ -12,5 +12,7 @@ class King:public Piece
 		bool can_move();
 		bool try_move(int n,int l);
 		bool is_already_move;
+		void short_castling();
+		void long_castling();
 };
 #endif

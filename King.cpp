@@ -156,38 +156,38 @@ void King::short_castling()
 			}
 		}
 }
-void long_castling()
+void King::long_castling()
 {
-	if((!is_already_move) && b->gameboard[number][7]->piece=='t' && !(b->gameboard[number][7]->is_already_move))
+	if((!is_already_move) && b->gameboard[number][0]->piece=='t' && !(b->gameboard[number][0]->is_already_move))
 		{
 			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
 			{
-				    b->gameboard[number][3]=this;
+				   b->gameboard[number][3]=this;
 					b->gameboard[number][letter]=nullptr;
 					letter=3;
 					if(b->is_check(color))
 					{
-						b->gameboard[number][]=nullptr;
+						b->gameboard[number][3]=nullptr;
 						b->gameboard[number][4]=this;
 						letter=4;
 						throw new Illegal_move();
 					}
-					b->gameboard[number][5]=nullptr;
+					b->gameboard[number][3]=nullptr;
 					b->gameboard[number][4]=this;
 					letter=4;
-					b->gameboard[number][6]=this;
+					b->gameboard[number][2]=this;
 					b->gameboard[number][letter]=nullptr;
-					letter=6; 
+					letter=2; 
 					if(b->is_check(color))
 					{
-						b->gameboard[number][6]=nullptr;
+						b->gameboard[number][2]=nullptr;
 						b->gameboard[number][4]=this;
 						letter=4; 
 						throw new Illegal_move();
 					}
-					b.gameboard[number][5]=b.gameboard[number][7];
-					b.gameboard[number][7]=nullptr;
-					b->gameboard[number][5]->letter=5;
+					b.gameboard[number][3]=b.gameboard[number][0];
+					b.gameboard[number][0]=nullptr;
+					b->gameboard[number][3]->letter=3;
 			}
 		}
 }

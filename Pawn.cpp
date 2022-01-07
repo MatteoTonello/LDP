@@ -15,9 +15,6 @@ Pawn::Pawn(int n, int l, char col, Board* myBoard)
 };
 bool Pawn::can_move()
  {
-	b->gameboard[number][letter]=nullptr;
-	if(b->is_check(color))return false;
-	b->gameboard[number][letter]=this;
 	if(color=='b')
 	{
 		if(number+1<=7){
@@ -77,7 +74,6 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//controllo casella non raggiugibili
 		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
-
 		if(n-number==-2 && number!=6) return false;
 		//controllo movimento diagonale
 		if((l-letter==1 || l-letter==-1)&& n-number==-1)
@@ -126,18 +122,17 @@ void Pawn::move(int n, int l)
 				{
 					for(int i=0;i<b->blacks.size();i++)
 					{
-						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+						if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 					}
 				}
 				if(color=='b')
 				{
 					for(int i=0;i<b->whites.size();i++)
 					{
-						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+						if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
 					}
 				}
 			}
-			return;
 		}	
 	}
 }

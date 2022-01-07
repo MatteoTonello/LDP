@@ -16,7 +16,6 @@ Queen::Queen(int n, int l, char col, Board* myBoard )
 }
 bool Queen:: can_move()
 {
-	b->gameboard[number][letter]=this;
 	for(int i=-1; i<=1; i++)
 	{
 		if(number+i>=0 && number+i<=7){
@@ -145,15 +144,15 @@ void Queen:: move(int n, int l)
 				if(color=='w')
 				{
 					for(int i=0;i<b->blacks.size();i++)
-					{
-						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+					{                                          //serve un iteratore non un indice
+						if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 					}
 				}
 				if(color=='b')
 				{
 					for(int i=0;i<b->whites.size();i++)
 					{
-						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+						if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
 					}
 				}
 			}

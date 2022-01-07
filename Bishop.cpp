@@ -55,14 +55,14 @@ using namespace std;
 				{
 					for(int i=0;i<b->blacks.size();i++)
 					{
-						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+						if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 					}
 				}
 				if(color=='b')
 				{
 					for(int i=0;i<b->whites.size();i++)
 					{
-						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+						if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
 					}
 				}
 			}

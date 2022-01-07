@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 class Piece;
-
+class King;
 class Board
 {
 	public:

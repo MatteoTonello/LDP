@@ -22,15 +22,15 @@ Board::Board()
         }
             
     }
-    vector<Piece*> first(16);
+    vector<Piece*> first;
     whites=first;
-    vector<Piece*> second(16);
+    vector<Piece*> second;
     blacks=second;
     gameboard[0][0]=new Rock(0,0,'b',this);
     gameboard[0][1]=new Knight(0,1,'b',this);
     gameboard[0][2]=new Bishop(0,2,'b',this);
     gameboard[0][3]=new Queen(0,3,'b',this);
-    gameboard[0][4]=new King(0,4,'b',this);
+    black_king=new King(0,4,'b',this);         //evita conversioni da Piece a King
     gameboard[0][5]=new Bishop(0,5,'b',this);
     gameboard[0][6]=new Knight(0,6,'b',this);
     gameboard[0][7]=new Rock(0,7,'b',this);
@@ -38,10 +38,12 @@ Board::Board()
     gameboard[7][1]=new Knight(7,1,'w',this);
     gameboard[7][2]=new Bishop(7,2,'w',this);
     gameboard[7][3]=new Queen(7,3,'w',this);
-    gameboard[7][4]=new King(7,4,'w',this);
+    white_king=new King(7,4,'w',this);
     gameboard[7][5]=new Bishop(7,5,'w',this);
     gameboard[7][6]=new Knight(7,6,'w',this);
     gameboard[7][7]=new Rock(7,7,'w',this);
+    gameboard[7][4]=white_king;   
+	gameboard[0][4]=black_king;
     for(int i=0;i<=7;i++)
         gameboard[1][i]=new Pawn(1,i,'b',this);
     for(int i=0;i<=7;i++)
@@ -52,8 +54,7 @@ Board::Board()
             blacks.push_back(gameboard[i][0+j]);
         }
     }
-	white_king=gameboard[7][4];
-	black_king=gameboard[0][4];
+	
 }
 int Board::check_draw_for_ripetions()
 {
@@ -63,13 +64,14 @@ bool Board::is_check_mate(char c)
 {
     if(c=='w')
 	{
+        Piece* p;
 		if(is_check(c) && !(white_king->can_move()))
 		{
 			for(int i=0;i<whites.size();i++)
 			{
-				if(whites[i].try_move(black_king->number, black_king->letter))
+				if(whites[i]->try_move(black_king->number, black_king->letter))
 				{
-					Piece* p=whites[i]
+					p=whites[i];
 					break;
 				}
 			}
@@ -80,11 +82,13 @@ bool Board::is_check_mate(char c)
 			{
 				if(p->letter<white_king->letter)
 				{
-					for(int i=)
+					//for(int i=)
 				}
 			}
 		}
+
 	}
+    return false;
 }
 bool Board::is_check(char c)
 {
@@ -92,7 +96,8 @@ bool Board::is_check(char c)
 	{
 		for(int i=0;i<blacks.size();i++)
 		{
-			if(blacks[i].try_move(white_king->number, white_king->letter)) return true;
+            //qui non funziona
+			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
 		}
 		return false;
 	}
@@ -100,10 +105,11 @@ bool Board::is_check(char c)
 	{
 		for(int i=0;i<blacks.size();i++)
 		{
-			if(whites[i].try_move(black_king->number, black_king->letter)) return true;
+			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
 		}
 		return false;
 	}
+    return false;
 }
 bool Board::is_draw()
 {

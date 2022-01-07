@@ -17,9 +17,6 @@ Rock::Rock(int n, int l, char col, Board* myBoard )
 
 bool Rock:: can_move()
 {
-	b->gameboard[number][letter]=nullptr;
-	if(b->is_check(color)) return false;
-	b->gameboard[number][letter]=this;
 	for(int i=-1; i<=1; i+2)
 	{
 		if(letter+i>=0 && letter+i<=7 ){
@@ -55,14 +52,14 @@ void Rock:: move(int n, int l)
 				{
 					for(int i=0;i<b->blacks.size();i++)
 					{
-						if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+						if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 					}
 				}
 				if(color=='b')
 				{
 					for(int i=0;i<b->whites.size();i++)
 					{
-						if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+						if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
 					}
 				}
 			}

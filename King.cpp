@@ -14,6 +14,10 @@ King::King(int n, int l, char col, Board* myBoard)
 	else piece='R';
 	is_already_move=false;
 }
+bool King::try_move(int n,int l)
+{
+	return false;
+}
 bool King::can_move()
 {
 	int j=-1; int i=-1;
@@ -95,14 +99,14 @@ void King::move(int n, int l)
 					{
 						for(int i=0;i<b->blacks.size();i++)
 						{
-							if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+							if(b->blacks[i]==p){ b->blacks.erase(b->blacks.begin()+i); break;}
 						}
 					}
 					if(color=='b')
 					{
 						for(int i=0;i<b->whites.size();i++)
 						{
-							if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+							if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
 						}
 					}
 				}

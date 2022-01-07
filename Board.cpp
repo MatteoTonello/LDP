@@ -69,7 +69,7 @@ bool Board::is_check_mate(char c)
 		{
 			for(int i=0;i<whites.size();i++)
 			{
-				if(whites[i].try_move(black_king->number, black_king->letter))
+				if(whites[i]->try_move(black_king->number, black_king->letter))
 				{
 					p=whites[i];
 					break;
@@ -77,7 +77,7 @@ bool Board::is_check_mate(char c)
 			}
 			if(p->piece=='P')
 			{
-				for(int i=0;i<whites[i];i++)
+				for(int i=0;i<whites.size();i++)
 				{
 					if(whites[i]->piece=='k')continue;
 					if(whites[i]->try_move(p->number, p->letter))return false;
@@ -297,7 +297,7 @@ bool Board::is_check_mate(char c)
 				  for(int i=0;i<whites.size();i++)
 				  {
 					  if(whites[i]->piece=='k')continue;
-					  if(whites[i].try_move(p->number, p->letter)) return false;
+					  if(whites[i]->try_move(p->number, p->letter)) return false;
 				  }
 			  }
 		   }
@@ -308,7 +308,7 @@ bool Board::is_check_mate(char c)
 				{
 					for(int i=0;i<blacks.size();i++)
 						{
-								if(blacks[i].try_move(black_king->number, black_king->letter))
+								if(blacks[i]->try_move(black_king->number, black_king->letter))
 						{
 								p=blacks[i];
 								break;
@@ -316,7 +316,7 @@ bool Board::is_check_mate(char c)
 			}
 			if(p->piece=='p')
 			{
-				for(int i=0;i<blacks[i];i++)
+				for(int i=0;i<blacks.size();i++)
 				{
 					if(blacks[i]->piece=='K')continue;
 					if(blacks[i]->try_move(p->number, p->letter))return false;
@@ -536,7 +536,7 @@ bool Board::is_check_mate(char c)
 				  for(int i=0;i<blacks.size();i++)
 				  {
 					  if(blacks[i]->piece=='K')continue;
-					  if(blacks[i].try_move(p->number, p->letter)) return false;
+					  if(blacks[i]->try_move(p->number, p->letter)) return false;
 				  }
 			  }
 		   }
@@ -567,6 +567,7 @@ bool Board::is_check(char c)
 }
 bool Board::is_draw()
 {
+	return false;
 }
 ostream& operator<<(ostream& os, Board& b)
 {

@@ -16,6 +16,7 @@ King::King(int n, int l, char col, Board* myBoard)
 }
 bool King::try_move(int n,int l)
 {
+	return 0;
 }
 bool King::can_move()
 {
@@ -123,7 +124,7 @@ void King::move(int n, int l)
 }
 void King::short_castling()
 {
-		if((!is_already_move) && b->gameboard[number][7]->piece=='t' && !(b->gameboard[number][7]->is_already_move))
+		if((!is_already_move) && b->gameboard[number][7]->piece=='t' && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
 		{
 			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]== nullptr)
 			{
@@ -150,15 +151,15 @@ void King::short_castling()
 						letter=4; 
 						throw new Illegal_move();
 					}
-					b.gameboard[number][5]=b.gameboard[number][7];
-					b.gameboard[number][7]=nullptr;
+					b->gameboard[number][5]=b->gameboard[number][7];
+					b->gameboard[number][7]=nullptr;
 					b->gameboard[number][5]->letter=5;
 			}
 		}
 }
 void King::long_castling()
 {
-	if((!is_already_move) && b->gameboard[number][0]->piece=='t' && !(b->gameboard[number][0]->is_already_move))
+	if((!is_already_move) && b->gameboard[number][0]->piece=='t' && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
 		{
 			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
 			{
@@ -185,8 +186,8 @@ void King::long_castling()
 						letter=4; 
 						throw new Illegal_move();
 					}
-					b.gameboard[number][3]=b.gameboard[number][0];
-					b.gameboard[number][0]=nullptr;
+					b->gameboard[number][3]=b->gameboard[number][0];
+					b->gameboard[number][0]=nullptr;
 					b->gameboard[number][3]->letter=3;
 			}
 		}

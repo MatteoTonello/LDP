@@ -7,13 +7,14 @@ void Piece::remove_en_passant()
 {
     for(int i=0;i<b->whites.size();i++)
     {
-        if(whites[i]->piece=='p')
-            whites[i]->en_passant=false;
+        if(b->whites[i]->piece=='p')
+            ((Pawn*)b->whites[i])->en_passant=false;
     }
     for(int i=0;i<b->blacks.size();i++)
     {
-        if(blacks[i]->piece=='P')
-                    blacks[i]->en_passant=false;
+        if(b->blacks[i]->piece=='P')
+                ((Pawn*) b->blacks[i])->en_passant=false;
     }
 
 }
+#endif

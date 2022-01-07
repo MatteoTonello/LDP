@@ -35,6 +35,9 @@ int main()
     b->gameboard[0][3]->letter=4;
     b->gameboard[0][3]=nullptr;
     cout<<*b;
+    
+    cout<<b->is_check('w')<<endl<<b->is_check_mate('w');
+
     b->gameboard[6][7]->move(5,7);
     cout<<*b;
     return 0;

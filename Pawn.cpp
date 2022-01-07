@@ -2,6 +2,7 @@
 #define PAWN_CPP
 #include "Illegal_move.cpp"
 #include "Pawn.h"
+#include "Piece.cpp"
 #include "Board.cpp"
 using namespace std;
 Pawn::Pawn(int n, int l, char col, Board* myBoard)
@@ -53,8 +54,8 @@ bool Pawn:: try_move(int n, int l)
 	if(!can_move()) return false;
 	if(color=='b')
 	{
-		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->en_passant==true) return true;
-		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true) return true;
+		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		if(n-number>2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==2 && number!=1) return false;
 		if((l-letter==1 || l-letter==-1)&& n-number==1)
@@ -75,6 +76,8 @@ bool Pawn:: try_move(int n, int l)
 	}
 	if(color=='w')
 	{
+		if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+		if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo casella non raggiugibili
 		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==-2 && number!=6) return false;
@@ -109,8 +112,8 @@ void Pawn::move(int n, int l)
 		Piece* temp;
 		if(color='b')
 		{
-			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true)))
+			if(n-number==1 && ((l-letter==1 && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				int save_number=number, save_letter=letter;
 				temp=b->gameboard[n-1][l];
@@ -130,8 +133,8 @@ void Pawn::move(int n, int l)
 		}
 		if(color='w')
 		{
-			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1]->en_passant==true)))
+			if(n-number==-1 && ((l-letter==1 && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				int save_number=number, save_letter=letter;
 				temp=b->gameboard[n+1][l];

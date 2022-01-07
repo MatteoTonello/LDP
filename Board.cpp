@@ -52,7 +52,8 @@ Board::Board()
             blacks.push_back(gameboard[i][0+j]);
         }
     }
-
+	white_king=gameboard[7][4];
+	black_king=gameboard[0][4];
 }
 int Board::check_draw_for_ripetions()
 {
@@ -60,17 +61,49 @@ int Board::check_draw_for_ripetions()
 }
 bool Board::is_check_mate(char c)
 {
-    if(is_check(c))
-    {
-        
-    }
-    return 0;
+    if(c=='w')
+	{
+		if(is_check(c) && !(white_king->can_move()))
+		{
+			for(int i=0;i<whites.size();i++)
+			{
+				if(whites[i].try_move(black_king->number, black_king->letter))
+				{
+					Piece* p=whites[i]
+					break;
+				}
+			}
+		}
+		if(p->piece=='T')
+		{
+			if(p->number==white_king->number)
+			{
+				if(p->letter<white_king->letter)
+				{
+					for(int i=)
+				}
+			}
+		}
+	}
 }
 bool Board::is_check(char c)
 {
-    return 0; //per lo scacco secondo me bisogna convertire tutti i move in "try_move" e poi se non dà eccezioni
-            //si muove. Poi si applica il try_move a tutte le caselle del colore opposto e se ce n'è una che non fa eccezioni
-            //allora è scacco
+	if(c=='w')
+	{
+		for(int i=0;i<blacks.size();i++)
+		{
+			if(blacks[i].try_move(white_king->number, white_king->letter)) return true;
+		}
+		return false;
+	}
+	if(c=='b')
+	{
+		for(int i=0;i<blacks.size();i++)
+		{
+			if(whites[i].try_move(black_king->number, black_king->letter)) return true;
+		}
+		return false;
+	}
 }
 bool Board::is_draw()
 {

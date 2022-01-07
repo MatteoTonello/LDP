@@ -16,6 +16,8 @@ class Board
 		bool is_check_mate(char c);
 		bool is_check(char c);
 		bool is_draw();
+		King* white_king;
+		King* black_king;
 		int white_pieces;
 		int black_pieces;
 		void print();

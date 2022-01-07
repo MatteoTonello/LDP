@@ -77,9 +77,6 @@ void King::move(int n, int l)
 						letter=save_letter; number=save_number;
 						throw new Illegal_move();
 					}
-					b->gameboard[n][l]=nullptr;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
 				}
 				if(b->gameboard[n][l]->color!=color)
 				{
@@ -94,19 +91,25 @@ void King::move(int n, int l)
 						letter=save_letter; number=save_number;
 						throw new Illegal_move();
 					}
-					b->gameboard[n][l]=p;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
+					if(color=='w')
+					{
+						for(int i=0;i<b->blacks.size();i++)
+						{
+							if(b->blacks[i]==temp){ b->blacks.erase(i); break;}
+						}
+					}
+					if(color=='b')
+					{
+						for(int i=0;i<b->whites.size();i++)
+						{
+							if(b->whites[i]==temp){ b->blacks.erase(i); break;}
+						}
+					}
 				}
 	if(b->gameboard[n][l]->color==color)
 	{
 		throw new Illegal_move();
 	}
-	b->gameboard[number][letter]=nullptr;
-	number=n;
-	letter=l;
-	
-	b->gameboard[n][l]=this;
 	is_already_move=true;
 	return;
 	

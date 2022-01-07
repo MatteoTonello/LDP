@@ -550,8 +550,6 @@ bool Board::is_check(char c)
 	{
 		for(int i=0;i<blacks.size();i++)
 		{
-            //qui non funziona
-			cout<<blacks[i]->piece<<" ";
 			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
 		}
 		return false;

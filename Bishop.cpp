@@ -17,11 +17,11 @@ using namespace std;
 
    bool Bishop::can_move()
    {
-      for(int i=-1; i<=1; i+2)
+      for(int i=-1; i<=1; i=i+2)
       {
-         for(int j=-1;j<=1;j+2)
+         for(int j=-1;j<=1;j=j+2)
          {
-            if(number+i>=0 || number+i<=8 || letter+j>=0 || letter+j<=8)
+            if(number+i>=0 || number+i<8 || letter+j>=0 || letter+j<8)
             {
                if(b->gameboard[number+i][letter+j]==nullptr) return true;
                if(b->gameboard[number+i][letter+j]->color!=color) return true;
@@ -74,7 +74,7 @@ using namespace std;
    bool Bishop::try_move(int n, int l){
          if(!can_move()) return false;
          if((abs(l-letter))!=(abs(n-number))) return false;
-         
+         cout<<"1";
          if(n>number)
          {
             if(l>letter)

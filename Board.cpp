@@ -62,33 +62,477 @@ int Board::check_draw_for_ripetions()
 }
 bool Board::is_check_mate(char c)
 {
+	Piece* p;
     if(c=='w')
 	{
-        Piece* p;
 		if(is_check(c) && !(white_king->can_move()))
 		{
 			for(int i=0;i<whites.size();i++)
 			{
-				if(whites[i]->try_move(black_king->number, black_king->letter))
+				if(whites[i].try_move(black_king->number, black_king->letter))
 				{
 					p=whites[i];
 					break;
 				}
 			}
-		}
-		if(p->piece=='T')
-		{
-			if(p->number==white_king->number)
+			if(p->piece=='T')
 			{
-				if(p->letter<white_king->letter)
+				if(p->number==white_king->number)
 				{
-					//for(int i=)
+					if(p->letter<white_king->letter)
+					{
+						for(int i=p->letter;i<white_king->letter;i++)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(white_king->number, i)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter;i>white_king->letter;i--)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(white_king->number, i)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->number<white_king->number)
+					{
+						for(int i=p->number;i<white_king->number;i++)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(i, white_king->letter)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->number;i>white_king->number;i--)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(i, white_king->letter)) return false;
+							}
+						}
+					}
 				}
 			}
+			if(p->piece=='A')
+			{
+				if(p->number>white_king->number)
+				{
+					if(p->letter>white_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j>white_king->number;i--, j--)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j>white_king->number;i++, j--)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->letter>white_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j<white_king->number;i--, j++)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j<white_king->number;i++, j++)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+			}
+			if(p->piece=='D')
+			{
+				if(p->number==white_king->number)
+				{
+					if(p->letter<white_king->letter)
+					{
+						for(int i=p->letter;i<white_king->letter;i++)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(white_king->number, i)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter;i>white_king->letter;i--)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(white_king->number, i)) return false;
+							}
+						}
+					}
+				}
+				if(p->letter==white_king->letter)
+				{
+					if(p->number<white_king->number)
+					{
+						for(int i=p->number;i<white_king->number;i++)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(i, white_king->letter)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->number;i>white_king->number;i--)
+						{
+							for(int j=0;j<whites.size();j++)
+							{
+								if(whites[j]->piece=='k')continue;
+								if(whites[j]->try_move(i, white_king->letter)) return false;
+							}
+						}
+					}
+				}
+				if(p->number>white_king->number)
+				{
+					if(p->letter>white_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j>white_king->number;i--, j--)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j>white_king->number;i++, j--)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->letter>white_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j<white_king->number;i--, j++)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j<white_king->number;i++, j++)
+						{
+							for(int k=0;k<whites.size();k++)
+							{
+								if(whites[k]->piece=='k')continue;
+								if(whites[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+			  }
+			  if(p->piece=='C')
+			  {
+				  for(int i=0;i<whites.size();i++)
+				  {
+					  if(whites[i]->piece=='k')continue;
+					  if(whites[i].try_move(p->number, p->letter)) return false;
+				  }
+			  }
+		   }
 		}
-
+		if(c=='b')
+		{
+			if(is_check(c) && !(black_king->can_move()))
+		{
+			for(int i=0;i<blacks.size();i++)
+			{
+				if(blacks[i].try_move(black_king->number, black_king->letter))
+				{
+					p=blacks[i];
+					break;
+				}
+			}
+			if(p->piece=='t')
+			{
+				if(p->number==black_king->number)
+				{
+					if(p->letter<black_king->letter)
+					{
+						for(int i=p->letter;i<black_king->letter;i++)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(black_king->number, i)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter;i>black_king->letter;i--)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(black_king->number, i)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->number<black_king->number)
+					{
+						for(int i=p->number;i<black_king->number;i++)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(i, black_king->letter)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->number;i>black_king->number;i--)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(i, black_king->letter)) return false;
+							}
+						}
+					}
+				}
+			}
+			if(p->piece=='a')
+			{
+				if(p->number>black_king->number)
+				{
+					if(p->letter>black_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j>black_king->number;i--, j--)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j>black_king->number;i++, j--)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->letter>black_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j<black_king->number;i--, j++)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j<black_king->number;i++, j++)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+			}
+			if(p->piece=='d')
+			{
+				if(p->number==black_king->number)
+				{
+					if(p->letter<black_king->letter)
+					{
+						for(int i=p->letter;i<black_king->letter;i++)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='k')continue;
+								if(blacks[j]->try_move(black_king->number, i)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter;i>black_king->letter;i--)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(black_king->number, i)) return false;
+							}
+						}
+					}
+				}
+				if(p->letter==black_king->letter)
+				{
+					if(p->number<black_king->number)
+					{
+						for(int i=p->number;i<black_king->number;i++)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(i, black_king->letter)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->number;i>black_king->number;i--)
+						{
+							for(int j=0;j<blacks.size();j++)
+							{
+								if(blacks[j]->piece=='K')continue;
+								if(blacks[j]->try_move(i, black_king->letter)) return false;
+							}
+						}
+					}
+				}
+				if(p->number>black_king->number)
+				{
+					if(p->letter>black_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j>black_king->number;i--, j--)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j>black_king->number;i++, j--)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(p->letter>black_king->letter)
+					{
+						for(int i=p->letter, j=p->number;j<black_king->number;i--, j++)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+					else
+					{
+						for(int i=p->letter, j=p->number;j<black_king->number;i++, j++)
+						{
+							for(int k=0;k<blacks.size();k++)
+							{
+								if(blacks[k]->piece=='K')continue;
+								if(blacks[k]->try_move(i, j)) return false;
+							}
+						}
+					}
+				}
+			  }
+			  if(p->piece=='c')
+			  {
+				  for(int i=0;i<blacks.size();i++)
+				  {
+					  if(blacks[i]->piece=='K')continue;
+					  if(blacks[i].try_move(p->number, p->letter)) return false;
+				  }
+			  }
+		   }
+		}
+}
+void Board:: long_castling(char c)
+{
+	if(is_check(c)) throw new Illegal_move();
+	if(c=='w')
+	{
+		e
 	}
-    return false;
 }
 bool Board::is_check(char c)
 {
@@ -103,7 +547,7 @@ bool Board::is_check(char c)
 	}
 	if(c=='b')
 	{
-		for(int i=0;i<blacks.size();i++)
+		for(int i=0;i<whites.size();i++)
 		{
 			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
 		}
@@ -113,7 +557,6 @@ bool Board::is_check(char c)
 }
 bool Board::is_draw()
 {
-    return 0;
 }
 ostream& operator<<(ostream& os, Board& b)
 {

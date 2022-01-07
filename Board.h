@@ -18,6 +18,8 @@ class Board
 		bool is_draw();
 		King* white_king;
 		King* black_king;
+		Rock* white_rock_for_short_castling;
+		Rock* white_rock_for_long_castling;
 		int white_pieces;
 		int black_pieces;
 		void print();

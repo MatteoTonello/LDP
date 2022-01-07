@@ -74,19 +74,19 @@ using namespace std;
    bool Bishop::try_move(int n, int l){
          if(!can_move()) return false;
          if((abs(l-letter))!=(abs(n-number))) return false;
-         cout<<"1";
-         if(n>number)
-         {
+        
+               if(n>number)
+            {
             if(l>letter)
             {
-               for(int i=number+1, j=letter+1; i<=n; i++, j++)
+               for(int i=number+1, j=letter+1; i<n; i++, j++)
                {
-                  if(b->gameboard[i][j]!=nullptr) return false;  
-               }                                                           
+                  if(b->gameboard[i][j]!=nullptr) return false;
+               }
             }
             else
             {
-               for(int i=number+1, j=letter-1; i<=n; i++, j--)
+               for(int i=number+1, j=letter-1; i<n; i++, j--)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }
@@ -96,14 +96,14 @@ using namespace std;
          {
             if(l>letter)
             {
-               for(int i=number-1, j=letter+1; i<=n; i--, j++)
+               for(int i=number-1, j=letter+1; i>n; i--, j++)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }
             }
             else
             {
-               for(int i=number-1, j=letter-1; i<=n; i--, j--)
+               for(int i=number-1, j=letter-1; i>n; i--, j--)
                {
                   if(b->gameboard[i][j]!=nullptr) return false;
                }

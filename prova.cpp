@@ -27,5 +27,15 @@ int main()
     cout<<*b;
     b->gameboard[7][1]->move(5,2);
     cout<<*b;
+    b->gameboard[6][4]=nullptr;
+    cout<<*b;
+    b->gameboard[2][4]=b->gameboard[0][3];
+    cout<<*b;
+    b->gameboard[0][3]->number=2;
+    b->gameboard[0][3]->letter=4;
+    b->gameboard[0][3]=nullptr;
+    cout<<*b;
+    b->gameboard[6][7]->move(5,7);
+    cout<<*b;
     return 0;
 }

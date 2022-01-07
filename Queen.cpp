@@ -34,10 +34,10 @@ int abs_value(int j)
 {
 	if(j>0) return j;return -j;
 }
-bool Queen::try_move(int l, int n)
+bool Queen::try_move(int n, int l)
 {
 	if(!can_move()) return false;
-	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) return false;;
+	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) return false;
 	int vertical=number, horizontal=letter ;
 	if(number!=n && letter==l)
 	{
@@ -48,16 +48,16 @@ bool Queen::try_move(int l, int n)
 			{
 				vertical++;
 			}
-			if(vertical!=n) return false;;
+			if(vertical!=n) return false;
 		}
 		else
 		{
 			vertical--;
-			while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
+			while(vertical>n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
 			}
-			if(vertical!=n) return false;;
+			if(vertical!=n) return false;
 		}
 	}
 	if(letter!=l && number==n)
@@ -74,7 +74,7 @@ bool Queen::try_move(int l, int n)
 		else
 		{
 			horizontal--;
-			while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
+			while(horizontal>n && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}
@@ -85,14 +85,14 @@ bool Queen::try_move(int l, int n)
 	{
 		if(l>letter)
 		{
-			for(int i=number, j=letter; i<=n; i++, j++)
+			for(int i=number+1, j=letter+1; i<n; i++, j++)
 			{
 				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 		else
 		{
-			for(int i=number, j=letter; i<=n; i++, j--)
+			for(int i=number+1, j=letter-1; i<n; i++, j--)
 			{
 				if(b->gameboard[i][j]!=nullptr) return false;
 			}
@@ -102,14 +102,14 @@ bool Queen::try_move(int l, int n)
 	{
 		if(l>letter)
 		{
-			for(int i=number, j=letter; i<=n; i--, j++)
+			for(int i=number-1, j=letter+1; i>n; i--, j++)
 			{
 				if(b->gameboard[i][j]!=nullptr) return false;
 			}
 		}
 		else
 		{
-			for(int i=number, j=letter; i<=n; i--, j--)
+			for(int i=number-1, j=letter-1; i>n; i--, j--)
 			{
 				if(b->gameboard[i][j]!=nullptr) return false;
 			}

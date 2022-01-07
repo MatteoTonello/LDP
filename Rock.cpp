@@ -90,7 +90,7 @@ bool Rock::try_move(int n, int l){
 		else
 		{
 			vertical--;
-			while(vertical>=n && b->gameboard[vertical][letter]==nullptr)
+			while(vertical>n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
 			}
@@ -111,7 +111,7 @@ bool Rock::try_move(int n, int l){
 		else
 		{
 			horizontal--;
-			while(horizontal>=n && b->gameboard[n][horizontal]==nullptr)
+			while(horizontal>n && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}

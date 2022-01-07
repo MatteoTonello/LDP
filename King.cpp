@@ -16,7 +16,6 @@ King::King(int n, int l, char col, Board* myBoard)
 }
 bool King::try_move(int n,int l)
 {
-	return false;
 }
 bool King::can_move()
 {
@@ -67,6 +66,11 @@ bool King::can_move()
 }
 void King::move(int n, int l)
 {
+	if(n==number && (l==letter+2 || l==letter-2) && !(b->is_check(color)))
+	{
+		if(l==6) short_castling();
+		if(l==2) long_castling();
+	}
 	if(abs_value(n-number)!=1 || abs_value(l-letter)!=1) throw new Illegal_move();
 	int save_letter=letter, save_number=number;
 	if(b->gameboard[n][l]==nullptr)
@@ -116,6 +120,75 @@ void King::move(int n, int l)
 	}
 	is_already_move=true;
 	return;
-	
+}
+void King::short_castling()
+{
+		if((!is_already_move) && b->gameboard[number][7]->piece=='t' && !(b->gameboard[number][7]->is_already_move))
+		{
+			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]== nullptr)
+			{
+				    b->gameboard[number][5]=this;
+					b->gameboard[number][letter]=nullptr;
+					letter=5;
+					if(b->is_check(color))
+					{
+						b->gameboard[number][5]=nullptr;
+						b->gameboard[number][4]=this;
+						letter=4;
+						throw new Illegal_move();
+					}
+					b->gameboard[number][5]=nullptr;
+					b->gameboard[number][4]=this;
+					letter=4;
+					b->gameboard[number][6]=this;
+					b->gameboard[number][letter]=nullptr;
+					letter=6; 
+					if(b->is_check(color))
+					{
+						b->gameboard[number][6]=nullptr;
+						b->gameboard[number][4]=this;
+						letter=4; 
+						throw new Illegal_move();
+					}
+					b.gameboard[number][5]=b.gameboard[number][7];
+					b.gameboard[number][7]=nullptr;
+					b->gameboard[number][5]->letter=5;
+			}
+		}
+}
+void long_castling()
+{
+	if((!is_already_move) && b->gameboard[number][7]->piece=='t' && !(b->gameboard[number][7]->is_already_move))
+		{
+			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
+			{
+				    b->gameboard[number][3]=this;
+					b->gameboard[number][letter]=nullptr;
+					letter=3;
+					if(b->is_check(color))
+					{
+						b->gameboard[number][]=nullptr;
+						b->gameboard[number][4]=this;
+						letter=4;
+						throw new Illegal_move();
+					}
+					b->gameboard[number][5]=nullptr;
+					b->gameboard[number][4]=this;
+					letter=4;
+					b->gameboard[number][6]=this;
+					b->gameboard[number][letter]=nullptr;
+					letter=6; 
+					if(b->is_check(color))
+					{
+						b->gameboard[number][6]=nullptr;
+						b->gameboard[number][4]=this;
+						letter=4; 
+						throw new Illegal_move();
+					}
+					b.gameboard[number][5]=b.gameboard[number][7];
+					b.gameboard[number][7]=nullptr;
+					b->gameboard[number][5]->letter=5;
+			}
+		}
 }
 #endif

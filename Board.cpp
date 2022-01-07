@@ -75,6 +75,14 @@ bool Board::is_check_mate(char c)
 					break;
 				}
 			}
+			if(p->piece=='P')
+			{
+				for(int i=0;i<whites[i];i++)
+				{
+					if(whites[i]->piece=='k')continue;
+					if(whites[i]->try_move(p->number, p->letter))return false;
+				}
+			}
 			if(p->piece=='T')
 			{
 				if(p->number==white_king->number)
@@ -297,13 +305,21 @@ bool Board::is_check_mate(char c)
 		if(c=='b')
 		{
 			if(is_check(c) && !(black_king->can_move()))
-		{
-			for(int i=0;i<blacks.size();i++)
-			{
-				if(blacks[i].try_move(black_king->number, black_king->letter))
 				{
-					p=blacks[i];
-					break;
+					for(int i=0;i<blacks.size();i++)
+						{
+								if(blacks[i].try_move(black_king->number, black_king->letter))
+						{
+								p=blacks[i];
+								break;
+					}
+			}
+			if(p->piece=='p')
+			{
+				for(int i=0;i<blacks[i];i++)
+				{
+					if(blacks[i]->piece=='K')continue;
+					if(blacks[i]->try_move(p->number, p->letter))return false;
 				}
 			}
 			if(p->piece=='t')
@@ -525,13 +541,13 @@ bool Board::is_check_mate(char c)
 			  }
 		   }
 		}
+		return true;
 }
 void Board:: long_castling(char c)
 {
 	if(is_check(c)) throw new Illegal_move();
 	if(c=='w')
 	{
-		e
 	}
 }
 bool Board::is_check(char c)

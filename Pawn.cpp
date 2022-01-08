@@ -55,7 +55,7 @@ bool Pawn:: try_move(int n, int l)
 	if(color=='b')
 	{
 		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
-		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		if(n-number>2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==2 && number!=1) return false;
 		if((l-letter==1 || l-letter==-1)&& n-number==1)
@@ -74,12 +74,13 @@ bool Pawn:: try_move(int n, int l)
 		if((l-letter==1||l-letter==-1)&& n-number==2) return false;
 		if(b->gameboard[n][l]!=nullptr)
 			if(b->gameboard[n][l]->color=='b') return false;
+		if(n==number && (l==letter-1 || l==letter+1)) return false;
 		return true;
 	}
 	if(color=='w')
 	{
 		if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
-		if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+		if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo casella non raggiugibili
 		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==-2 && number!=6) return false;
@@ -99,11 +100,11 @@ bool Pawn:: try_move(int n, int l)
 		}
 		//controllo movimento in avanti di 2 e diagonale
 		if((l-letter==1||l-letter==-1)&& n-number==-2) return false;
-		
 		if(b->gameboard[n][l]==nullptr && (n==number-1 || n==number-2) && l==letter) return true;
 		//controllo stesso colore
 		if(b->gameboard[n][l]!=nullptr)
 			if(b->gameboard[n][l]->color=='w') return false;
+		if(n==number && (l==letter-1 || l==letter+1)) return false;
 		return false;	
 	}		
 	return false;	

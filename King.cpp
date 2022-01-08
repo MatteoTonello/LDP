@@ -34,40 +34,40 @@ bool King::can_move()
 						b->gameboard[number+i][letter+j]=this;
 						b->gameboard[number][letter]=nullptr;
 						number=number+i; letter=letter+j;
-						if(b->is_check(color))
+						if(!(b->is_check(color)))
 						{
-							b->gameboard[number+i][letter+j]=nullptr;
+							b->gameboard[number][letter]=nullptr;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
-							return false;
+							return true;
 						}
-						b->gameboard[number+i][letter+j]=nullptr;
+						b->gameboard[number][letter]=nullptr;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
-						return true;
 					}
+					else
 					if(b->gameboard[number+i][letter+j]->color!=color)
 					{
 						Piece* p=b->gameboard[number+i][letter+j];
 						b->gameboard[number+i][letter+j]=this;
 						b->gameboard[number][letter]=nullptr;
 						number=number+i; letter=letter+j;
-						if(b->is_check(color))
+						if(!(b->is_check(color)))
 						{
-							b->gameboard[number+i][letter+j]=p;
+							b->gameboard[number][letter]=p;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
-							return false;
+							return true;
 						}
-						b->gameboard[number+i][letter+j]=p;
+						b->gameboard[number][letter]=p;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
-						return true;
 					}
 				}
 			}
 		}
 	}
+	return false;
 	/*int j=-1; int i=-1;
 	int save_letter=letter, save_number=number;
 	while(i<=1)

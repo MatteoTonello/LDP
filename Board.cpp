@@ -61,31 +61,7 @@ int Board::check_draw_for_ripetions()
     return 0;
 }
 
-bool Board::is_check(char c)
-{
-	if(c=='w')
-	{
-		for(int i=0;i<blacks.size();i++)
-		{
-			
-			if(blacks[i]->try_move(white_king->number, white_king->letter)) {
-				cout<<blacks[i]->piece;
-				return true;}
-			
-			
-		}
-		return false;
-	}
-	if(c=='b')
-	{
-		for(int i=0;i<whites.size();i++)
-		{
-			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
-		}
-		return false;
-	}
-    return false;
-}
+
 
 bool Board::is_check_mate(char c)
 {
@@ -604,7 +580,10 @@ bool Board::is_check(char c)
 			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
 		}
 		return false;
+	}
+	return false;
 }
+
 
 bool Board::is_draw()
 {

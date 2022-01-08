@@ -38,7 +38,11 @@ int main()
     
     cout<<b->is_check('w')<<endl<<b->is_check_mate('w')<<endl;
 
-    b->gameboard[6][7]->move(5,7);
+    b->gameboard[0][1]->move(2,2);
+    b->gameboard[7][5]->move(6,4);
+    b->gameboard[7][6]->move(5,5);
+    b->gameboard[7][4]->move(7,6);
+    cout<<"arrocco corto"<<endl;
     cout<<*b;
     return 0;
 }

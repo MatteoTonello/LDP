@@ -36,12 +36,12 @@ bool King::can_move()
 						number=number+i; letter=letter+j;
 						if(!(b->is_check(color)))
 						{
-							b->gameboard[number][letter]=nullptr;
+							b->gameboard[number+i][letter+j]=nullptr;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
 							return true;
 						}
-						b->gameboard[number][letter]=nullptr;
+						b->gameboard[number+i][letter+j]=nullptr;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
 					}
@@ -54,12 +54,12 @@ bool King::can_move()
 						number=number+i; letter=letter+j;
 						if(!(b->is_check(color)))
 						{
-							b->gameboard[number][letter]=p;
+							b->gameboard[number+i][letter+j]=p;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
 							return true;
 						}
-						b->gameboard[number][letter]=p;
+						b->gameboard[number+i][letter+j]=p;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
 					}

@@ -65,10 +65,8 @@ bool Board::is_check_mate(char c)
 	Piece* p;
     if(c=='w')
 	{
-		cout<<(white_king->can_move());
-		if(is_check(c) && !(white_king->can_move()))
+		if(is_check(c) && (!(white_king->can_move())))
 		{
-			cout<<"i"<<endl;
 			for(int i=0;i<blacks.size();i++)
 			{
 				if(blacks[i]->try_move(white_king->number, white_king->letter))
@@ -81,9 +79,9 @@ bool Board::is_check_mate(char c)
 			{
 				for(int i=0;i<whites.size();i++)
 				{
-					if(whites[i]->piece=='r')continue;
-					if(whites[i]->try_move(p->number, p->letter))return false;
+					if(whites[i]->piece!='r') if(whites[i]->try_move(p->number, p->letter))return false;
 				}
+				return true;
 			}
 			if(p->piece=='T')
 			{
@@ -111,6 +109,7 @@ bool Board::is_check_mate(char c)
 							}
 						}
 					}
+					return true;
 				}
 				else
 				{
@@ -137,6 +136,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			}
 			if(p->piece=='A')
 			{
@@ -190,6 +190,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			}
 			if(p->piece=='D')
 			{
@@ -293,6 +294,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			  }
 			  if(p->piece=='C')
 			  {
@@ -301,6 +303,7 @@ bool Board::is_check_mate(char c)
 					  if(whites[i]->piece=='r')continue;
 					  if(whites[i]->try_move(p->number, p->letter)) return false;
 				  }
+				  return true;
 			  }
 		   }
 		}
@@ -324,6 +327,7 @@ bool Board::is_check_mate(char c)
 					if(blacks[i]->piece=='R')continue;
 					if(blacks[i]->try_move(p->number, p->letter))return false;
 				}
+				return true;
 			}
 			if(p->piece=='t')
 			{
@@ -377,6 +381,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			}
 			if(p->piece=='a')
 			{
@@ -430,6 +435,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			}
 			if(p->piece=='d')
 			{
@@ -534,6 +540,7 @@ bool Board::is_check_mate(char c)
 						}
 					}
 				}
+				return true;
 			  }
 			  if(p->piece=='c')
 			  {
@@ -542,10 +549,10 @@ bool Board::is_check_mate(char c)
 					  if(blacks[i]->piece=='R')continue;
 					  if(blacks[i]->try_move(p->number, p->letter)) return false;
 				  }
+				  return true;
 			  }
 		   }
 		}
-		return true;
 }
 
 bool Board::is_check(char c)
@@ -556,6 +563,7 @@ bool Board::is_check(char c)
 		{
 			
 			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
+			
 		}
 		return false;
 	}

@@ -10,13 +10,17 @@ int main()
 {
     
     Board* b=new Board();
-    b->gameboard[6][4]->move(5,4);
-    b->gameboard[1][7]->move(2,7);
-    b->gameboard[1][6]->move(2,6);
-    b->gameboard[7][5]->move(4,2);
-    b->gameboard[7][3]->move(5,5);
-    b->gameboard[5][5]->move(2,5);
+	b->gameboard[6][5]->move(4,5);
+	b->gameboard[6][6]->move(4,6);
+	b->gameboard[1][4]->move(3,4);
+	b->gameboard[0][3]->move(4,7);
 	cout<<*b<<endl;
-    cout<<(b->is_check_mate('b'));
+	for(int i=0;i<10;i++)
+	{
+		if(b->is_check('w'))
+		{
+			cout<<"be dai"<<endl;
+		}
+	}
     return 0;
 }

@@ -27,38 +27,43 @@ bool King::can_move()
 		if(number+i>=0 && number+i<=7){
 			for(int j=-1;j<=1;j++)
 			{
-				if(b->gameboard[number+i][letter+j]==nullptr)
+				if(letter+j>=0 && letter+j<=7)
 				{
-					b->gameboard[number+i][letter+j]=this;
-					b->gameboard[number][letter]=nullptr;
-					number=number+i; letter=letter+j;
-					if(!b->is_check(color))
+					if(b->gameboard[number+i][letter+j]==nullptr)
 					{
+						b->gameboard[number+i][letter+j]=this;
+						b->gameboard[number][letter]=nullptr;
+						number=number+i; letter=letter+j;
+						if(b->is_check(color))
+						{
+							b->gameboard[number+i][letter+j]=nullptr;
+							b->gameboard[save_number][save_letter]=this;
+							letter=save_letter; number=save_number;
+							return false;
+						}
 						b->gameboard[number+i][letter+j]=nullptr;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
-						return false;
+						return true;
 					}
-					b->gameboard[number+i][letter+j]=nullptr;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
-				}
-				if(b->gameboard[number+i][letter+j]->color!=color)
-				{
-					Piece* p=b->gameboard[number+i][letter+j];
-					b->gameboard[number+i][letter+j]=this;
-					b->gameboard[number][letter]=nullptr;
-					number=number+i; letter=letter+j;
-					if(!b->is_check(color))
+					if(b->gameboard[number+i][letter+j]->color!=color)
 					{
+						Piece* p=b->gameboard[number+i][letter+j];
+						b->gameboard[number+i][letter+j]=this;
+						b->gameboard[number][letter]=nullptr;
+						number=number+i; letter=letter+j;
+						if(b->is_check(color))
+						{
+							b->gameboard[number+i][letter+j]=p;
+							b->gameboard[save_number][save_letter]=this;
+							letter=save_letter; number=save_number;
+							return false;
+						}
 						b->gameboard[number+i][letter+j]=p;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
-						return false;
+						return true;
 					}
-					b->gameboard[number+i][letter+j]=p;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
 				}
 			}
 		}

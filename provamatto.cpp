@@ -17,6 +17,5 @@ int main()
 	b->gameboard[5][5]->move(1,5);
 	cout<<*b<<endl;
 	if(b->is_check_mate('b'))cout<<"scacco matto"<<endl;
-	//}
     return 0;
 }

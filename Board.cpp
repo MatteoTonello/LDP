@@ -65,11 +65,20 @@ int Board::check_draw_for_ripetions()
 
 bool Board::is_check_mate(char c)
 {
+	int piece_check=0;
 	Piece* p;
    if(c=='w')
 	{
 		if(is_check(c) && (!(white_king->can_move())))
 		{
+			for(int i=0;i<blacks.size();i++)
+			{
+				if(blacks[i]->try_move(white_king->number, white_king->letter))
+				{
+					piece_check++;
+				}
+			}
+			if(piece_check>=2) return true;
 			for(int i=0;i<blacks.size();i++)
 			{
 				if(blacks[i]->try_move(white_king->number, white_king->letter))
@@ -317,7 +326,16 @@ bool Board::is_check_mate(char c)
 		{
 			if(is_check(c) && !(black_king->can_move()))
 				{
-					
+					for(int i=0;i<whites.size();i++)
+						{
+
+							if(whites[i]->try_move(black_king->number, black_king->letter))
+							{
+								piece_check++;
+							}
+						}
+						
+						if(piece_check>=2) return true;
 					for(int i=0;i<whites.size();i++)
 						{
 
@@ -467,7 +485,8 @@ bool Board::is_check_mate(char c)
 							for(int j=0;j<blacks.size();j++)
 							{
 								if(!(blacks[j]->piece=='R'))
-								if(blacks[j]->try_move(black_king->number, i)) return false;
+								if(blacks[j]->try_move(black_king->number, i))
+								 return false;
 							}
 						}
 					}

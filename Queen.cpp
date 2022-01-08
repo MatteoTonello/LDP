@@ -161,5 +161,6 @@ void Queen:: move(int n, int l)
 			return;
 		}	
 	}
+	throw new Illegal_move();
 }
 #endif

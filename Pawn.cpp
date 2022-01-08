@@ -209,7 +209,9 @@ void Pawn::move(int n, int l)
 		{
 			promotion();
 		}
+		return;
 	}
+	throw new Illegal_move();
 }
 void Pawn:: promotion()
 {

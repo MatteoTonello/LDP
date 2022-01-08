@@ -70,6 +70,7 @@ using namespace std;
 			return;
 		}	
 	}
+   throw new Illegal_move();
 }
 
    bool Bishop::try_move(int n, int l){

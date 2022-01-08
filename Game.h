@@ -2,6 +2,7 @@
 #define GAME_H
 #include "Board.h"
 #include "Player.h"
+#include <iostream>
 class Game
 {
 	public:
@@ -15,5 +16,5 @@ class Game
 		Player* is_turn;
 		bool is_finished();
 		string result;
-}
+};
 #endif

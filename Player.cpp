@@ -1,36 +1,69 @@
+#ifndef PLAYER_CPP
+#define PLAYER_CPP
 #include <stdlib.h>
-#include <time.h
+#include <time.h>
+#include "Player.h"
 #include <iostream>
 #include "Board.cpp"
-#ifndef PLAYER_H
-#def PLAYER_H
-
-class Player
+using namespace std;
+Player::Player(char c)
 {
-	public:
-		Player(char col, char c )
+	if(c!='c' || c!='p') cout<<"sbagliati giocatori";
+	if(c=='p')is_human=true;
+	if(c=='c')is_human=false;
+	boardgame=new Board();
+};
+void Player::move()
+{
+	srand(time(NULL));
+	if(is_human)
+	{
+		int ni,li,nf,lf;
+		char i_letter,f_letter;
+		int i_number,f_number;
+		string mossa="";
+		cin>>mossa;
+		if(mossa=="XX XX")
 		{
-			if(c!='c' || c!='p')throw Illegal_move();
-			if(c=='p')is_human=true;
-			if(c=='c') is_human=false;
-			color=c;
-		};
-		void move()
-		{
-			srand(time(NULL));
-			String mossa;
-			if(is_human)cin>>mossa;
-			else random_move();
-			{
-				if(color=='w')
-				{
-					int chose_index_random=rand()%whites.size();
-					
-					
-				}
-			}
+			cout<<*boardgame<<endl;
+			move();
+			return;
 		}
-		char computer_or_human;
-		char color;
-		bool is_human;
+		/*i_letter=mossa[0];	//ancora da convertire
+		f_letter=mossa[3];
+		i_number=mossa[1]-48;
+		f_number=mossa[4]-48;
+		if(mossa[2]!=' ') throw new Illegal_move();
+		if(i_number<0 || i_number>=8)
+		if(f_number)*/
+		//da finire
+	}
+	else
+	{
+		int random_letter=0,random_number=0,random_piece=0;
+		if(color=='w')
+		{
+			do
+			{
+				random_piece=rand()%boardgame->whites.size();
+				random_number=rand()%8;
+				random_letter=rand()%8;
+			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
+			boardgame->whites[random_piece]->move(random_number,random_letter);
+		}
+		if(color=='b')
+		{
+			do
+			{
+				random_piece=rand()%boardgame->blacks.size();
+				random_number=rand()%8;
+				random_letter=rand()%8;
+			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
+			boardgame->blacks[random_piece]->move(random_number,random_letter);
+		}
+		
+	}
+	
 }
+#endif
+	

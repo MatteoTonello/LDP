@@ -67,6 +67,7 @@ void Knight::move(int n, int l)
 			return;
 		}	
 	}
+	throw new Illegal_move();
 }
 
 bool Knight::try_move(int n, int l){

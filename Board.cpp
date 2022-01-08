@@ -61,31 +61,7 @@ int Board::check_draw_for_ripetions()
     return 0;
 }
 
-bool Board::is_check(char c)
-{
-	if(c=='w')
-	{
-		for(int i=0;i<blacks.size();i++)
-		{
-			
-			if(blacks[i]->try_move(white_king->number, white_king->letter)) {
-				cout<<blacks[i]->piece;
-				return true;}
-			
-			
-		}
-		return false;
-	}
-	if(c=='b')
-	{
-		for(int i=0;i<whites.size();i++)
-		{
-			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
-		}
-		return false;
-	}
-    return false;
-}
+
 
 bool Board::is_check_mate(char c)
 {
@@ -255,8 +231,8 @@ bool Board::is_check_mate(char c)
 						{
 							for(int j=0;j<whites.size();j++)
 							{
-								if(whites[j]->piece=='r')continue;
-								if(whites[j]->try_move(i, white_king->letter)) return false;
+								if(!(whites[j]->piece=='r'))
+									if(whites[j]->try_move(i, white_king->letter)) return false;
 							}
 						}
 					}
@@ -305,7 +281,11 @@ bool Board::is_check_mate(char c)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
-								if(whites[k]->piece!='r') if(whites[k]->try_move(i, j)) return false;
+								if(!(whites[k]->piece=='r'))
+								{
+									if(whites[k]->try_move(i, j)) 
+										return false;
+								}
 							}
 						}
 					}
@@ -579,8 +559,32 @@ bool Board::is_check_mate(char c)
 			  }
 		   }
 		}
-		return false;
+		return true;
 }
+
+bool Board::is_check(char c)
+{
+	if(c=='w')
+	{
+		for(int i=0;i<blacks.size();i++)
+		{
+			
+			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
+			
+		}
+		return false;
+	}
+	if(c=='b')
+	{
+		for(int i=0;i<whites.size();i++)
+		{
+			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
+		}
+		return false;
+	}
+	return false;
+}
+
 
 bool Board::is_draw()
 {

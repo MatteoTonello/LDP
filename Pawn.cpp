@@ -60,6 +60,7 @@ bool Pawn:: try_move(int n, int l)
 		if(n-number==2 && number!=1) return false;
 		if((l-letter==1 || l-letter==-1)&& n-number==1)
 		{
+			if(b->gameboard[n][l]==nullptr) return false;
 			if(b->gameboard[n][l]->color=='w')
 			{
 				return true;
@@ -69,6 +70,7 @@ bool Pawn:: try_move(int n, int l)
 				return false;
 			}
 		}
+		if(b->gameboard[n][l]==nullptr && (n==number+1 || n==number+2) && l==letter) return true;
 		if((l-letter==1||l-letter==-1)&& n-number==2) return false;
 		if(b->gameboard[n][l]!=nullptr)
 			if(b->gameboard[n][l]->color=='b') return false;
@@ -85,6 +87,7 @@ bool Pawn:: try_move(int n, int l)
 		
 		if((l-letter==1 || l-letter==-1)&& n-number==-1)
 		{
+			if(b->gameboard[n][l]==nullptr) return false;
 			if(b->gameboard[n][l]->color=='b')
 			{
 				return true;
@@ -97,11 +100,11 @@ bool Pawn:: try_move(int n, int l)
 		//controllo movimento in avanti di 2 e diagonale
 		if((l-letter==1||l-letter==-1)&& n-number==-2) return false;
 		
-		
+		if(b->gameboard[n][l]==nullptr && (n==number-1 || n==number-2) && l==letter) return true;
 		//controllo stesso colore
 		if(b->gameboard[n][l]!=nullptr)
 			if(b->gameboard[n][l]->color=='w') return false;
-		return true;	
+		return false;	
 	}		
 	return false;	
 }

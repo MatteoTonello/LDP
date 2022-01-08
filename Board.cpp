@@ -60,10 +60,37 @@ int Board::check_draw_for_ripetions()
 {
     return 0;
 }
+
+bool Board::is_check(char c)
+{
+	if(c=='w')
+	{
+		for(int i=0;i<blacks.size();i++)
+		{
+			
+			if(blacks[i]->try_move(white_king->number, white_king->letter)) {
+				cout<<blacks[i]->piece;
+				return true;}
+			
+			
+		}
+		return false;
+	}
+	if(c=='b')
+	{
+		for(int i=0;i<whites.size();i++)
+		{
+			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
+		}
+		return false;
+	}
+    return false;
+}
+
 bool Board::is_check_mate(char c)
 {
 	Piece* p;
-    if(c=='w')
+   if(c=='w')
 	{
 		if(is_check(c) && (!(white_king->can_move())))
 		{
@@ -144,7 +171,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>white_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j>white_king->number;i--, j--)
+						for(int i=p->number, j=p->letter;j>white_king->number;i--, j--)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -155,7 +182,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j>white_king->number;i++, j--)
+						for(int i=p->number, j=p->letter;j>white_king->number;i++, j--)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -169,7 +196,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>white_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j<white_king->number;i--, j++)
+						for(int i=p->number, j=p->letter;j<white_king->number;i--, j++)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -180,7 +207,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j<white_king->number;i++, j++)
+						for(int i=p->number, j=p->letter;j<white_king->number;i++, j++)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -248,7 +275,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>white_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j>white_king->number;i--, j--)
+						for(int i=p->number, j=p->letter;j>white_king->number;i--, j--)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -259,7 +286,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j>white_king->number;i++, j--)
+						for(int i=p->number, j=p->letter;j>white_king->number;i--, j++)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
@@ -273,30 +300,28 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>white_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j<white_king->number;i--, j++)
+						for(int i=p->number, j=p->letter;j<white_king->number;i++, j--)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
-								if(whites[k]->piece=='r')continue;
-								if(whites[k]->try_move(i, j)) return false;
+								if(whites[k]->piece!='r') if(whites[k]->try_move(i, j)) return false;
 							}
 						}
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j<white_king->number;i++, j++)
+						for(int i=p->number, j=p->letter;j<white_king->number;i++, j++)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
-								if(whites[k]->piece=='r')continue;
-								if(whites[k]->try_move(i, j)) return false;
+								if(whites[k]->piece!='r')	if(whites[k]->try_move(i, j)) return false;
 							}
 						}
 					}
 				}
 				return true;
-			  }
-			  if(p->piece=='C')
+			}
+			if(p->piece=='C')
 			  {
 				  for(int i=0;i<whites.size();i++)
 				  {
@@ -305,9 +330,9 @@ bool Board::is_check_mate(char c)
 				  }
 				  return true;
 			  }
-		   }
-		}
-		if(c=='w')
+			}
+	}
+	if(c=='b')
 		{
 			
 			if(is_check(c) && !(black_king->can_move()))
@@ -389,7 +414,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j>black_king->number;i--, j--)
+						for(int i=p->number, j=p->letter;j>black_king->number;i--, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -400,7 +425,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j>black_king->number;i++, j--)
+						for(int i=p->number, j=p->letter;j>black_king->number;i++, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -414,7 +439,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j<black_king->number;i--, j++)
+						for(int i=p->number, j=p->letter;j<black_king->number;i--, j++)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -425,7 +450,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j<black_king->number;i++, j++)
+						for(int i=p->number, j=p->letter;j<black_king->number;i++, j++)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -494,7 +519,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j>black_king->number;i--, j--)
+						for(int i=p->number, j=p->letter;j>black_king->number;i--, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -505,7 +530,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j>black_king->number;i++, j--)
+						for(int i=p->number, j=p->letter;j>black_king->number;i++, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -519,7 +544,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->letter, j=p->number;j<black_king->number;i--, j++)
+						for(int i=p->number, j=p->letter;j<black_king->number;i--, j++)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -530,7 +555,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter, j=p->number;j<black_king->number;i++, j++)
+						for(int i=p->number, j=p->letter;j<black_king->number;i++, j++)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -553,30 +578,9 @@ bool Board::is_check_mate(char c)
 			  }
 		   }
 		}
+		return false;
 }
 
-bool Board::is_check(char c)
-{
-	if(c=='w')
-	{
-		for(int i=0;i<blacks.size();i++)
-		{
-			
-			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
-			
-		}
-		return false;
-	}
-	if(c=='b')
-	{
-		for(int i=0;i<whites.size();i++)
-		{
-			if(whites[i]->try_move(black_king->number, black_king->letter)) return true;
-		}
-		return false;
-	}
-    return false;
-}
 bool Board::is_draw()
 {
 	return false;

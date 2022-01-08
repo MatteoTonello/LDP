@@ -113,7 +113,7 @@ bool King::can_move()
 		}
 	return false;
 	*/
-	
+	return false;
 }
 void King::move(int n, int l)
 {

@@ -10,24 +10,12 @@ int main()
 {
     
     Board* b=new Board();
-	b->gameboard[6][5]->move(4,5);
-	b->gameboard[6][6]->move(4,6);
-	b->gameboard[1][4]->move(3,4);
-	b->gameboard[0][3]->move(4,7);
+	b->gameboard[6][4]->move(4,4);
+	b->gameboard[7][5]->move(4,2);
+	b->gameboard[7][3]->move(5,5);
+	cout<<b->gameboard[5][5]->try_move(1,5);
 	cout<<*b<<endl;
-	//for(int i=0;i<10;i++)
-	//{
-		if(b->is_check('w'))
-		{
-			cout<<"be dai1"<<endl;
-		}
-		if(!(b->white_king->can_move())){
-			cout<<"be dai2"<<endl;
-		}
-		if(b->is_check_mate('w'))
-		{
-			cout<<"be dai3"<<endl;
-		}
+	if(b->is_check_mate('w'))cout<<"scacco matto"<<endl;
 	//}
     return 0;
 }

@@ -227,8 +227,8 @@ bool Board::is_check_mate(char c)
 						{
 							for(int j=0;j<whites.size();j++)
 							{
-								if(whites[j]->piece=='r')continue;
-								if(whites[j]->try_move(i, white_king->letter)) return false;
+								if(!(whites[j]->piece=='r'))
+									if(whites[j]->try_move(i, white_king->letter)) return false;
 							}
 						}
 					}
@@ -277,8 +277,11 @@ bool Board::is_check_mate(char c)
 						{
 							for(int k=0;k<whites.size();k++)
 							{
-								if(whites[k]->piece=='r')continue;
-								if(whites[k]->try_move(i, j)) return false;
+								if(!(whites[k]->piece=='r'))
+								{
+									if(whites[k]->try_move(i, j)) 
+										return false;
+								}
 							}
 						}
 					}
@@ -553,6 +556,7 @@ bool Board::is_check_mate(char c)
 			  }
 		   }
 		}
+		return true;
 }
 
 bool Board::is_check(char c)

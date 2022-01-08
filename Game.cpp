@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <stdlib.h>    
 #include <time.h>
+using namespace std;
 Game::Game(Player* n1,Player* n2)
 {
     srand (time(NULL));
@@ -20,6 +21,8 @@ Game::Game(Player* n1,Player* n2)
             white_player=n2;
             black_player=n1;
         }
+        white_player->color='w';
+        black_player->color='b';
     }
 	mainboard=new Board();
 	is_turn=white_player;

@@ -13,9 +13,10 @@ int main()
 	b->gameboard[6][4]->move(4,4);
 	b->gameboard[7][5]->move(4,2);
 	b->gameboard[7][3]->move(5,5);
-	cout<<b->gameboard[5][5]->try_move(1,5);
+
+	b->gameboard[5][5]->move(1,5);
 	cout<<*b<<endl;
-	if(b->is_check_mate('w'))cout<<"scacco matto"<<endl;
+	if(b->is_check_mate('b'))cout<<"scacco matto"<<endl;
 	//}
     return 0;
 }

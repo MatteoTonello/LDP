@@ -5,6 +5,7 @@
 #include <stdlib.h>    
 #include <time.h>
 using namespace std;
+class Player;
 Game::Game(Player* n1,Player* n2)
 {
     srand (time(NULL));

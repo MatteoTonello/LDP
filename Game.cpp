@@ -33,8 +33,9 @@ Game::Game(Player* n1,Player* n2)
     }
     white_player->color='w';
     black_player->color='b';
-    white_player->boardgame=black_player->boardgame;
-	mainboard=white_player->boardgame;
+	mainboard=new Board();
+    white_player->boardgame=mainboard;
+    black_player->boardgame=mainboard;
 	is_turn=white_player;
     result="";
     nmosse=0;
@@ -66,7 +67,7 @@ void Game::player_move()
             is_turn->move();
             flag=false;
         }
-        catch(const Illegal_move& e)
+        catch(Illegal_move* e)
         {
             cout<<"illegal move"<<endl;
             flag=true;
@@ -105,6 +106,7 @@ bool Game::is_finished()
             result="VINCITORE BIANCO";
             return true;
         }
+        
     }
     return false;
 }

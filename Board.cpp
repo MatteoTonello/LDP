@@ -590,9 +590,7 @@ bool Board::is_check(char c)
 	{
 		for(int i=0;i<blacks.size();i++)
 		{
-			
 			if(blacks[i]->try_move(white_king->number, white_king->letter)) return true;
-			
 		}
 		return false;
 	}

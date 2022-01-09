@@ -13,7 +13,6 @@ Player::Player(char c)
 	if(c=='p')is_human=true;
 	if(c=='c')is_human=false;
 	color='n';
-	boardgame=new Board();
 };
 void Player::move()
 {
@@ -24,7 +23,8 @@ void Player::move()
 		char chari_letter,charf_letter;
 		int i_number,f_number;
 		string mossa="";
-		cin>>mossa;
+		cout<<"inserisci mossa"<<endl;
+		getline(cin,mossa);
 		if(mossa=="XX XX")
 		{
 			cout<<*boardgame<<endl;
@@ -35,15 +35,26 @@ void Player::move()
 		charf_letter=mossa[3];
 		i_number=mossa[1]-'0';	//da convertire
 		f_number=mossa[4]-'0';
+		cout<<i_number<<" "<<chari_letter<<endl;
+		cout<<f_number<<" "<<charf_letter<<endl;
+		i_number--;
+		f_number--;
 		if(mossa[2]!=' ') throw new Illegal_move();
 		if(i_number<0 || i_number>=8) throw new Illegal_move();
 		if(f_number<0 || f_number>=8) throw new Illegal_move();
-		if(chari_letter<'A' || chari_letter>'z') throw new Illegal_move();
-		if(charf_letter>'Z' || charf_letter<'a') throw new Illegal_move();
-		if(chari_letter>='A' && chari_letter<'Z') i_letter=chari_letter-'A';
-		if(chari_letter>='a' && chari_letter<'z') i_letter=chari_letter-'a';
-		i_number=7-i_number+1; //conversione numeri per la matrice
-		f_number=7-f_number+1;
+		if(chari_letter<'A' || chari_letter>'h') throw new Illegal_move();
+		if(chari_letter>'H' && chari_letter<'a') throw new Illegal_move();
+		if(charf_letter<'A' || charf_letter>'h') throw new Illegal_move();
+		if(charf_letter>'H' && charf_letter<'a') throw new Illegal_move();
+		if(chari_letter>='A' && chari_letter<'H') i_letter=chari_letter-'A';
+		if(chari_letter>='a' && chari_letter<'h') i_letter=chari_letter-'a';
+		if(charf_letter>='A' && charf_letter<'H') f_letter=charf_letter-'A';
+		if(charf_letter>='a' && charf_letter<'h') f_letter=charf_letter-'a';
+		i_number=7-i_number; //conversione numeri per la matrice
+		f_number=7-f_number;
+		cout<<i_number<<" "<<i_letter<<endl<<f_number<<" "<<f_letter<<endl;
+		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
+		if(boardgame->gameboard[i_number][i_letter]->color!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
 		{
 			cout<<"Illegal move"<<endl;

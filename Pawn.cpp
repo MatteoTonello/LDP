@@ -225,10 +225,10 @@ void Pawn:: promotion()
 			if(c=='A' || c=='T' || c=='D' || c=='C') break;
 			cout<<"pezzo non valido"<<endl;
 		}
-		if(c=='A') b->gameboard[number][letter]->new Bishop(number, letter, 'b',b );
-		if(c=='T') b->gameboard[number][letter]->new Rock(number, letter, 'b', b);
-		if(c=='D') b->gameboard[number][letter]->new Queen(number, letter, 'b', b);	
-		if(c=='C') b->gameboard[number][letter]->new Knight(number, letter, 'b', b);
+		if(c=='A') b->gameboard[number][letter]=new Bishop(number, letter, 'b',b );
+		if(c=='T') b->gameboard[number][letter]=new Rock(number, letter, 'b', b);
+		if(c=='D') b->gameboard[number][letter]=new Queen(number, letter, 'b', b);	
+		if(c=='C') b->gameboard[number][letter]=new Knight(number, letter, 'b', b);
 	}
 	else
 	{
@@ -240,10 +240,10 @@ void Pawn:: promotion()
 			if(c=='a' || c=='t' || c=='d' || c=='c') break;
 			cout<<"pezzo non valido"<<endl;
 		}
-		if(c=='a') b->gameboard[number][letter]->new Bishop(number, letter, 'w', b);
-		if(c=='t') b->gameboard[number][letter]->new Rock(number, letter, 'w', b);
-		if(c=='d') b->gameboard[number][letter]->new Queen(number, letter, 'w', b);	
-		if(c=='c') b->gameboard[number][letter]->new Knight(number, letter, 'w', b);
+		if(c=='a') b->gameboard[number][letter]=new Bishop(number, letter, 'w', b);
+		if(c=='t') b->gameboard[number][letter]=new Rock(number, letter, 'w', b);
+		if(c=='d') b->gameboard[number][letter]=new Queen(number, letter, 'w', b);	
+		if(c=='c') b->gameboard[number][letter]=new Knight(number, letter, 'w', b);
 	}
 }
 #endif

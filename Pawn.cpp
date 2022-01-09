@@ -23,11 +23,11 @@ bool Pawn::can_move()
 			if(b->gameboard[number+1][letter]==nullptr) return true;
 			if(letter+1<=7){
 				if(b->gameboard[number+1][letter+1]==nullptr) return false;
-				if(b->gameboard[number+1][letter+1]->color=='b') return true;
+				if(b->gameboard[number+1][letter+1]->color=='w') return true;
 			}
 			else if(letter-1>=0){
 				if(b->gameboard[number+1][letter-1]==nullptr) return false;
-				if(b->gameboard[number+1][letter-1]->color=='b') return true;
+				if(b->gameboard[number+1][letter-1]->color=='w') return true;
 			}
 			return false;
 		}
@@ -38,11 +38,11 @@ bool Pawn::can_move()
 			if(b->gameboard[number-1][letter]==nullptr) return true;
 			if(letter+1<=7){
 				if(b->gameboard[number-1][letter+1]==nullptr) return false; 
-				if(b->gameboard[number-1][letter+1]->color=='w') return true;
+				if(b->gameboard[number-1][letter+1]->color=='b') return true;
 			}
 			else if(letter-1>=0){
 				if(b->gameboard[number-1][letter-1]==nullptr) return false;
-				if(b->gameboard[number-1][letter-1]->color=='w') return true;
+				if(b->gameboard[number-1][letter-1]->color=='b') return true;
 			}
 		}				
 		return false;
@@ -57,8 +57,10 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//cout<<" n e l "<<n<<" "<<l<<" "<<this->color<<endl;
 		//cout<<"nullo? "<<(b->gameboard[n][l]==nullptr)<<endl;
-		if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
-		if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+		if(b->gameboard[number][letter+1]!=nullptr)
+			if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+		if(b->gameboard[number][letter-1]!=nullptr)
+			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		if(n-number>2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==2 && number!=1) return false;
 		if((l-letter==1 || l-letter==-1)&& n-number==1)
@@ -84,8 +86,10 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//cout<<" n e l "<<n<<" "<<l<<" "<<this->color<<endl;
 		//cout<<"nullo? "<<(b->gameboard[n][l]==nullptr)<<endl;
-		if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
-		if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+		if(b->gameboard[number][letter+1]!=nullptr)
+			if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+		if(b->gameboard[number][letter-1]!=nullptr)
+			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo casella non raggiugibili
 		if(n-number<-2 || l-letter<-1 || l-letter>1) return false;
 		if(n-number==-2 && number!=6) return false;

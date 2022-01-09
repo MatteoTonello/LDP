@@ -50,9 +50,12 @@ void Player::move()
 		if(charf_letter>='a' && charf_letter<'h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
+		cout<<i_number<<" "<<i_letter<<endl;
+		cout<<f_number<<" "<<f_letter<<endl;
 		cout<<"superati controlli limiti"<<endl;
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
 		cout<<"controllo null"<<endl;
+		cout<<color<<" "<<boardgame->gameboard[i_number][i_letter]->color<<endl;
 		if(boardgame->gameboard[i_number][i_letter]->color!=color) throw new Illegal_move();
 		cout<<"controllo colore"<<endl;
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
@@ -60,7 +63,16 @@ void Player::move()
 			cout<<"Illegal move"<<endl;
 			move();
 		}
-		boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+		try
+		{
+			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+		}
+		catch(Illegal_move* e)
+		{
+			cout<<"errore nella mossa"<<boardgame->gameboard[i_number][i_letter]->piece<<endl;
+			throw new Illegal_move();
+		}
+		
 	}
 	else
 	{

@@ -79,6 +79,8 @@ bool Pawn:: try_move(int n, int l)
 	}
 	if(color=='w')
 	{
+		cout<<" n e l "<<n<<" "<<l<<endl;
+		cout<<"nullo? "<<(b->gameboard[n][l]==nullptr)<<endl;
 		if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
 		if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo casella non raggiugibili

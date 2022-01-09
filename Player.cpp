@@ -12,6 +12,7 @@ Player::Player(char c)
 	if(c!='c' && c!='p') cout<<"sbagliati giocatori";
 	if(c=='p')is_human=true;
 	if(c=='c')is_human=false;
+	color='n';
 	boardgame=new Board();
 };
 void Player::move()
@@ -61,7 +62,9 @@ void Player::move()
 				random_number=rand()%8;
 				random_letter=rand()%8;
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
+			cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->whites[random_piece]->move(random_number,random_letter);
+			
 		}
 		if(color=='b')
 		{
@@ -71,6 +74,7 @@ void Player::move()
 				random_number=rand()%8;
 				random_letter=rand()%8;
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
+			cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->blacks[random_piece]->move(random_number,random_letter);
 		}
 		

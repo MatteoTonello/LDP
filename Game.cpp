@@ -1,5 +1,6 @@
 #ifndef GAME_CPP
 #define GAME_CPP
+#include <iostream>
 #include "Game.h"
 #include "Player.h"
 #include "Illegal_move.cpp"
@@ -23,9 +24,15 @@ Game::Game(Player* n1,Player* n2)
             white_player=n2;
             black_player=n1;
         }
-        white_player->color='w';
-        black_player->color='b';
+        
     }
+    else
+    {
+        white_player=n1;
+        black_player=n2;
+    }
+    white_player->color='w';
+    black_player->color='b';
     white_player->boardgame=black_player->boardgame;
 	mainboard=white_player->boardgame;
 	is_turn=white_player;
@@ -34,11 +41,13 @@ Game::Game(Player* n1,Player* n2)
 }
 void Game::startgame()
 {
+    cout<<*mainboard<<endl;
     while(!(is_finished()))
     {
         player_move();
         change_turn();
     }
+    cout<<result<<endl;
 }
 void Game::change_turn()
 {
@@ -59,11 +68,12 @@ void Game::player_move()
         }
         catch(const Illegal_move& e)
         {
+            cout<<"illegal move"<<endl;
             flag=true;
         }
     }
     nmosse++;
-    
+    cout<<*mainboard<<endl;
 }
 bool Game::is_finished()
 {

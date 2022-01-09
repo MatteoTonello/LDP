@@ -7,6 +7,7 @@
 #include "Bishop.cpp"
 #include "Game.cpp"
 #include "Player.cpp"
+#include <iostream>
 using namespace std;
 int main()
 {
@@ -14,6 +15,7 @@ int main()
     Player* p1 = new Player('c');
     Player* p2 = new Player('c');
     Game* g=new Game(p1,p2);
+    cout<<*(g->mainboard);
     g->startgame();
     cout<<"FINITO";
 

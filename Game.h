@@ -16,5 +16,6 @@ class Game
 		Player* is_turn;
 		bool is_finished();
 		string result;
+		int nmosse;
 };
 #endif

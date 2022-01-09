@@ -30,6 +30,7 @@ Game::Game(Player* n1,Player* n2)
 	mainboard=white_player->boardgame;
 	is_turn=white_player;
     result="";
+    nmosse=0;
 }
 void Game::startgame()
 {
@@ -61,12 +62,17 @@ void Game::player_move()
             flag=true;
         }
     }
-    
+    nmosse++;
     
 }
 bool Game::is_finished()
 {
     bool mate=0;
+    if(nmosse>50 && (!white_player->is_human) && (!black_player->is_human))
+    {
+        result="PATTA, 50 MOSSE";
+        return true;
+    }
     if(mainboard->is_draw())
     {
         result="PATTA";

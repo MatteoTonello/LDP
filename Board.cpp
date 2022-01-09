@@ -615,7 +615,7 @@ ostream& operator<<(ostream& os, Board& b)
     string out="";
     for(int i=0;i<8;i++)
     {
-        out=out+to_string(i)+to_string(8-i)+" ";
+        out=out+to_string(i)+" "+to_string(8-i)+" ";
         for(int j=0;j<8;j++)
         {
             if(b.gameboard[i][j]==nullptr)
@@ -625,8 +625,8 @@ ostream& operator<<(ostream& os, Board& b)
         }
         out=out+"\n";
     }
-    out=out+"   ABCDEFGH\n";
-    out=out+"   01234567\n";
+    out=out+"    ABCDEFGH\n";
+    out=out+"    01234567\n";
     os<<out;
     return os ;
 }

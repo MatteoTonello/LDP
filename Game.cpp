@@ -47,6 +47,11 @@ void Game::startgame()
     {
         player_move();
         change_turn();
+        for(int i=0;i<8;i++)
+            for(int j=0;j<8;j++)
+                if(mainboard->gameboard[i][j]!=nullptr)
+                    cout<<mainboard->gameboard[i][j]->color;
+                    cout<<endl;
     }
     cout<<result<<endl;
 }

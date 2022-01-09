@@ -119,7 +119,7 @@ void Pawn::move(int n, int l)
 	if(try_move(n, l))
 	{
 		Piece* temp;
-		if(color='b')
+		if(color=='b')
 		{
 			if(n-number==1 && ((l-letter==1 && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
 			) || (l-letter==-1 && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))

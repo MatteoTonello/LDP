@@ -649,15 +649,6 @@ bool Board::cant_be_mate()
 	return false;
 }
 
-bool Board::fifty_moves(){
-	vector<string> pawns=new vector(0);
-	string s;
-	for(int i=0;i<8;i++){
-		for(int j=0;j<8;j++){
-
-		}
-	}
-}
 string Board::to_string()
 {
 	string out="";

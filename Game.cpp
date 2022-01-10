@@ -40,6 +40,10 @@ Game::Game(Player* n1,Player* n2)
     result="";
     nmosse=0;
 	last_bs={mainboard->to_string()};
+    pawns="PPPPPPPP                                pppppppp";
+    fmcount=0;
+    npieces=16;
+    
 }
 void Game::startgame()
 {
@@ -101,6 +105,34 @@ bool Game:: draw_for_ripetition()
 	if(counter>=3) return true;
 	return false;
 }
+
+
+bool Game::fifty_moves(){
+	string s="";
+    if(fmcount==100) return true;
+    for(int i=1;i<7;i++){
+        for(int j=0;j<8;j++){
+            if(mainboard->gameboard[i][j]!=nullptr){
+                if(mainboard->gameboard[i][j]->piece=='p' || mainboard->gameboard[i][j]->piece=='P'){
+                    s=s+mainboard->gameboard[i][j]->piece;
+                }
+                else{
+                    s=s+" ";
+                }
+            }
+        }
+    }
+    int n=mainboard->whites.size()+mainboard->blacks.size();
+    if(s.compare(pawns) && n==npieces){
+        fmcount++;
+    }
+    else{
+        pawns=s;
+        npieces=n;
+        fmcount=0;
+    }
+}
+
 bool Game::is_finished()
 {
     bool mate=0;

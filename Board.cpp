@@ -606,10 +606,59 @@ bool Board::is_check(char c)
 }
 
 
-bool Board::is_draw()
+bool Board::is_draw(char c)
 {
+	bool patta=false;
+	if(c=='w'){
+		for(int i=0;i<whites.size();i++){
+			if(!(whites[i]->can_move()) && !(is_check('w')))
+				patta=true;
+			else
+				patta=false;
+		}
+		return patta;
+	}
+	if(c=='b'){
+		for(int i=0;i<blacks.size();i++){
+			if(!(blacks[i]->can_move()) && !(is_check('b')))
+				patta=true;
+			else
+				patta=false;
+		}
+		return patta;
+	}
+	
+	return patta;
 	return false;
 }
+
+bool Board::cant_be_mate()
+{
+	if(blacks.size()==1 && whites.size()==1) return true;
+	if(whites.size()==1 && blacks.size()==2){
+		for(int i=0;i<2;i++){
+			if(blacks[i]->piece=='A' || blacks[i]->piece=='C') return true;
+		}
+		
+	}
+	if(blacks.size()==1 && whites.size()==2){
+		for(int i=0;i<2;i++){
+			if(whites[i]->piece=='a' || whites[i]->piece=='c') return true;
+		}
+	}
+	return false;
+}
+
+bool Board::50_moves(){
+	vector<String> pawns=new vector(0);
+	String s
+	for(int i=0;i<8;i++){
+		for(int j=0;j<8;j++){
+
+		}
+	}
+}
+
 ostream& operator<<(ostream& os, Board& b)
 {
     string out="";

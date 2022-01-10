@@ -15,7 +15,8 @@ class Board
 		int check_draw_for_ripetions();
 		bool is_check_mate(char c);
 		bool is_check(char c);
-		bool is_draw();
+		bool is_draw(char c);
+		bool cant_be_mate();
 		King* white_king;
 		King* black_king;
 		void print();

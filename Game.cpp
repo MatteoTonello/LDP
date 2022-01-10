@@ -94,7 +94,7 @@ bool Game::is_finished()
         result="PATTA, 50 MOSSE";
         return true;
     }
-    if(mainboard->is_draw())
+    if(mainboard->is_draw(is_turn->color))
     {
         result="PATTA";
         return true;

@@ -10,6 +10,8 @@ class Game
 		void startgame();
 		void change_turn();
 		void player_move();
+		bool draw_for_ripetition();
+		bool fifty_moves();
 		Player* white_player;
 		Player* black_player;
 		Board* mainboard;
@@ -19,5 +21,8 @@ class Game
 		int nmosse;
 		vector<string> last_bs;
 		bool draw_for_ripetition();
+		string pawns;
+		int fmcount;
+		int npieces;
 };
 #endif

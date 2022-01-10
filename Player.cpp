@@ -44,10 +44,10 @@ void Player::move()
 		if(chari_letter>'H' && chari_letter<'a') throw new Illegal_move();
 		if(charf_letter<'A' || charf_letter>'h') throw new Illegal_move();
 		if(charf_letter>'H' && charf_letter<'a') throw new Illegal_move();
-		if(chari_letter>='A' && chari_letter<'H') i_letter=chari_letter-'A';
-		if(chari_letter>='a' && chari_letter<'h') i_letter=chari_letter-'a';
-		if(charf_letter>='A' && charf_letter<'H') f_letter=charf_letter-'A';
-		if(charf_letter>='a' && charf_letter<'h') f_letter=charf_letter-'a';
+		if(chari_letter>='A' && chari_letter<='H') i_letter=chari_letter-'A';
+		if(chari_letter>='a' && chari_letter<='h') i_letter=chari_letter-'a';
+		if(charf_letter>='A' && charf_letter<='H') f_letter=charf_letter-'A';
+		if(charf_letter>='a' && charf_letter<='h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
 		cout<<i_number<<" "<<i_letter<<endl;
@@ -65,7 +65,9 @@ void Player::move()
 		}
 		try
 		{
+			cout<<"inizio mossa"<<endl;
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+			cout<<"fine mossa"<<endl;
 		}
 		catch(Illegal_move* e)
 		{
@@ -84,6 +86,7 @@ void Player::move()
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
+				cout<<boardgame->whites[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->whites[random_piece]->move(random_number,random_letter);

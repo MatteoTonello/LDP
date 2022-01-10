@@ -608,28 +608,22 @@ bool Board::is_check(char c)
 
 bool Board::is_draw(char c)
 {
-	bool patta=false;
 	if(c=='w'){
+		if(is_check('w')) return false;
 		for(int i=0;i<whites.size();i++){
-			if(!(whites[i]->can_move()) && !(is_check('w')))
-				patta=true;
-			else
-				patta=false;
+			if(whites[i]->can_move())
+				return false;
 		}
-		return patta;
 	}
 	if(c=='b'){
+		if(is_check('b')) return false;
 		for(int i=0;i<blacks.size();i++){
-			if(!(blacks[i]->can_move()) && !(is_check('b')))
-				patta=true;
-			else
-				patta=false;
+			if(blacks[i]->can_move())
+				return false;
 		}
-		return patta;
 	}
 	
-	return patta;
-	return false;
+	return true;
 }
 
 bool Board::cant_be_mate()
@@ -649,16 +643,7 @@ bool Board::cant_be_mate()
 	return false;
 }
 
-bool Board::fifty_moves(){
-	vector<string> pawns=new vector(0);
-	string s;
-	for(int i=0;i<8;i++){
-		for(int j=0;j<8;j++){
-
-		}
-	}
-}
-string Board::to_string()
+string Board::to_String()
 {
 	string out="";
     for(int i=0;i<8;i++)
@@ -666,10 +651,10 @@ string Board::to_string()
         out=out+to_string(i)+" "+to_string(8-i)+" ";
         for(int j=0;j<8;j++)
         {
-            if(b.gameboard[i][j]==nullptr)
+            if(gameboard[i][j]==nullptr)
                 out=out+" ";
             else
-                out=out+b.gameboard[i][j]->piece;
+                out=out+gameboard[i][j]->piece;
         }
         out=out+"\n";
     }

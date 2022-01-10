@@ -39,7 +39,7 @@ Game::Game(Player* n1,Player* n2)
 	is_turn=white_player;
     result="";
     nmosse=0;
-	last_bs={mainboard->to_string()};
+	last_bs={mainboard->to_String()};
 }
 void Game::startgame()
 {
@@ -48,16 +48,7 @@ void Game::startgame()
     {
         player_move();
         change_turn();
-        for(int i=0;i<8;i++)
-        {
-            for(int j=0;j<8;j++)
-            
-                if(mainboard->gameboard[i][j]!=nullptr)
-                    cout<<mainboard->gameboard[i][j]->color;
-                else
-                    cout<<" ";
-                    cout<<endl;
-        }
+        
     }
     cout<<result<<endl;
 }
@@ -85,7 +76,7 @@ void Game::player_move()
         }
     }
     nmosse++;
-	last_bs.push_back(mainboard->to_string());
+	last_bs.push_back(mainboard->to_String());
     cout<<*mainboard<<endl;
 }
 bool Game:: draw_for_ripetition()
@@ -93,7 +84,7 @@ bool Game:: draw_for_ripetition()
 	int counter=0;
 	for(int i=0;i<last_bs.size();i++)
 	{
-		if(mainboard->to_string==last_bs[i])
+		if((mainboard->to_String()).compare(last_bs[i])==0)
 		{
 				counter++;
 		}

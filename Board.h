@@ -1,6 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include <vector>
+#include <iostream>
 using namespace std;
 class Piece;
 class King;
@@ -20,7 +21,7 @@ class Board
 		King* white_king;
 		King* black_king;
 		void print();
-		string to_string();
+		string to_String();
 		
 };
 #endif

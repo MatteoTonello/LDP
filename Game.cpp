@@ -39,6 +39,7 @@ Game::Game(Player* n1,Player* n2)
 	is_turn=white_player;
     result="";
     nmosse=0;
+	last_bs={mainboard->to_string()};
 }
 void Game::startgame()
 {
@@ -84,7 +85,21 @@ void Game::player_move()
         }
     }
     nmosse++;
+	last_bs.push_back(mainboard->to_string());
     cout<<*mainboard<<endl;
+}
+bool Game:: draw_for_ripetition()
+{
+	int counter=0;
+	for(int i=0;i<last_bs.size();i++)
+	{
+		if(mainboard->to_string==last_bs[i])
+		{
+				counter++;
+		}
+	}
+	if(counter>=3) return true;
+	return false;
 }
 bool Game::is_finished()
 {
@@ -118,6 +133,11 @@ bool Game::is_finished()
         }
         
     }
+	if(draw_for_ripetition())
+	{
+		cout<<"PATTA PER RIPETIZIONE DI MOSSE";
+		return true;
+	}
     return false;
 }
 #endif

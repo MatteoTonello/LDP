@@ -17,5 +17,6 @@ class Game
 		bool is_finished();
 		string result;
 		int nmosse;
+		vector<string> last_bs;
 };
 #endif

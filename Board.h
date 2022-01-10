@@ -20,6 +20,7 @@ class Board
 		King* white_king;
 		King* black_king;
 		void print();
+		string to_string();
 		
 };
 #endif

@@ -649,16 +649,32 @@ bool Board::cant_be_mate()
 	return false;
 }
 
-bool Board::50_moves(){
-	vector<String> pawns=new vector(0);
-	String s
+bool Board::fifty_moves(){
+	vector<string> pawns=new vector(0);
+	string s;
 	for(int i=0;i<8;i++){
 		for(int j=0;j<8;j++){
 
 		}
 	}
 }
-
+string Board::to_string()
+{
+	string out="";
+    for(int i=0;i<8;i++)
+    {
+        out=out+to_string(i)+" "+to_string(8-i)+" ";
+        for(int j=0;j<8;j++)
+        {
+            if(b.gameboard[i][j]==nullptr)
+                out=out+" ";
+            else
+                out=out+b.gameboard[i][j]->piece;
+        }
+        out=out+"\n";
+    }
+	return out;
+}
 ostream& operator<<(ostream& os, Board& b)
 {
     string out="";

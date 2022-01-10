@@ -39,7 +39,7 @@ Game::Game(Player* n1,Player* n2)
 	is_turn=white_player;
     result="";
     nmosse=0;
-	last_bs={mainboard->to_string()};
+	last_bs={mainboard->to_String()};
     pawns="PPPPPPPP                                pppppppp";
     fmcount=0;
     npieces=16;
@@ -52,7 +52,12 @@ void Game::startgame()
     {
         player_move();
         change_turn();
-        
+        for(int i=0;i<mainboard->whites.size();i++)
+            cout<<mainboard->whites[i]->piece;
+        cout<<endl;
+        for(int i=0;i<mainboard->blacks.size();i++)
+            cout<<mainboard->blacks[i]->piece;
+        cout<<endl;
     }
     cout<<result<<endl;
 }
@@ -100,7 +105,7 @@ bool Game:: draw_for_ripetition()
 
 bool Game::fifty_moves(){
 	string s="";
-    if(fmcount==100) return true;
+    if(fmcount==50) return true;
     for(int i=1;i<7;i++){
         for(int j=0;j<8;j++){
             if(mainboard->gameboard[i][j]!=nullptr){
@@ -122,6 +127,7 @@ bool Game::fifty_moves(){
         npieces=n;
         fmcount=0;
     }
+    return false;
 }
 
 bool Game::is_finished()

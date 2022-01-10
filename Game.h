@@ -20,7 +20,6 @@ class Game
 		string result;
 		int nmosse;
 		vector<string> last_bs;
-		bool draw_for_ripetition();
 		string pawns;
 		int fmcount;
 		int npieces;

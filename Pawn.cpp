@@ -170,8 +170,8 @@ void Pawn::move(int n, int l)
 		Piece* temp;
 		if(color=='b')
 		{
-			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1] && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1] && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
+			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				int save_number=number, save_letter=letter;
 				temp=b->gameboard[n-1][l];
@@ -191,8 +191,8 @@ void Pawn::move(int n, int l)
 		}
 		if(color=='w')
 		{
-			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1] && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1] && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
+			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				int save_number=number, save_letter=letter;
 				temp=b->gameboard[n+1][l];
@@ -282,6 +282,16 @@ void Pawn:: promotion()
 		if(c=='T') b->gameboard[number][letter]=new Rock(number, letter, 'b', b);
 		if(c=='D') b->gameboard[number][letter]=new Queen(number, letter, 'b', b);	
 		if(c=='C') b->gameboard[number][letter]=new Knight(number, letter, 'b', b);
+        for(int i=0;i<b->whites.size();i++)
+		{
+			if(b->whites[i]==this)
+			{
+				cout<<b->whites[i]->piece<<" "<<piece<<endl;
+				b->whites[i]=b->gameboard[number][letter];
+				cout<<b->whites[i]->piece<<" "<<piece<<endl;
+				break;
+			}
+		}
 	}
 	else
 	{
@@ -297,6 +307,16 @@ void Pawn:: promotion()
 		if(c=='t') b->gameboard[number][letter]=new Rock(number, letter, 'w', b);
 		if(c=='d') b->gameboard[number][letter]=new Queen(number, letter, 'w', b);	
 		if(c=='c') b->gameboard[number][letter]=new Knight(number, letter, 'w', b);
+		for(int i=0;i<b->blacks.size();i++)
+		{
+			if(b->blacks[i]==this)
+			{
+				b->blacks[i]=b->gameboard[number][letter];
+				break;
+			}
+		}
+		//bisogna rimuovere pedone e aggiungere pedina nuova al vector
 	}
+	
 }
 #endif

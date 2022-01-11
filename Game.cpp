@@ -51,7 +51,7 @@ void Game::startgame()
     while(!(is_finished()))
     {
         player_move();
-        //change_turn();
+        change_turn();
         for(int i=0;i<mainboard->whites.size();i++)
             cout<<mainboard->whites[i]->piece;
         cout<<endl;
@@ -80,7 +80,8 @@ void Game::player_move()
         }
         catch(Illegal_move* e)
         {
-            cout<<"illegal move"<<endl;
+            if(is_turn->is_human==true)
+                cout<<"illegal move"<<endl;
             flag=true;
         }
     }

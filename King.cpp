@@ -16,7 +16,7 @@ King::King(int n, int l, char col, Board* myBoard)
 }
 bool King::try_move(int n,int l)
 {
-	return 0;
+	return true;
 }
 bool King::can_move()
 {

@@ -13,7 +13,7 @@ int main()
 {
     
     Player* p1 = new Player('p');
-    Player* p2 = new Player('c');
+    Player* p2 = new Player('p');
     Game* g=new Game(p1,p2);
     cout<<"INIZIO"<<endl;
     g->startgame();

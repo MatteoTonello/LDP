@@ -28,6 +28,7 @@ void Queen:: random_move()
 			rand_move_v=rand()%8;
 		}while(rand_move_v==number);
 		if(try_move(rand_move_v, letter)) move(rand_move_v, letter);
+		else
 		throw new Illegal_move();
 	}
 	if(chose_where_move==1)
@@ -37,6 +38,7 @@ void Queen:: random_move()
 			rand_move_h=rand()%8;
 		}while(rand_move_h==letter);
 		if(try_move(number, rand_move_h)) move(number, rand_move_h);
+		else
 		throw new Illegal_move();
 	}
 	if(chose_where_move==2)
@@ -45,6 +47,7 @@ void Queen:: random_move()
 		if(number+where_move<=7 &&number+where_move>=0 && letter+where_move>=0 && letter+where_move<=7)
 		{
 			if(try_move(number+where_move, letter+where_move))move(number+where_move, letter+where_move);
+			else
 			throw new Illegal_move();
 		}
 	}
@@ -54,6 +57,7 @@ void Queen:: random_move()
 		if(number+where_move<=7 &&number+where_move>=0 && letter-where_move>=0 && letter-where_move<=7)
 		{
 			if(try_move(number+where_move, letter-where_move))move(number+where_move, letter-where_move);
+			else
 			throw new Illegal_move();
 		}
 	}

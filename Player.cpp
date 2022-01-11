@@ -78,10 +78,10 @@ void Player::move()
 	}
 	else
 	{
-		int random_letter=0,random_number=0,random_piece=0;
+		int /*random_letter=0,random_number=0,*/random_piece=0;
 		if(color=='w')
 		{
-			do
+			/*do
 			{
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
@@ -90,11 +90,13 @@ void Player::move()
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->whites[random_piece]->move(random_number,random_letter);
-			
+			*/
+			random_piece=rand()%boardgame->whites.size();
+			boardgame->whites[random_piece]->random_move();
 		}
 		if(color=='b')
 		{
-			do
+			/*do
 			{
 				random_piece=rand()%boardgame->blacks.size();
 				random_number=rand()%8;
@@ -102,7 +104,9 @@ void Player::move()
 				cout<<boardgame->blacks[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
-			boardgame->blacks[random_piece]->move(random_number,random_letter);
+			boardgame->blacks[random_piece]->move(random_number,random_letter);*/
+			random_piece=rand()%boardgame->blacks.size();
+			boardgame->blacks[random_piece]->random_move();
 		}
 		
 	}

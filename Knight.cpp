@@ -16,14 +16,14 @@ Knight::Knight(int n, int l, char col, Board* myBoard)
 
 bool Knight::can_move()
 	{
-		if(b->gameboard[number+1][letter+2]==nullptr || b->gameboard[number+1][letter+2]->color!=color || number+1<0 || number+1>8 || letter+2<0 || letter+2>8) return true;
-		if(b->gameboard[number+1][letter-2]==nullptr || b->gameboard[number+1][letter-2]->color!=color || number+1<0 || number+1>8 || letter-2<0 || letter-2>8) return true;
-		if(b->gameboard[number-1][letter+2]==nullptr || b->gameboard[number-1][letter+2]->color!=color || number-1<0 || number-1>8 || letter+2<0 || letter+2>8) return true;
-		if(b->gameboard[number-1][letter-2]==nullptr || b->gameboard[number-1][letter-2]->color!=color || number-1<0 || number-1>8 || letter-2<0 || letter-2>8) return true;
-		if(b->gameboard[number+2][letter+1]==nullptr || b->gameboard[number+2][letter+1]->color!=color || number+2<0 || number+2>8 || letter+1<0 || letter+1>8) return true;
-		if(b->gameboard[number+2][letter-1]==nullptr || b->gameboard[number+2][letter-1]->color!=color || number+2<0 || number+2>8 || letter-1<0 || letter-1>8) return true;
-		if(b->gameboard[number-2][letter+1]==nullptr || b->gameboard[number-2][letter+1]->color!=color || number-2<0 || number-2>8 || letter+1<0 || letter+1>8) return true;
-		if(b->gameboard[number-2][letter-1]==nullptr || b->gameboard[number-2][letter-1]->color!=color || number-2<0 || number-2>8 || letter-1<0 || letter-1>8) return true;
+		if(b->gameboard[number+1][letter+2]==nullptr || b->gameboard[number+1][letter+2]->color!=color || number+1<0 || number+1>7 || letter+2<0 || letter+2>7) return true;
+		if(b->gameboard[number+1][letter-2]==nullptr || b->gameboard[number+1][letter-2]->color!=color || number+1<0 || number+1>7 || letter-2<0 || letter-2>7) return true;
+		if(b->gameboard[number-1][letter+2]==nullptr || b->gameboard[number-1][letter+2]->color!=color || number-1<0 || number-1>7 || letter+2<0 || letter+2>7) return true;
+		if(b->gameboard[number-1][letter-2]==nullptr || b->gameboard[number-1][letter-2]->color!=color || number-1<0 || number-1>7 || letter-2<0 || letter-2>7) return true;
+		if(b->gameboard[number+2][letter+1]==nullptr || b->gameboard[number+2][letter+1]->color!=color || number+2<0 || number+2>7 || letter+1<0 || letter+1>7) return true;
+		if(b->gameboard[number+2][letter-1]==nullptr || b->gameboard[number+2][letter-1]->color!=color || number+2<0 || number+2>7 || letter-1<0 || letter-1>7) return true;
+		if(b->gameboard[number-2][letter+1]==nullptr || b->gameboard[number-2][letter+1]->color!=color || number-2<0 || number-2>7 || letter+1<0 || letter+1>7) return true;
+		if(b->gameboard[number-2][letter-1]==nullptr || b->gameboard[number-2][letter-1]->color!=color || number-2<0 || number-2>7 || letter-1<0 || letter-1>7) return true;
 		
 		return true;
 	};
@@ -84,13 +84,21 @@ bool Knight::try_move(int n, int l){
 void Knight::random_move()
 {
 	int m=rand()%8;
+	if(number+1>7 || letter+2>7) throw new Illegal_move();
 	if(m==0) if(try_move(number+1,letter+2)) move(number+1,letter+2); else throw new Illegal_move();
+	if(number+1>7 || letter-2<0) throw new Illegal_move();
 	if(m==1) if(try_move(number+1,letter-2)) move(number+1,letter-2); else throw new Illegal_move();
+	if(number-1<0 || letter+2>7) throw new Illegal_move();
 	if(m==2) if(try_move(number-1,letter+2)) move(number-1,letter+2); else throw new Illegal_move();
+	if(number-1<0 || letter-2<0) throw new Illegal_move();
 	if(m==3) if(try_move(number-1,letter-2)) move(number-1,letter-2); else throw new Illegal_move();
+	if(number+2>7 || letter+2>7) throw new Illegal_move();
 	if(m==4) if(try_move(number+2,letter+2)) move(number+2,letter+2); else throw new Illegal_move();
+	if(number+2>7 || letter-2<0) throw new Illegal_move();
 	if(m==5) if(try_move(number+2,letter-2)) move(number+2,letter-2); else throw new Illegal_move();
+	if(number-2<0 || letter+2>7) throw new Illegal_move();
 	if(m==6) if(try_move(number-2,letter+2)) move(number-2,letter+2); else throw new Illegal_move();
+	if(number-2<0 || letter-2<0) throw new Illegal_move();
 	if(m==7) if(try_move(number-2,letter-2)) move(number-2,letter-2); else throw new Illegal_move();
 }
 #endif

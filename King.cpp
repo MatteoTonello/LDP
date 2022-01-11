@@ -51,14 +51,33 @@ bool King::can_move()
 						Piece* p=b->gameboard[number+i][letter+j];
 						b->gameboard[number+i][letter+j]=this;
 						b->gameboard[number][letter]=nullptr;
+					if(color=='w')
+					{
+						for(int i=0;i<b->blacks.size();i++)
+						{
+							if(b->blacks[i]==p){ b->blacks.erase(b->blacks.begin()+i); break;}
+						}
+					}
+					if(color=='b')
+					{
+						for(int i=0;i<b->whites.size();i++)
+						{
+							if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
+						}
+					}
+
 						number=number+i; letter=letter+j;
 						if(!(b->is_check(color)))
 						{
 							b->gameboard[number][letter]=p;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
+							if(color=='w') b->blacks.push_back(p);
+							else b->whites.push_back(p);
 							return true;
 						}
+						if(color=='w') b->blacks.push_back(p);
+							else b->whites.push_back(p);
 						b->gameboard[number][letter]=p;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
@@ -145,13 +164,6 @@ void King::move(int n, int l)
 					b->gameboard[n][l]=this;
 					b->gameboard[number][letter]=nullptr;
 					letter=l; number=n;
-					if(b->is_check(color))
-					{
-						b->gameboard[n][l]=p;
-						b->gameboard[save_number][save_letter]=this;
-						letter=save_letter; number=save_number;
-						throw new Illegal_move();
-					}
 					if(color=='w')
 					{
 						for(int i=0;i<b->blacks.size();i++)
@@ -166,6 +178,16 @@ void King::move(int n, int l)
 							if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
 						}
 					}
+					if(b->is_check(color))
+					{
+						b->gameboard[n][l]=p;
+						b->gameboard[save_number][save_letter]=this;
+						letter=save_letter; number=save_number;
+						if(color=='w') b->blacks.push_back(p);
+							else b->whites.push_back(p);
+						throw new Illegal_move();
+					}
+					
 				}
 	if(b->gameboard[n][l]->color==color)
 	{

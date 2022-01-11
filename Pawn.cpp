@@ -4,6 +4,7 @@
 #include "Pawn.h"
 #include "Piece.cpp"
 #include "Board.cpp"
+#include <iostream>
 using namespace std;
 Pawn::Pawn(int n, int l, char col, Board* myBoard)
 {
@@ -271,10 +272,12 @@ void Pawn:: promotion()
 	if(color=='b')
 	{
 		char c;
+		string p;
 		cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale maiuscola del pezzo che vuoi scegliere"<<endl;
 		while(true)
 		{
-			cin>>c;
+			getline(cin,p);
+			c=p[0];
 			if(c=='A' || c=='T' || c=='D' || c=='C') break;
 			cout<<"pezzo non valido"<<endl;
 		}
@@ -296,10 +299,12 @@ void Pawn:: promotion()
 	else
 	{
 		char c;
+		string p;
 		cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale minuscola del pezzo che vuoi scegliere"<<endl;
 		while(true)
 		{
-			cin>>c;
+			getline(cin, p);
+			c=p[0];
 			if(c=='a' || c=='t' || c=='d' || c=='c') break;
 			cout<<"pezzo non valido"<<endl;
 		}

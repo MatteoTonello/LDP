@@ -86,7 +86,7 @@ void Player::move()
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
-				//cout<<boardgame->whites[random_piece]->piece<<random_number<<random_letter<<endl;
+				cout<<boardgame->whites[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->whites[random_piece]->move(random_number,random_letter);
@@ -99,7 +99,7 @@ void Player::move()
 				random_piece=rand()%boardgame->blacks.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
-				//cout<<boardgame->blacks[random_piece]->piece<<random_number<<random_letter<<endl;
+				cout<<boardgame->blacks[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			boardgame->blacks[random_piece]->move(random_number,random_letter);

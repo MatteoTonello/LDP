@@ -208,8 +208,9 @@ void King::short_castling()
 					b->gameboard[number][7]=nullptr;
 					b->gameboard[number][5]->letter=5;
 			}
+			
 		}
-		
+		throw new Illegal_move();
 }
 void King::long_castling()
 {
@@ -245,5 +246,6 @@ void King::long_castling()
 					b->gameboard[number][3]->letter=3;
 			}
 		}
+		throw new Illegal_move();
 }
 #endif

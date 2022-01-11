@@ -51,7 +51,7 @@ void Game::startgame()
     while(!(is_finished()))
     {
         player_move();
-        change_turn();
+        //change_turn();
         for(int i=0;i<mainboard->whites.size();i++)
             cout<<mainboard->whites[i]->piece;
         cout<<endl;

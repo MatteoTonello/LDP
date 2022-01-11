@@ -278,17 +278,17 @@ void Pawn:: promotion()
 			if(c=='A' || c=='T' || c=='D' || c=='C') break;
 			cout<<"pezzo non valido"<<endl;
 		}
+		Piece* tmp=b->gameboard[number][letter];
 		if(c=='A') b->gameboard[number][letter]=new Bishop(number, letter, 'b',b );
 		if(c=='T') b->gameboard[number][letter]=new Rock(number, letter, 'b', b);
 		if(c=='D') b->gameboard[number][letter]=new Queen(number, letter, 'b', b);	
 		if(c=='C') b->gameboard[number][letter]=new Knight(number, letter, 'b', b);
-        for(int i=0;i<b->whites.size();i++)
+        for(int i=0;i<b->blacks.size();i++)
 		{
-			if(b->whites[i]==this)
+			if(b->blacks[i]==tmp)
 			{
-				cout<<b->whites[i]->piece<<" "<<piece<<endl;
-				b->whites[i]=b->gameboard[number][letter];
-				cout<<b->whites[i]->piece<<" "<<piece<<endl;
+				b->blacks.erase(b->blacks.begin()+i);
+				b->blacks.push_back(b->gameboard[number][letter]);
 				break;
 			}
 		}
@@ -303,15 +303,18 @@ void Pawn:: promotion()
 			if(c=='a' || c=='t' || c=='d' || c=='c') break;
 			cout<<"pezzo non valido"<<endl;
 		}
+		Piece* tmp=b->gameboard[number][letter];
 		if(c=='a') b->gameboard[number][letter]=new Bishop(number, letter, 'w', b);
 		if(c=='t') b->gameboard[number][letter]=new Rock(number, letter, 'w', b);
 		if(c=='d') b->gameboard[number][letter]=new Queen(number, letter, 'w', b);	
 		if(c=='c') b->gameboard[number][letter]=new Knight(number, letter, 'w', b);
-		for(int i=0;i<b->blacks.size();i++)
+		
+		for(int i=0;i<b->whites.size();i++)
 		{
-			if(b->blacks[i]==this)
+			if(b->whites[i]==tmp)
 			{
-				b->blacks[i]=b->gameboard[number][letter];
+				b->whites.erase(b->whites.begin()+i);
+				b->whites.push_back(b->gameboard[number][letter]);
 				break;
 			}
 		}

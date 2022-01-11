@@ -3,6 +3,7 @@
 #include "Illegal_move.cpp"
 #include "Queen.h"
 #include "Board.cpp"
+
 using namespace std;
 
 Queen::Queen(int n, int l, char col, Board* myBoard )
@@ -13,6 +14,50 @@ Queen::Queen(int n, int l, char col, Board* myBoard )
 	b=myBoard;
 	if(color=='w') piece='d';
 	else piece='D';
+}
+void Queen:: random_move()
+{
+	int chose_where_move=rand() %4;
+	int rand_move_v;
+	int rand_move_h;
+	int r_m_vertical=0, r_m_horizontal=1, r_m_diagonal1=2;
+	if(chose_where_move==0)
+	{
+		do
+		{
+			rand_move_v=rand()%8;
+		}while(rand_move_v==number);
+		if(try_move(rand_move_v, letter)) move(rand_move_v, letter);
+		throw new Illegal_move();
+	}
+	if(chose_where_move==1)
+	{
+		do
+		{
+			rand_move_h=rand()%8;
+		}while(rand_move_h==letter);
+		if(try_move(number, rand_move_h)) move(number, rand_move_h);
+		throw new Illegal_move();
+	}
+	if(chose_where_move==2)
+	{
+		int where_move=rand()%15-7;
+		if(number+where_move<=7 &&number+where_move>=0 && letter+where_move>=0 && letter+where_move<=7)
+		{
+			if(try_move(number+where_move, letter+where_move))move(number+where_move, letter+where_move);
+			throw new Illegal_move();
+		}
+	}
+	if(chose_where_move==3)
+	{
+		int where_move=rand()%15-7;
+		if(number+where_move<=7 &&number+where_move>=0 && letter-where_move>=0 && letter-where_move<=7)
+		{
+			if(try_move(number+where_move, letter-where_move))move(number+where_move, letter-where_move);
+			throw new Illegal_move();
+		}
+	}
+	
 }
 bool Queen:: can_move()
 {

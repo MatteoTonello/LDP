@@ -14,5 +14,6 @@ class King:public Piece
 		bool is_already_move;
 		void short_castling();
 		void long_castling();
+		void random_move();
 };
 #endif

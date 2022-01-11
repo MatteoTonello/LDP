@@ -116,5 +116,27 @@ using namespace std;
          }
          return true;
    }
+void Bishop::random_move()
+{
+   int r= rand() %15;
+   int diagonale=rand()%2;
+   r=r-7;
+   if(letter+r<0 || letter+r>7 || number+r<0 || number+r>7) throw new Illegal_move();
+   if(diagonale==0)
+   {
+      if(try_move(number+r,letter+r))
+      move(numer+r,letter+r);
+   else
+      throw new Illegal_move();
+   }
+   else
+   {
+      if(try_move(number-r,letter+r))
+      move(numer-r,letter+r);
+   else
+      throw new Illegal_move();
+   }
+   
+}
 
 #endif

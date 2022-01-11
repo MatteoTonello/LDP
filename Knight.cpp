@@ -80,4 +80,17 @@ bool Knight::try_move(int n, int l){
 		}
 		else return false;
 }
+
+void Knight::random_move()
+{
+	int m=rand()%8;
+	if(m==0) if(try_move(number+1,letter+2)) move(number+1,letter+2); else throw new Illegal_move();
+	if(m==1) if(try_move(number+1,letter-2)) move(number+1,letter-2); else throw new Illegal_move();
+	if(m==2) if(try_move(number-1,letter+2)) move(number-1,letter+2); else throw new Illegal_move();
+	if(m==3) if(try_move(number-1,letter-2)) move(number-1,letter-2); else throw new Illegal_move();
+	if(m==4) if(try_move(number+2,letter+2)) move(number+2,letter+2); else throw new Illegal_move();
+	if(m==5) if(try_move(number+2,letter-2)) move(number+2,letter-2); else throw new Illegal_move();
+	if(m==6) if(try_move(number-2,letter+2)) move(number-2,letter+2); else throw new Illegal_move();
+	if(m==7) if(try_move(number-2,letter-2)) move(number-2,letter-2); else throw new Illegal_move();
+}
 #endif

@@ -12,5 +12,6 @@ class Pawn : public Piece
     bool try_move(int n, int l);
     bool can_move();
     void promotion();
+    void random_move();
 };
 #endif

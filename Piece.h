@@ -12,6 +12,7 @@ class Piece
 		virtual void move(int n, int l) =0;
 		virtual bool try_move(int n,int l)=0;
 		virtual bool can_move() =0;
+		virtual void random_move() =0;
 		void remove_en_passant();
 };
 #endif

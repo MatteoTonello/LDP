@@ -325,6 +325,16 @@ void Pawn:: promotion()
 		}
 		//bisogna rimuovere pedone e aggiungere pedina nuova al vector
 	}
-	
+	void Pawn::random_move()
+	{
+		int col=0;
+		if(color=='w') col=-1;
+		else col=+1;
+		int r= rand() %4;
+		if(r==0) if(try_move(number+col,letter)) move(number+col,letter+col) else throw new Illegal_move();
+		if(r==1) if(try_move(number+2*col,letter)) move(number+2*col,letter) else throw new Illegal_move();
+		if(r==2) if(try_move(number+col,letter+1)) move(number+col,letter+1) else throw new Illegal_move();
+		if(r==3) if(try_move(number+col,letter-1)) move(number+col,letter-1) else throw new Illegal_move();
+	}
 }
 #endif

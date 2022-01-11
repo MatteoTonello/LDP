@@ -10,5 +10,6 @@ class Rock:public Piece
     bool try_move(int n, int l);
     bool can_move();
 	bool is_already_move;
+    void random_move();
 };
 #endif

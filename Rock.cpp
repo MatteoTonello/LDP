@@ -131,12 +131,12 @@ void Rock::random_move()
 		int r = rand()%8;
 		int random_direction = rand()%2;
 		if(random_direction==0)
-			if(!(try_move(r,letter))
-				move(r,letter)
+			if(!(try_move(r,letter)))
+				move(r,letter);
 			else
 				throw new Illegal_move();
 		else
-			if(!(try_move(number,r))
+			if(!(try_move(number,r)))
 				move(number,r);
 			else
 				throw new Illegal_move();

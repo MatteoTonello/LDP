@@ -248,4 +248,12 @@ void King::long_castling()
 		}
 		throw new Illegal_move();
 }
+void King::random_move()
+{
+	int r=rand()%5;
+	if(r==4){move(number,2); return;}
+	if(r==3){move(number,6); return;}
+	r=r-1;
+	move(number+r,letter+r);
+}
 #endif

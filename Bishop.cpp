@@ -125,14 +125,14 @@ void Bishop::random_move()
    if(diagonale==0)
    {
       if(try_move(number+r,letter+r))
-      move(numer+r,letter+r);
+      move(number+r,letter+r);
    else
       throw new Illegal_move();
    }
    else
    {
       if(try_move(number-r,letter+r))
-      move(numer-r,letter+r);
+      move(number-r,letter+r);
    else
       throw new Illegal_move();
    }

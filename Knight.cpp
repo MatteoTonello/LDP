@@ -37,36 +37,26 @@ void Knight::move(int n, int l)
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		if(color=='w')
+			for(int i=0;i<b->blacks.size();i++)
+				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
+		if(color=='b')
+			for(int i=0;i<b->whites.size();i++)
+				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
 		if(b->is_check(color))
 		{
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;
 			number=save_number; letter=save_letter;
+			if(color=='w') b->blacks.push_back(temp);
+							else b->whites.push_back(temp);
 			throw new Illegal_move();
 		}
-		else
-		{
-			if(temp!=nullptr)
-			{
-				if(color=='w')
-				{
-					for(int i=0;i<b->blacks.size();i++)
-					{
-						if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
-					}
-				}
-				if(color=='b')
-				{
-					for(int i=0;i<b->whites.size();i++)
-					{
-						if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-					}
-				}
-			}
+		
 			remove_en_passant();
 			return;
 		}	
-	}
+	
 	throw new Illegal_move();
 }
 

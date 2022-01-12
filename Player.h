@@ -9,5 +9,6 @@ class Player
 	bool is_human;
     Player(char c);
     void move();
+    void move(string mossa);
 };
 #endif

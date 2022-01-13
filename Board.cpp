@@ -67,7 +67,7 @@ bool Board::is_check_mate(char c)
 {
 	int piece_check=0;
 	Piece* p;
-   if(c=='w')
+    if(c=='w')
 	{
 		if(is_check(c) && (!(white_king->can_move())))
 		{

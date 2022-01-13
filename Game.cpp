@@ -48,6 +48,7 @@ Game::Game(Player* n1,Player* n2)
 void Game::startgame()
 {
     cout<<*mainboard<<endl;
+    srand(time(NULL));
     while(!(is_finished()))
     {
         player_move();

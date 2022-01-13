@@ -1,0 +1,176 @@
+0 8 TCADRACT
+1 7 PPPPPPPP
+2 6         
+3 5         
+4 4         
+5 3         
+6 2 pppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 PPPPPPPP
+2 6         
+3 5         
+4 4 p       
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P PPPPPP
+2 6         
+3 5  P      
+4 4 p       
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P PPPPPP
+2 6         
+3 5  p      
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P  PPPPP
+2 6   P     
+3 5  p      
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P  PPPPP
+2 6   p     
+3 5         
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P  PP PP
+2 6   p     
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCADRACT
+1 7 P  pP PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCAD ACT
+1 7 P  RP PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1 tcadract
+    ABCDEFGH
+    01234567
+
+0 8 TCAD ACT
+1 7 t  RP PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1  cadract
+    ABCDEFGH
+    01234567
+
+0 8 TCA  ACT
+1 7 t DRP PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1  cadract
+    ABCDEFGH
+    01234567
+
+0 8 TCA  ACT
+1 7   tRP PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1  cadract
+    ABCDEFGH
+    01234567
+
+0 8 TCAR ACT
+1 7   t P PP
+2 6         
+3 5      P  
+4 4         
+5 3         
+6 2  ppppppp
+7 1  cadract
+    ABCDEFGH
+    01234567
+
+0 8 TCAR ACT
+1 7   t P PP
+2 6         
+3 5      P  
+4 4         
+5 3        p
+6 2  pppppp 
+7 1  cadract
+    ABCDEFGH
+    01234567
+
+0 8  CAR ACT
+1 7   t P PP
+2 6         
+3 5      P  
+4 4         
+5 3        p
+6 2  pppppp 
+7 1 Tcadract
+    ABCDEFGH
+    01234567
+
+0 8  CAR ACT
+1 7    tP PP
+2 6         
+3 5      P  
+4 4         
+5 3        p
+6 2  pppppp 
+7 1 Tcadract
+    ABCDEFGH
+    01234567
+

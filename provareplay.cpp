@@ -7,13 +7,13 @@
 #include "Bishop.cpp"
 #include "Game.cpp"
 #include "Player.cpp"
-#include "Replay.cpp"
+#include "GameReplay.cpp"
 #include <iostream>
 using namespace std;
 int main()
 {
-    Replay* r=new Replay("replay.txt");
-    r->replay();
+    GameReplay* r=new GameReplay("replay.txt");
+    r->replayv();
     cout<<"ok";
     
     return 0;

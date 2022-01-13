@@ -143,7 +143,7 @@ void King::move(int n, int l)
 		if(l==2) long_castling();
 		return;
 	}
-	if(abs_value(n-number)!=1 && abs_value(l-letter)!=1) throw new Illegal_move();
+	if(abs_value(n-number)>1 || abs_value(l-letter)>1) throw new Illegal_move();
 	int save_letter=letter, save_number=number;
 	if(b->gameboard[n][l]==nullptr)
 	{
@@ -231,6 +231,7 @@ void King::short_castling()
 					b->gameboard[number][5]=b->gameboard[number][7];
 					b->gameboard[number][7]=nullptr;
 					b->gameboard[number][5]->letter=5;
+					return;
 			}
 			
 		}
@@ -268,16 +269,9 @@ void King::long_castling()
 					b->gameboard[number][3]=b->gameboard[number][0];
 					b->gameboard[number][0]=nullptr;
 					b->gameboard[number][3]->letter=3;
+					return;
 			}
 		}
 		throw new Illegal_move();
-}
-void King::random_move()
-{
-	int r=rand()%5;
-	if(r==4){move(number,2); return;}
-	if(r==3){move(number,6); return;}
-	r=r-1;
-	move(number+r,letter+r);
 }
 #endif

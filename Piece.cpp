@@ -1,6 +1,7 @@
 #ifndef PIECE_CPP
 #define PIECE_CPP
 #include "Piece.h"
+#include <fstream>
 using namespace std;
 
 void Piece::remove_en_passant()
@@ -17,4 +18,5 @@ void Piece::remove_en_passant()
     }
 
 }
+
 #endif

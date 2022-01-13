@@ -4,6 +4,7 @@
 #include <time.h>
 #include "Player.h"
 #include <iostream>
+#include <fstream>
 #include "Board.cpp"
 #include "Illegal_move.cpp"
 using namespace std;
@@ -13,9 +14,14 @@ Player::Player(char c)
 	if(c=='p')is_human=true;
 	if(c=='c')is_human=false;
 	color='n';
+	output_file="log.txt";
+	ofstream file(output_file);
+	file.clear();
+	file.close();
 };
 void Player::move(string mossa)
 {
+		ofstream file(output_file,ios::app);
 		int i_letter,f_letter;
 		char chari_letter,charf_letter;
 		int i_number,f_number;
@@ -59,6 +65,8 @@ void Player::move(string mossa)
 		{
 			cout<<"inizio mossa"<<endl;
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+			file<<mossa<<"\n";
+			file.close();
 			cout<<"fine mossa"<<endl;
 		}
 		catch(Illegal_move* e)
@@ -69,7 +77,8 @@ void Player::move(string mossa)
 }
 void Player::move()
 {
-	srand(time(NULL));
+	//srand(time(NULL));
+	ofstream file(output_file,ios::app);
 	if(is_human)
 	{
 		int i_letter,f_letter;
@@ -115,11 +124,14 @@ void Player::move()
 		{
 			cout<<"Illegal move"<<endl;
 			move();
+			return;
 		}
 		try
 		{
 			cout<<"inizio mossa"<<endl;
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+			file<<mossa<<"\n";
+			file.close();
 			cout<<"fine mossa"<<endl;
 		}
 		catch(Illegal_move* e)
@@ -131,39 +143,58 @@ void Player::move()
 	}
 	else
 	{
-		int /*random_letter=0,random_number=0,*/random_piece=0;
+		int random_letter=0,random_number=0,random_piece=0;
 		if(color=='w')
 		{
-			/*do
+			do
 			{
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
-				cout<<boardgame->whites[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
+			int n=boardgame->whites[random_piece]->number,l=boardgame->whites[random_piece]->letter;
 			boardgame->whites[random_piece]->move(random_number,random_letter);
-			*/
-			random_piece=rand()%boardgame->whites.size();
-			boardgame->whites[random_piece]->random_move();
+			cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter;
+			cout<<endl<<random_number<<random_letter<<endl;
+			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
+			file.close();
+			/*random_piece=rand()%boardgame->whites.size();
+			boardgame->whites[random_piece]->random_move();*/
 		}
 		if(color=='b')
 		{
-			/*do
+			do
 			{
 				random_piece=rand()%boardgame->blacks.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
-				cout<<boardgame->blacks[random_piece]->piece<<random_number<<random_letter<<endl;
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
-			boardgame->blacks[random_piece]->move(random_number,random_letter);*/
-			random_piece=rand()%boardgame->blacks.size();
-			boardgame->blacks[random_piece]->random_move();
+			int n=boardgame->blacks[random_piece]->number,l=boardgame->blacks[random_piece]->letter;
+			boardgame->blacks[random_piece]->move(random_number,random_letter);
+			cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter;
+			cout<<endl<<random_number<<random_letter<<endl;
+			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
+			file.close();
+			/*random_piece=rand()%boardgame->blacks.size();
+			boardgame->blacks[random_piece]->random_move();*/
 		}
 		
 	}
 	
+}
+string Player::output_random_move(int num,int let,int n,int l)
+{
+    char fl='A'+l;
+    char il='A'+let;
+    int fn=7-n+1;
+    int in=7-num+1;
+    return il+to_string(in)+" "+fl+to_string(fn);
+}
+void Player::set_output_file(string file)
+{
+	output_file=file;
 }
 #endif
 	

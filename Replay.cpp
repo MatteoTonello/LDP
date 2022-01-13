@@ -1,38 +1,29 @@
-#include "Replay.h"
-#include "Piece.h"
+#include "Board.cpp"
+#include "Pawn.cpp"
+#include "Rock.cpp"
+#include "Knight.cpp"
+#include "Queen.cpp"
+#include "King.cpp"
+#include "Bishop.cpp"
+#include "Game.cpp"
+#include "Player.cpp"
+#include "GameReplay.cpp"
 #include <iostream>
-#include <fstream>
 using namespace std;
-
-Replay::Replay(string filename)
-{
-    Player* p1=new Player('p');
-    Player* p2=new Player('p');
-    game=new Game(p1,p2);
-    file_name=filename;
-}
-void Replay::replay()
-{
-    string mossa;
-    ifstream myfile (file_name);
-    if (myfile.is_open())
+int main(int args,char *argv[])
+{   
+    if(*argv[1]=='v')
     {
-        while ( getline (myfile,mossa) )
-        {
-            if(mossa=="XX XX")  cout<<*(game->mainboard);
-            else
-            {
-            game->is_turn->move(mossa);
-            cout<<*(game->mainboard);
-            game->change_turn();
-            for(int i=0;i<game->mainboard->whites.size();i++)
-                cout<<game->mainboard->whites[i]->piece;
-            cout<<endl;
-            for(int i=0;i<game->mainboard->blacks.size();i++)
-                 cout<<game->mainboard->blacks[i]->piece;
-            cout<<endl;
-            }
-        }
-    myfile.close();
-     }
+        string file_input=argv[2];
+        GameReplay* game = new GameReplay(file_input);
+        game->replayv();
+    }
+    if(*argv[1]=='f')
+    {
+        string file_output=argv[3];
+        string file_input=argv[2];
+        GameReplay* game = new GameReplay(file_input,file_output);
+        game->replayf();
+    }
+    return 0;
 }

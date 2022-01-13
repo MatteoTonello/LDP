@@ -8,6 +8,8 @@ GameReplay::GameReplay(string in)
 {
     Player* p1=new Player('p');
     Player* p2=new Player('p');
+    p1->replay=true;
+    p2->replay=true;
     game=new Game(p1,p2);
     file_input=in;
     file_output="";
@@ -16,6 +18,8 @@ GameReplay::GameReplay(string in,string out)
 {
     Player* p1=new Player('p');
     Player* p2=new Player('p');
+    p1->replay=true;
+    p2->replay=true;
     game=new Game(p1,p2);
     file_input=in;
     file_output=out;
@@ -23,6 +27,7 @@ GameReplay::GameReplay(string in,string out)
 void GameReplay::replayf()
 {
     string mossa;
+    bool flag=false;
     ofstream fileo(file_output);
     ifstream filei (file_input);
     if (filei.is_open())
@@ -30,12 +35,26 @@ void GameReplay::replayf()
         fileo<<*(game->mainboard)<<"\n";
         while ( getline (filei,mossa) )
         {
+            string piece;
             if(mossa=="-") break;
             if(mossa=="XX XX")  cout<<*(game->mainboard);
             else
             {
-                game->is_turn->move(mossa);
+                try
+                {
+                    game->is_turn->move(mossa);
+                }
+                catch(Pawn* e)
+                {
+                    cout<<"ciaoo"<<endl;
+                    getline (filei,piece);
+                    game->is_turn->promotion(e,piece[0]);
+                    flag=true;
+                }
                 fileo<<*(game->mainboard)<<"\n";
+                if(flag)
+                    fileo<<piece[0]<<"\n\n";
+                flag=false;
                 game->change_turn();
             }
         }

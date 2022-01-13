@@ -5,6 +5,7 @@
 #include "Piece.cpp"
 #include "Board.cpp"
 #include <iostream>
+#include "Promotion.cpp"
 using namespace std;
 Pawn::Pawn(int n, int l, char col, Board* myBoard)
 {
@@ -262,7 +263,7 @@ void Pawn::move(int n, int l)
 		}
 		if(number==0 || number==7)
 		{
-			promotion();
+			throw new Promotion();
 		}
 		return;
 	}
@@ -324,7 +325,6 @@ void Pawn:: promotion()
 				break;
 			}
 		}
-		//bisogna rimuovere pedone e aggiungere pedina nuova al vector
 	}
 }
 

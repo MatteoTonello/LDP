@@ -14,6 +14,7 @@ Player::Player(char c)
 	if(c=='p')is_human=true;
 	if(c=='c')is_human=false;
 	color='n';
+	replay=false;
 	output_file="log.txt";
 	ofstream file(output_file);
 	file.clear();
@@ -64,7 +65,18 @@ void Player::move(string mossa)
 		try
 		{
 			cout<<"inizio mossa"<<endl;
+			try{
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+			}
+			catch(Promotion* e)
+			{
+				file<<mossa<<"\n";
+				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
+				file.close();
+				return;
+			}
+			
+
 			file<<mossa<<"\n";
 			file.close();
 			cout<<"fine mossa"<<endl;
@@ -129,7 +141,16 @@ void Player::move()
 		try
 		{
 			cout<<"inizio mossa"<<endl;
+			try{
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+			}
+			catch(Promotion* e)
+			{
+				file<<mossa<<"\n";
+				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
+				file.close();
+				return;
+			}
 			file<<mossa<<"\n";
 			file.close();
 			cout<<"fine mossa"<<endl;
@@ -195,6 +216,146 @@ string Player::output_random_move(int num,int let,int n,int l)
 void Player::set_output_file(string file)
 {
 	output_file=file;
+}
+void Player:: promotion(Pawn* p,char pezzo)
+{
+	if(is_human)
+	{
+		if(pezzo!=' ')
+		{
+			Piece* tmp=p->b->gameboard[p->number][p->letter];
+			if(pezzo=='A') p->b->gameboard[p->number][p->letter]=new Bishop(p->number,p-> letter, 'b',p->b );
+			if(pezzo=='T') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'b', p->b);
+			if(pezzo=='D') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'b', p->b);	
+			if(pezzo=='C') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'b',p-> b);
+			if(pezzo=='a') p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, 'w', p->b);
+			if(pezzo=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
+			if(pezzo=='d') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'w', p->b);	
+			if(pezzo=='c') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'w', p->b);
+			if(p->color=='w')
+			{
+			for(int i=0;i<p->b->whites.size();i++)
+			{
+				if(p->b->whites[i]==tmp)
+				{
+					p->b->whites.erase(p->b->whites.begin()+i);
+					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+			}
+			else
+			{
+				for(int i=0;i<p->b->blacks.size();i++)
+			{
+				if(p->b->blacks[i]==tmp)
+				{
+					p->b->blacks.erase(p->b->blacks.begin()+i);
+					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+			}
+			ofstream file(output_file,ios::app);
+			file<<pezzo<<"\n";
+			file.close();
+			return;
+		}
+		if(replay)
+		{
+			throw p;
+		}
+			if(p->color=='b')
+		{
+			char c;
+			string prom;
+			cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale maiuscola del pezzo che vuoi scegliere"<<endl;
+			while(true)
+			{
+				getline(cin,prom);
+				c=prom[0];
+				if(c=='A' || c=='T' || c=='D' || c=='C') break;
+				cout<<"pezzo non valido"<<endl;
+			}
+			Piece* tmp=p->b->gameboard[p->number][p->letter];
+			if(c=='A') p->b->gameboard[p->number][p->letter]=new Bishop(p->number,p-> letter, 'b',p->b );
+			if(c=='T') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'b', p->b);
+			if(c=='D') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'b', p->b);	
+			if(c=='C') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'b',p-> b);
+			
+			for(int i=0;i<p->b->blacks.size();i++)
+			{
+				if(p->b->blacks[i]==tmp)
+				{
+					p->b->blacks.erase(p->b->blacks.begin()+i);
+					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+		}
+		else
+		{
+			char c;
+			string prom;
+			cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale minuscola del pezzo che vuoi scegliere"<<endl;
+			while(true)
+			{
+				getline(cin, prom);
+				c=prom[0];
+				if(c=='a' || c=='t' || c=='d' || c=='c') break;
+				cout<<"pezzo non valido"<<endl;
+			}
+			Piece* tmp=p->b->gameboard[p->number][p->letter];
+			if(c=='a') p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, 'w', p->b);
+			if(c=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
+			if(c=='d') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'w', p->b);	
+			if(c=='c') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'w', p->b);
+			
+			for(int i=0;i<p->b->whites.size();i++)
+			{
+				if(p->b->whites[i]==tmp)
+				{
+					p->b->whites.erase(p->b->whites.begin()+i);
+					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		int random_piece=rand()%4;
+		Piece* tmp=p->b->gameboard[p->number][p->letter];
+			if(random_piece==0) p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, p->color, p->b);
+			if(random_piece==1) p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, p->color, p->b);
+			if(random_piece==2) p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, p->color, p->b);	
+			if(random_piece==3) p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, p->color, p->b);
+			
+			if(p->color=='w')
+			{
+			for(int i=0;i<p->b->whites.size();i++)
+			{
+				if(p->b->whites[i]==tmp)
+				{
+					p->b->whites.erase(p->b->whites.begin()+i);
+					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+			}
+			else
+			{
+				for(int i=0;i<p->b->blacks.size();i++)
+			{
+				if(p->b->blacks[i]==tmp)
+				{
+					p->b->blacks.erase(p->b->blacks.begin()+i);
+					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					break;
+				}
+			}
+			}
+	}
 }
 #endif
 	

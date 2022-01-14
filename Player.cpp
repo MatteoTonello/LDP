@@ -176,8 +176,6 @@ void Player::move()
 			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			int n=boardgame->whites[random_piece]->number,l=boardgame->whites[random_piece]->letter;
 			boardgame->whites[random_piece]->move(random_number,random_letter);
-			cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter;
-			cout<<endl<<random_number<<random_letter<<endl;
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
 			/*random_piece=rand()%boardgame->whites.size();
@@ -194,8 +192,6 @@ void Player::move()
 			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			int n=boardgame->blacks[random_piece]->number,l=boardgame->blacks[random_piece]->letter;
 			boardgame->blacks[random_piece]->move(random_number,random_letter);
-			cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter;
-			cout<<endl<<random_number<<random_letter<<endl;
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
 			/*random_piece=rand()%boardgame->blacks.size();

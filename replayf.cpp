@@ -14,7 +14,8 @@ int main()
 {   
         string file_output="logg.txt";
         string file_input="replay.txt";
-        GameReplay* game = new GameReplay(file_input,file_output);
-        game->replayf();
+        GameReplay* games = new GameReplay(file_input,file_output);
+        games->replayf();
+        cout<<games->game->mainboard->is_check_mate('b');
     return 0;
 }

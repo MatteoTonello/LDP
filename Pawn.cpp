@@ -92,7 +92,7 @@ bool Pawn:: try_move(int n, int l)
 			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo caselle in avanti
 		if(n-number==1 && l==letter && b->gameboard[n][l]==nullptr) return true;
-		if(n-number==2 && number==1 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n+1][l]==nullptr) return true;
+		if(n-number==2 && number==1 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n-1][l]==nullptr) return true;
 		//controllo mangiare diagonale
 		if(n-number==1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
 		if(n-number==1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
@@ -126,7 +126,7 @@ bool Pawn:: try_move(int n, int l)
 			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
 		//controllo caselle in avanti
 		if(n-number==-1 && l==letter && b->gameboard[n][l]==nullptr) return true;
-		if(n-number==-2 && number==6 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n-1][l]==nullptr) return true;
+		if(n-number==-2 && number==6 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n+1][l]==nullptr) return true;
 		//controllo mangiare diagonale
 		if(n-number==-1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
 		if(n-number==-1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;

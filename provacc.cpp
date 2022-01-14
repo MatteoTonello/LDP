@@ -14,8 +14,6 @@ int main()
     
     Player* p1 = new Player('c');
     Player* p2 = new Player('c');
-    p1->set_output_file("logg.txt");
-    p2->set_output_file("logg.txt");
     Game* g=new Game(p1,p2);
     cout<<"INIZIO"<<endl;
     g->startgame();

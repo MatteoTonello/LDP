@@ -33,11 +33,11 @@ void GameReplay::replayf()
     if (filei.is_open())
     {
         fileo<<*(game->mainboard)<<"\n";
-        while ( getline (filei,mossa) )
+        while ( getline (filei,mossa))
         {
             string piece;
             if(mossa=="-") break;
-            if(mossa=="XX XX")  cout<<*(game->mainboard);
+            if(mossa=="XX XX")  fileo<<*(game->mainboard);
             else
             {
                 try
@@ -46,7 +46,6 @@ void GameReplay::replayf()
                 }
                 catch(Pawn* e)
                 {
-                    cout<<"ciaoo"<<endl;
                     getline (filei,piece);
                     game->is_turn->promotion(e,piece[0]);
                     flag=true;
@@ -57,7 +56,11 @@ void GameReplay::replayf()
                 flag=false;
                 game->change_turn();
             }
+            game->nmosse++;
+            game->last_bs.push_back(game->mainboard->to_String());
+            if(game->is_finished()) break;
         }
+        fileo<<game->result<<"\n";
         fileo.close();
         filei.close();
      }
@@ -65,6 +68,8 @@ void GameReplay::replayf()
 void GameReplay::replayv()
 {
     string mossa;
+    string piece;
+    bool flag;
     ifstream filei (file_input);
     if (filei.is_open())
     {
@@ -74,11 +79,26 @@ void GameReplay::replayv()
             if(mossa=="XX XX")  cout<<*(game->mainboard);
             else
             {
-                game->is_turn->move(mossa);
-                cout<<*(game->mainboard);
+                try
+                {
+                    game->is_turn->move(mossa);
+                }
+                catch(Pawn* e)
+                {
+                    getline (filei,piece);
+                    game->is_turn->promotion(e,piece[0]);
+                    flag=true;
+                }
+                if(flag)
+                    cout<<piece[0]<<"\n\n";
+                flag=false;
                 game->change_turn();
             }
+            game->nmosse++;
+            game->last_bs.push_back(game->mainboard->to_String());
+            if(game->is_finished()) break;
         }
+        cout<<game->result<<"\n";
         filei.close();
      }
 }

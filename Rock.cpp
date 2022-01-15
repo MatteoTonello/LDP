@@ -49,8 +49,11 @@ void Rock:: move(int n, int l)
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;
 			number=save_number; letter=save_letter;
-			if(color=='w') b->blacks.push_back(temp);
+			if(temp!=nullptr)
+			{
+				if(color=='w') b->blacks.push_back(temp);
 							else b->whites.push_back(temp);
+			}
 			throw new Illegal_move();
 		}
 		

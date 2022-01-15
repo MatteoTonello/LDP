@@ -56,10 +56,6 @@ Board::Board()
     }
 	
 }
-int Board::check_draw_for_ripetions()
-{
-    return 0;
-}
 
 
 
@@ -427,7 +423,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->number, j=p->letter;j>black_king->letter;i++, j--)
+						for(int i=p->number, j=p->letter;j<black_king->letter;i--, j++)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -441,7 +437,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->number, j=p->letter;j<black_king->letter;i--, j++)
+						for(int i=p->number, j=p->letter;j>black_king->letter;i++, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -482,7 +478,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter;i>black_king->number;i--)
+						for(int i=p->letter;i>black_king->letter;i--)
 						{
 							for(int j=0;j<blacks.size();j++)
 							{
@@ -535,7 +531,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->number, j=p->letter;j>black_king->letter;i++, j--)
+						for(int i=p->number, j=p->letter;j<black_king->letter;i--, j++) 
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -549,7 +545,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter>black_king->letter)
 					{
-						for(int i=p->number, j=p->letter;j<black_king->letter;i--, j++)
+						for(int i=p->number, j=p->letter;j>black_king->letter;i++, j--)
 						{
 							for(int k=0;k<blacks.size();k++)
 							{
@@ -612,6 +608,7 @@ bool Board::is_check(char c)
 
 bool Board::is_draw(char c)
 {
+	if(cant_be_mate()) return true;
 	if(c=='w'){
 		if(is_check('w')) return false;
 		for(int i=0;i<whites.size();i++){
@@ -644,6 +641,16 @@ bool Board::cant_be_mate()
 			if(whites[i]->piece=='a' || whites[i]->piece=='c') return true;
 		}
 	}
+	if(blacks.size()==2 && whites.size()==2){
+		for(int i=0;i<2;i++){
+			if(whites[i]->piece=='a' || whites[i]->piece=='c')
+			{
+				for(int j=0;j<2;j++){
+					if(blacks[i]->piece=='A' || blacks[i]->piece=='C') return true;
+				}
+			}
+		}
+	}
 	return false;
 }
 
@@ -652,7 +659,6 @@ string Board::to_String()
 	string out="";
     for(int i=0;i<8;i++)
     {
-        out=out+to_string(i)+" "+to_string(8-i)+" ";
         for(int j=0;j<8;j++)
         {
             if(gameboard[i][j]==nullptr)

@@ -228,6 +228,8 @@ void Player:: promotion(Pawn* p,char pezzo)
 			if(pezzo=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
 			if(pezzo=='d') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'w', p->b);	
 			if(pezzo=='c') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'w', p->b);
+			if(pezzo!='A' && pezzo!='C' && pezzo!='D' && pezzo!='T' && pezzo!='a' && pezzo!='c' && pezzo!='t' && pezzo!='d')
+				throw new Illegal_move();
 			if(p->color=='w')
 			{
 			for(int i=0;i<p->b->whites.size();i++)

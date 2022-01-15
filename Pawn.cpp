@@ -228,8 +228,9 @@ void Pawn::move(int n, int l)
 		int save_number=number, save_letter=letter;
 		temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
-		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		letter=l;number=n;
+		
 		if(color=='w')
 			for(int i=0;i<b->blacks.size();i++)
 				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
@@ -241,8 +242,11 @@ void Pawn::move(int n, int l)
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;
 			number=save_number; letter=save_letter;
-			if(color=='w') b->blacks.push_back(temp);
+			if(temp!=nullptr)
+			{
+				if(color=='w') b->blacks.push_back(temp);
 							else b->whites.push_back(temp);
+			}
 			throw new Illegal_move();
 		}
 			

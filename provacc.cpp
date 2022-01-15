@@ -18,7 +18,22 @@ int main()
     cout<<"INIZIO"<<endl;
     g->startgame();
     cout<<"FINITO";
-
+    g=new Game(p1,p2);
+    cout<<"INIZIO"<<endl;
+    g->startgame();
+    cout<<"FINITO";
+    g=new Game(p1,p2);
+    cout<<"INIZIO"<<endl;
+    g->startgame();
+    cout<<"FINITO";
+    g=new Game(p1,p2);
+    cout<<"INIZIO"<<endl;
+    g->startgame();
+    cout<<"FINITO";
+    g=new Game(p1,p2);
+    cout<<"INIZIO"<<endl;
+    g->startgame();
+    cout<<"FINITO";
     
     
     return 0;

@@ -201,7 +201,7 @@ void King::move(int n, int l)
 }
 void King::short_castling()
 {
-		if((!is_already_move) && (b->gameboard[number][7]->piece=='t' || b->gameboard[number][7]->piece=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
+		if((!is_already_move) && (b->gameboard[number][7]!=nullptr) && (b->gameboard[number][7]->piece=='t' || b->gameboard[number][7]->piece=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
 		{
 			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]== nullptr)
 			{
@@ -239,7 +239,7 @@ void King::short_castling()
 }
 void King::long_castling()
 {
-	if((!is_already_move) && (b->gameboard[number][0]->piece=='t' || b->gameboard[number][0]->piece=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
+	if((!is_already_move) && (b->gameboard[number][0]!=nullptr) && (b->gameboard[number][0]->piece=='t' || b->gameboard[number][0]->piece=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
 		{
 			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
 			{

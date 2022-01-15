@@ -14,186 +14,87 @@
 2 6         
 3 5         
 4 4         
-5 3   p     
-6 2 pp ppppp
+5 3   c     
+6 2 pppppppp
+7 1 t adract
+    ABCDEFGH
+    01234567
+
+0 8 T ADRACT
+1 7 PPPPPPPP
+2 6   C     
+3 5         
+4 4         
+5 3   c     
+6 2 pppppppp
+7 1 t adract
+    ABCDEFGH
+    01234567
+
+0 8 T ADRACT
+1 7 PPPPPPPP
+2 6   C     
+3 5         
+4 4         
+5 3         
+6 2 pppppppp
 7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8 TCADRA T
+0 8 TCADRACT
 1 7 PPPPPPPP
-2 6      C  
+2 6         
 3 5         
 4 4         
-5 3   p     
-6 2 pp ppppp
+5 3         
+6 2 pppppppp
 7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8 TCADRA T
+0 8 TCADRACT
 1 7 PPPPPPPP
-2 6      C  
+2 6         
 3 5         
 4 4         
-5 3   p     
-6 2 ppdppppp
-7 1 tca ract
+5 3   c     
+6 2 pppppppp
+7 1 t adract
     ABCDEFGH
     01234567
 
-0 8 TCADRA T
-1 7 PPPP PPP
-2 6     PC  
+0 8 T ADRACT
+1 7 PPPPPPPP
+2 6   C     
 3 5         
 4 4         
-5 3   p     
-6 2 ppdppppp
-7 1 tca ract
+5 3   c     
+6 2 pppppppp
+7 1 t adract
     ABCDEFGH
     01234567
 
-0 8 TCADRA T
-1 7 PPPP PPd
-2 6     PC  
+0 8 T ADRACT
+1 7 PPPPPPPP
+2 6   C     
 3 5         
 4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
+5 3         
+6 2 pppppppp
+7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8 TCADR  T
-1 7 PPPP PPd
-2 6    APC  
+0 8 TCADRACT
+1 7 PPPPPPPP
+2 6         
 3 5         
 4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
+5 3         
+6 2 pppppppp
+7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8 TCADR  T
-1 7 PPPP Pd 
-2 6    APC  
-3 5         
-4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRA T
-1 7 PPPP Pd 
-2 6     PC  
-3 5         
-4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRA T
-1 7 PPPP P  
-2 6     PC d
-3 5         
-4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCADR  T
-1 7 PPPP PA 
-2 6     PC d
-3 5         
-4 4         
-5 3   p     
-6 2 pp ppppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCADR  T
-1 7 PPPP PA 
-2 6     PC d
-3 5         
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA R  T
-1 7 PPPPDPA 
-2 6     PC d
-3 5         
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA R  T
-1 7 PPPPDPAd
-2 6     PC  
-3 5         
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA R  T
-1 7 PPPPDPAd
-2 6     P   
-3 5    C    
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tca ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA R  T
-1 7 PPPPDPAd
-2 6     P  a
-3 5    C    
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tc  ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA  R T
-1 7 PPPPDPAd
-2 6     P  a
-3 5    C    
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tc  ract
-    ABCDEFGH
-    01234567
-
-0 8 TCA  R d
-1 7 PPPPDPA 
-2 6     P  a
-3 5    C    
-4 4         
-5 3   pp    
-6 2 pp  pppp
-7 1 tc  ract
-    ABCDEFGH
-    01234567
-
-VINCITORE BIANCO
+PATTA PER RIPETIZIONE DI MOSSE

@@ -13,5 +13,6 @@ class Piece
 		virtual bool try_move(int n,int l)=0;
 		virtual bool can_move() =0;
 		void remove_en_passant();
+		bool diventa_scacco(int number_eliminated, int letter_eliminated, int number_moved,int letter_moved);
 };
 #endif

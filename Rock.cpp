@@ -44,7 +44,7 @@ void Rock:: move(int n, int l)
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		if(b->is_check(color))
+		/*if(b->is_check(color))
 		{
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;
@@ -55,7 +55,7 @@ void Rock:: move(int n, int l)
 							else b->whites.push_back(temp);
 			}
 			throw new Illegal_move();
-		}
+		}*/
 		
 			is_already_move=true;
 			remove_en_passant();
@@ -117,7 +117,7 @@ bool Rock::try_move(int n, int l){
     {
         if(b->gameboard[n][l]->color==color)return false;
     }
-	return true;
+	return !diventa_scacco(n, l,n,l);
 }
 
 	#endif

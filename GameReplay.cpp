@@ -51,8 +51,6 @@ void GameReplay::replayf()
                     flag=true;
                 }
                 fileo<<*(game->mainboard)<<"\n";
-                if(flag)
-                    fileo<<piece[0]<<"\n\n";
                 flag=false;
                 game->change_turn();
             }

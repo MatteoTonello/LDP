@@ -46,7 +46,7 @@ using namespace std;
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		if(b->is_check(color))
+		/*if(b->is_check(color))
 		{
 			b->gameboard[n][l]=temp;
 			b->gameboard[save_number][save_letter]=this;
@@ -57,7 +57,7 @@ using namespace std;
 							else b->whites.push_back(temp);
 			}
 			throw new Illegal_move();
-		}
+		}*/
          remove_en_passant();
 			return;
 	}	
@@ -106,45 +106,8 @@ using namespace std;
          {
             if(b->gameboard[n][l]->color==color)return false;
          }
-         return !diventa_scacco(n,l);
+         return !diventa_scacco(n,l,n,l);
    }
-   bool Bishop::diventa_scacco(int n,int l)
-   {
-      int save_number=number, save_letter=letter;
-      Piece* tmp=b->gameboard[n][l];
-      
-            b->gameboard[number][letter]=nullptr;
-         letter=l;number=n;
-         b->gameboard[n][l]=this;
-         if(color=='w')
-            for(int i=0;i<b->blacks.size();i++)
-               if(b->blacks[i]==tmp){ b->blacks.erase(b->blacks.begin()+i); break;}
-         if(color=='b')
-            for(int i=0;i<b->whites.size();i++)
-               if(b->whites[i]==tmp){ b->whites.erase(b->whites.begin()+i); break;}
-         if(b->is_check(color))
-         {
-            b->gameboard[n][l]=tmp;
-            b->gameboard[save_number][save_letter]=this;
-            number=save_number; letter=save_letter;
-            if(tmp!=nullptr)
-            {
-               if(color=='w') b->blacks.push_back(tmp);
-                        else b->whites.push_back(tmp);
-            }
-            return true;
-		   }
-      
-      b->gameboard[n][l]=tmp;
-		b->gameboard[save_number][save_letter]=this;
-		number=save_number; letter=save_letter;
-      if(tmp!=nullptr)
-		{
-		   if(color=='w') b->blacks.push_back(tmp);
-				else b->whites.push_back(tmp);
-		}
-      return false;
-   }
-
+   
 
 #endif

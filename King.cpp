@@ -29,28 +29,12 @@ bool King::can_move()
 			{
 				if(letter+j>=0 && letter+j<=7)
 				{
-					if(b->gameboard[number+i][letter+j]==nullptr)
-					{
-						b->gameboard[number+i][letter+j]=this;
-						b->gameboard[number][letter]=nullptr;
-						number=number+i; letter=letter+j;
-						if(!(b->is_check(color)))
-						{
-							b->gameboard[number][letter]=nullptr;
-							b->gameboard[save_number][save_letter]=this;
-							letter=save_letter; number=save_number;
-							return true;
-						}
-						b->gameboard[number][letter]=nullptr;
-						b->gameboard[save_number][save_letter]=this;
-						letter=save_letter; number=save_number;
-					}
-					else
-					if(b->gameboard[number+i][letter+j]->color!=color)
+					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color)
 					{
 						Piece* p=b->gameboard[number+i][letter+j];
 						b->gameboard[number+i][letter+j]=this;
 						b->gameboard[number][letter]=nullptr;
+						number=number+i; letter=letter+j;
 						if(color=='w')
 						{
 							for(int i=0;i<b->blacks.size();i++)
@@ -65,22 +49,23 @@ bool King::can_move()
 								if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
 							}
 						}
-
-						number=number+i; letter=letter+j;
 						if(!(b->is_check(color)))
 						{
 							b->gameboard[number][letter]=p;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
+							if(p!=nullptr)
 							if(color=='w') b->blacks.push_back(p);
 							else b->whites.push_back(p);
 							return true;
 						}
+						if(p!=nullptr)
 						if(color=='w') b->blacks.push_back(p);
 							else b->whites.push_back(p);
 						b->gameboard[number][letter]=p;
 						b->gameboard[save_number][save_letter]=this;
 						letter=save_letter; number=save_number;
+					
 					}
 				}
 			}

@@ -87,15 +87,15 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//controllo en passant
 		if(b->gameboard[number][letter+1]!=nullptr)
-			if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+			if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
 		if(b->gameboard[number][letter-1]!=nullptr)
-			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
 		//controllo caselle in avanti
-		if(n-number==1 && l==letter && b->gameboard[n][l]==nullptr) return true;
-		if(n-number==2 && number==1 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n-1][l]==nullptr) return true;
+		if(n-number==1 && l==letter && b->gameboard[n][l]==nullptr) return !diventa_scacco(n,l,n,l);
+		if(n-number==2 && number==1 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n-1][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		//controllo mangiare diagonale
-		if(n-number==1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
-		if(n-number==1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
+		if(n-number==1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
 		//if(n-number>2 || l-letter<-1 || l-letter>1) return false;
 		//if(n-number==2 && number!=1) return false;
 		/*if((l-letter==1 || l-letter==-1)&& n-number==1)
@@ -121,15 +121,15 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//controllo en passant
 		if(b->gameboard[number][letter+1]!=nullptr)
-			if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+			if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
 		if(b->gameboard[number][letter-1]!=nullptr)
-			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
 		//controllo caselle in avanti
-		if(n-number==-1 && l==letter && b->gameboard[n][l]==nullptr) return true;
-		if(n-number==-2 && number==6 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n+1][l]==nullptr) return true;
+		if(n-number==-1 && l==letter && b->gameboard[n][l]==nullptr) return !diventa_scacco(n,l,n,l);
+		if(n-number==-2 && number==6 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n+1][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		//controllo mangiare diagonale
-		if(n-number==-1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
-		if(n-number==-1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return true;
+		if(n-number==-1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==-1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
 	}
 	return false;
 		/*
@@ -273,63 +273,6 @@ void Pawn::move(int n, int l)
 	}
 	throw new Illegal_move();
 }
-void Pawn:: promotion()
-{
-	if(color=='b')
-	{
-		char c;
-		string p;
-		cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale maiuscola del pezzo che vuoi scegliere"<<endl;
-		while(true)
-		{
-			getline(cin,p);
-			c=p[0];
-			if(c=='A' || c=='T' || c=='D' || c=='C') break;
-			cout<<"pezzo non valido"<<endl;
-		}
-		Piece* tmp=b->gameboard[number][letter];
-		if(c=='A') b->gameboard[number][letter]=new Bishop(number, letter, 'b',b );
-		if(c=='T') b->gameboard[number][letter]=new Rock(number, letter, 'b', b);
-		if(c=='D') b->gameboard[number][letter]=new Queen(number, letter, 'b', b);	
-		if(c=='C') b->gameboard[number][letter]=new Knight(number, letter, 'b', b);
-        for(int i=0;i<b->blacks.size();i++)
-		{
-			if(b->blacks[i]==tmp)
-			{
-				b->blacks.erase(b->blacks.begin()+i);
-				b->blacks.push_back(b->gameboard[number][letter]);
-				break;
-			}
-		}
-	}
-	else
-	{
-		char c;
-		string p;
-		cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale minuscola del pezzo che vuoi scegliere"<<endl;
-		while(true)
-		{
-			getline(cin, p);
-			c=p[0];
-			if(c=='a' || c=='t' || c=='d' || c=='c') break;
-			cout<<"pezzo non valido"<<endl;
-		}
-		Piece* tmp=b->gameboard[number][letter];
-		if(c=='a') b->gameboard[number][letter]=new Bishop(number, letter, 'w', b);
-		if(c=='t') b->gameboard[number][letter]=new Rock(number, letter, 'w', b);
-		if(c=='d') b->gameboard[number][letter]=new Queen(number, letter, 'w', b);	
-		if(c=='c') b->gameboard[number][letter]=new Knight(number, letter, 'w', b);
-		
-		for(int i=0;i<b->whites.size();i++)
-		{
-			if(b->whites[i]==tmp)
-			{
-				b->whites.erase(b->whites.begin()+i);
-				b->whites.push_back(b->gameboard[number][letter]);
-				break;
-			}
-		}
-	}
-}
+
 
 #endif

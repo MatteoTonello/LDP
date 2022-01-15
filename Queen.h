@@ -9,6 +9,5 @@ class Queen:public Piece
     void move(int n, int l);
     bool try_move(int n, int l);
     bool can_move();
-    void random_move();
 };
 #endif

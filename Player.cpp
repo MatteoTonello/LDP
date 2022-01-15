@@ -89,8 +89,6 @@ void Player::move(string mossa)
 }
 void Player::move()
 {
-	//srand(time(NULL));
-	ofstream file(output_file,ios::app);
 	if(is_human)
 	{
 		int i_letter,f_letter;
@@ -146,11 +144,14 @@ void Player::move()
 			}
 			catch(Promotion* e)
 			{
-				file<<mossa<<"\n";
+				ofstream file(output_file,ios::app);
+				file<<mossa<<"ciao\n";
+				file.close();
 				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
 				file.close();
 				return;
 			}
+			ofstream file(output_file,ios::app);
 			file<<mossa<<"\n";
 			file.close();
 			cout<<"fine mossa"<<endl;
@@ -175,7 +176,19 @@ void Player::move()
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			int n=boardgame->whites[random_piece]->number,l=boardgame->whites[random_piece]->letter;
-			boardgame->whites[random_piece]->move(random_number,random_letter);
+			try{
+				boardgame->whites[random_piece]->move(random_number,random_letter);
+			}
+			catch(Promotion* e)
+			{
+				ofstream file(output_file,ios::app);
+				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
+				file.close();
+				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
+				file.close();
+				return;
+			}
+			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
 			/*random_piece=rand()%boardgame->whites.size();
@@ -191,7 +204,19 @@ void Player::move()
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
 			int n=boardgame->blacks[random_piece]->number,l=boardgame->blacks[random_piece]->letter;
-			boardgame->blacks[random_piece]->move(random_number,random_letter);
+			try{
+				boardgame->blacks[random_piece]->move(random_number,random_letter);
+			}
+			catch(Promotion* e)
+			{
+				ofstream file(output_file,ios::app);
+				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
+				file.close();
+				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
+				file.close();
+				return;
+			}
+			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
 			/*random_piece=rand()%boardgame->blacks.size();
@@ -263,7 +288,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 		{
 			throw p;
 		}
-			if(p->color=='b')
+		if(p->color=='b')
 		{
 			char c;
 			string prom;
@@ -275,6 +300,9 @@ void Player:: promotion(Pawn* p,char pezzo)
 				if(c=='A' || c=='T' || c=='D' || c=='C') break;
 				cout<<"pezzo non valido"<<endl;
 			}
+			ofstream file(output_file,ios::app);
+			file<<prom<<"\n";
+			file.close();
 			Piece* tmp=p->b->gameboard[p->number][p->letter];
 			if(c=='A') p->b->gameboard[p->number][p->letter]=new Bishop(p->number,p-> letter, 'b',p->b );
 			if(c=='T') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'b', p->b);
@@ -303,6 +331,9 @@ void Player:: promotion(Pawn* p,char pezzo)
 				if(c=='a' || c=='t' || c=='d' || c=='c') break;
 				cout<<"pezzo non valido"<<endl;
 			}
+			ofstream file(output_file,ios::app);
+			file<<prom<<"\n";
+			file.close();
 			Piece* tmp=p->b->gameboard[p->number][p->letter];
 			if(c=='a') p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, 'w', p->b);
 			if(c=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
@@ -353,6 +384,11 @@ void Player:: promotion(Pawn* p,char pezzo)
 				}
 			}
 			}
+		ofstream file(output_file,ios::app);
+		string pezzo=to_string(p->b->gameboard[p->number][p->letter]->piece);
+		file<<pezzo<<"\n";
+		file.close();
+			
 	}
 }
 #endif

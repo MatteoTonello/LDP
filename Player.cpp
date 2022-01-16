@@ -228,8 +228,8 @@ void Player::move()
 }
 string Player::output_random_move(int num,int let,int n,int l)
 {
-    char fl='A'+l;
-    char il='A'+let;
+    char fl='a'+l;
+    char il='a'+let;
     int fn=7-n+1;
     int in=7-num+1;
     return il+to_string(in)+" "+fl+to_string(fn);

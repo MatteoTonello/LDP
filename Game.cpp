@@ -135,9 +135,9 @@ bool Game::fifty_moves(){
 bool Game::is_finished()
 {
     bool mate=0;
-    if(nmosse>=50 && (!white_player->is_human) && (!black_player->is_human))
+    if(nmosse>=100 && (!white_player->is_human) && (!black_player->is_human))
     {
-        result="PATTA,LIMITE 50 MOSSE";
+        result="PATTA,LIMITE 100 MOSSE";
         return true;
     }
     if(mainboard->is_draw(is_turn->color))
@@ -166,7 +166,6 @@ bool Game::is_finished()
     }
 	if(draw_for_ripetition())
 	{
-
 		result="PATTA PER RIPETIZIONE DI MOSSE";
 		return true;
 	}

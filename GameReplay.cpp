@@ -1,3 +1,5 @@
+#ifndef GAMEREPLAY_CPP
+#define GAMEREPLAY_CPP
 #include "GameReplay.h"
 #include "Piece.h"
 #include <iostream>
@@ -100,3 +102,4 @@ void GameReplay::replayv()
         filei.close();
      }
 }
+#endif

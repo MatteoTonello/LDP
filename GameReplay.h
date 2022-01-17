@@ -1,3 +1,5 @@
+#ifndef GAMEREPLAY_H
+#define GAMEREPLAY_H
 #include "Game.h"
 #include "Player.h"
 class GameReplay
@@ -11,3 +13,4 @@ class GameReplay
     void replayf();
     void replayv();
 };
+#endif

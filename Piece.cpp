@@ -32,6 +32,8 @@ bool Piece::diventa_scacco(int number_elim, int letter_elim, int number_mov,int 
          if(color=='b')
             for(int i=0;i<b->whites.size();i++)
                if(b->whites[i]==tmp){ b->whites.erase(b->whites.begin()+i); break;}
+         if(color=='b') b->white_king->is_not_check=true;
+         else b->black_king->is_not_check=true;
          if(b->is_check(color))
          {
             b->gameboard[number_elim][letter_elim]=tmp;
@@ -44,6 +46,8 @@ bool Piece::diventa_scacco(int number_elim, int letter_elim, int number_mov,int 
                if(color=='w') b->blacks.push_back(tmp);
                         else b->whites.push_back(tmp);
             }
+            if(color=='b') b->white_king->is_not_check=false;
+            else b->black_king->is_not_check=false;
             return true;
 		   }
       
@@ -57,6 +61,8 @@ bool Piece::diventa_scacco(int number_elim, int letter_elim, int number_mov,int 
 		   if(color=='w') b->blacks.push_back(tmp);
 				else b->whites.push_back(tmp);
 		}
+      if(color=='b') b->white_king->is_not_check=false;
+         else b->black_king->is_not_check=false;
       return false;
    }
 #endif

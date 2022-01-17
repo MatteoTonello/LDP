@@ -23,7 +23,7 @@ bool Pawn::can_move()
 	if(color=='w') i=-1;
 	else i=+1;
 	if(b->gameboard[number+i][letter]==nullptr) return true;
-	if(letter-1<=7 && b->gameboard[number+i][letter+1]!=nullptr)
+	if(letter+1<=7 && b->gameboard[number+i][letter+1]!=nullptr)
 		if(b->gameboard[number+i][letter+1]->color!=color) return true;
 	if(letter-1>=0 && b->gameboard[number+i][letter-1]!=nullptr)
 		if(b->gameboard[number+i][letter-1]->color!=color) return true;

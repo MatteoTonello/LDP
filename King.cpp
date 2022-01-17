@@ -13,6 +13,7 @@ King::King(int n, int l, char col, Board* myBoard)
 	if(color=='w') piece='r';
 	else piece='R';
 	is_already_move=false;
+	is_not_check=false;
 }
 bool King::try_move(int n,int l)
 {

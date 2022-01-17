@@ -72,11 +72,12 @@ bool Board::is_check_mate(char c)
 				if(blacks[i]->piece!='R')
 				if(blacks[i]->try_move(white_king->number, white_king->letter))
 				{
+					p=blacks[i];
 					piece_check++;
 				}
 			}
 			if(piece_check>=2) return true;
-			for(int i=0;i<blacks.size();i++)
+			/*for(int i=0;i<blacks.size();i++)
 			{
 				if(blacks[i]->piece!='R')
 				if(blacks[i]->try_move(white_king->number, white_king->letter))
@@ -84,7 +85,7 @@ bool Board::is_check_mate(char c)
 					p=blacks[i];
 					break;
 				}
-			}
+			}*/
 			if(p->piece=='P')
 			{
 				for(int i=0;i<whites.size();i++)
@@ -586,6 +587,7 @@ bool Board::is_check(char c)
 {
 	if(c=='w')
 	{
+		if(white_king->is_not_check) return false;
 		for(int i=0;i<blacks.size();i++)
 		{
 			if(!(blacks[i]->piece=='R'))
@@ -595,6 +597,7 @@ bool Board::is_check(char c)
 	}
 	if(c=='b')
 	{
+		if(black_king->is_not_check) return false;
 		for(int i=0;i<whites.size();i++)
 		{
 			if(!(whites[i]->piece=='r'))

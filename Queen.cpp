@@ -77,7 +77,7 @@ bool Queen::try_move(int n, int l)
 		else
 		{
 			horizontal--;
-			while(horizontal>n && b->gameboard[n][horizontal]==nullptr)
+			while(horizontal>l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}

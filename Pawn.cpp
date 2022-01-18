@@ -160,7 +160,7 @@ void Pawn::move(int n, int l)
 		}
 		return;
 	}
-	//se mossa non possibile illegal move
+	//se mossa non possibile, illegal move
 	throw new Illegal_move();
 }
 

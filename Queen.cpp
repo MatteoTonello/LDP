@@ -25,20 +25,19 @@ bool Queen:: can_move()
 			for(int j=-1;j<=1;j++)
 			{
 				if(letter+j>=0 && letter+j<=7){
-					if(b->gameboard[number+i][letter+j]==nullptr) return true; //
-					if(b->gameboard[number+i][letter+j]->color!=color) return true;
+					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color) //Se la casella è vuota o contiene una pedina avversaria
+						if(!diventa_scacco(number+i,letter+j,number+i,letter+j) return true; //Se il movimento non porta uno scacco allora true
 				}
 			}
 		}
 	}
-	return false;
+	return false; //Non ha nessuna possibilità di movimento 
 }
 bool Queen::try_move(int n, int l)
 {
-	if(!can_move()) return false;
-	if((letter!=l && number!=n)&&(abs(number-n)!=abs(letter-l))) return false;
+	if((letter!=l && number!=n)&&(abs(number-n)!=abs(letter-l))) return false; //false se non sono su una traiettoria possibile
 	int vertical=number, horizontal=letter;
-	if(number!=n && letter==l)
+	if(number!=n && letter==l) //Se mi muovo in orizzontale
 	{
 		if(n>number)
 		{

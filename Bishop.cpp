@@ -24,8 +24,8 @@ using namespace std;
          {
             if(number+i>=0 && number+i<8 && letter+j>=0 && letter+j<8)
             {
-               if(b->gameboard[number+i][letter+j]==nullptr) return true; //true se la casella è vuota
-               if(b->gameboard[number+i][letter+j]->color!=color) return true;  //true se la casella contiene una pedina avversaria
+               if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color) //Se la casella è vuota o contiene una pedina avversaria
+                  if(!diventa_scacco(number+i,letter+j,number+i,letter+j) return true; //Se il movimento non porta uno scacco allora true
             }
          }
       }
@@ -60,7 +60,6 @@ using namespace std;
    }
 
    bool Bishop::try_move(int n, int l){
-      if(!can_move()) return false;
       if((abs(l-letter))!=(abs(n-number))) return false; //Se gli indici non sono uguali non è in diagonale
 
       if(n>number) // Controllo se la diagonale è verso il basso

@@ -20,25 +20,26 @@ Pawn::Pawn(int n, int l, char col, Board* myBoard)
 bool Pawn::can_move()
  {
 	int i=0;
-	if(color=='w') i=-1;     
-	else i=+1;
-	if(b->gameboard[number+i][letter]==nullptr) return true;
-	if(letter+1<=7 && b->gameboard[number+i][letter+1]!=nullptr)
-		if(b->gameboard[number+i][letter+1]->color!=color) return true;
+	if(color=='w') i=-1;   		//se è bianco, -1 perchè si sposta verso numeri descrescenti  
+	else i=+1;					//se è nero, viceversa
+	if(b->gameboard[number+i][letter]==nullptr) return true;				//true se casella davanti al pedone vuota
+	if(letter+1<=7 && b->gameboard[number+i][letter+1]!=nullptr)			
+		if(b->gameboard[number+i][letter+1]->color!=color) return true;		//true se il pedone può mangiare da un lato
 	if(letter-1>=0 && b->gameboard[number+i][letter-1]!=nullptr)
-		if(b->gameboard[number+i][letter-1]->color!=color) return true;
+		if(b->gameboard[number+i][letter-1]->color!=color) return true;		//true se il pedone può mangiare dall'altro lato
+	//controllo se è possibile fare l'en passant(sicuramente la casella dietro il pedone con en passant=true è libera)
 	if(color=='w')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
 	 		if(b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
-		if(letter-1<=7 && b->gameboard[number][letter+1]!=nullptr)
+		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
 	 		if(b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
 	}
 	if(color=='b')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
 	 		if(b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
-		if(letter-1<=7 && b->gameboard[number][letter+1]!=nullptr)
+		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
 	 		if(b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
 	}
 	return false;
@@ -82,30 +83,22 @@ void Pawn::move(int n, int l)
 {
 	if(try_move(n, l))
 	{
-		Piece* temp;
+		Piece* temp;  //variabile dove salvare il puntatore al pezzo eliminato/nullptr se casella vuota
 		if(color=='b')
 		{
 			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
 			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
-				int save_number=number, save_letter=letter;
+				//completamento mossa en passant
 				temp=b->gameboard[n-1][l];
 				b->gameboard[number][letter]=nullptr;
 				letter=l;number=n;
 				b->gameboard[n][l]=this;
 				b->gameboard[n-1][l]=nullptr;
-				
+				//rimosso pedone mangiato
 				for(int i=0;i<b->whites.size();i++)
 					if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-				if(b->is_check(color))
-				{
-					b->gameboard[n-1][l]=temp;
-					b->gameboard[save_number][save_letter]=this;
-					b->gameboard[n][l]=nullptr;
-					b->whites.push_back(temp);
-					number=save_number; letter=save_letter;
-					throw new Illegal_move();
-				}
+
 				return;
 			}
 		}
@@ -114,56 +107,38 @@ void Pawn::move(int n, int l)
 			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
 			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
-				int save_number=number, save_letter=letter;
+				//completamento mossa en passant
 				temp=b->gameboard[n+1][l];
 				b->gameboard[number][letter]=nullptr;
 				letter=l;number=n;
 				b->gameboard[n][l]=this;
 				b->gameboard[n+1][l]=nullptr;
-				
+				//rimosso pedone mangiato
 				for(int i=0;i<b->blacks.size();i++)
 					if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 				
-				if(b->is_check(color))
-				{
-					b->gameboard[n+1][l]=temp;
-					b->gameboard[save_number][save_letter]=this;
-					b->gameboard[n][l]=nullptr;
-					b->blacks.push_back(temp);
-					number=save_number; letter=save_letter;
-					throw new Illegal_move();
-				}
 				return;
 			}
 			
 			
 		}
-		int save_number=number, save_letter=letter;
+		int save_number=number; //salvo numero per eventuale aggiornamento en passant
+		//completamento mossa del pezzo, no en passant
 		temp=b->gameboard[n][l];
 		b->gameboard[number][letter]=nullptr;
 		b->gameboard[n][l]=this;
 		letter=l;number=n;
 		
+		//eliminazione eventuale pezzo mangiato
 		if(color=='w')
 			for(int i=0;i<b->blacks.size();i++)
 				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		if(b->is_check(color))
-		{
-			b->gameboard[n][l]=temp;
-			b->gameboard[save_number][save_letter]=this;
-			number=save_number; letter=save_letter;
-			if(temp!=nullptr)
-			{
-				if(color=='w') b->blacks.push_back(temp);
-							else b->whites.push_back(temp);
-			}
-			throw new Illegal_move();
-		}
 			
-		remove_en_passant();
+		remove_en_passant(); //false tutti gli en passant dei pedoni(perchè mossa finita)
+		//controllo se si è mosso di 2 caselle in avanti e ha un pedone vicino, se sì en passant di questo pedone true
 		if(color=='w' && n-save_number==-2)
 		{
 			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->piece=='P')
@@ -178,12 +153,14 @@ void Pawn::move(int n, int l)
 			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->piece=='p')
 				this->en_passant=true;
 		}
+		//se il pedone arriva in fondo, promozione
 		if(number==0 || number==7)
 		{
 			throw new Promotion();
 		}
 		return;
 	}
+	//se mossa non possibile illegal move
 	throw new Illegal_move();
 }
 

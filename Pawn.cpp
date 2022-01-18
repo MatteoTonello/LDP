@@ -22,31 +22,30 @@ bool Pawn::can_move()
 	int i=0;
 	if(color=='w') i=-1;   		//se è bianco, -1 perchè si sposta verso numeri descrescenti  
 	else i=+1;					//se è nero, viceversa
-	if(b->gameboard[number+i][letter]==nullptr) return true;				//true se casella davanti al pedone vuota
+	if(b->gameboard[number+i][letter]==nullptr) if(!diventa_scacco(number+i,letter,number+i,letter)) return true;				//true se casella davanti al pedone vuota
 	if(letter+1<=7 && b->gameboard[number+i][letter+1]!=nullptr)			
-		if(b->gameboard[number+i][letter+1]->color!=color) return true;		//true se il pedone può mangiare da un lato
+		if(b->gameboard[number+i][letter+1]->color!=color) if(!diventa_scacco(number+i,letter+1,number+i,letter+1)) return true;		//true se il pedone può mangiare da un lato
 	if(letter-1>=0 && b->gameboard[number+i][letter-1]!=nullptr)
-		if(b->gameboard[number+i][letter-1]->color!=color) return true;		//true se il pedone può mangiare dall'altro lato
+		if(b->gameboard[number+i][letter-1]->color!=color) if(!diventa_scacco(number+i,letter-1,number+i,letter-1)) return true;		//true se il pedone può mangiare dall'altro lato
 	//controllo se è possibile fare l'en passant(sicuramente la casella dietro il pedone con en passant=true è libera)
 	if(color=='w')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
-	 		if(b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+	 		if(b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;
 		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
-	 		if(b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+	 		if(b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;
 	}
 	if(color=='b')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
-	 		if(b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return true;
+	 		if(b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;;
 		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
-	 		if(b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return true;
+	 		if(b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;;
 	}
 	return false;
 }
 bool Pawn:: try_move(int n, int l)
 {
-	if(!can_move()) return false;
 	if(color=='b')
 	{
 		//controllo en passant

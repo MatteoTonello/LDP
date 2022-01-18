@@ -17,14 +17,22 @@ Knight::Knight(int n, int l, char col, Board* myBoard)
 bool Knight::can_move()
 	{
 		//controllo tutte le mosse del cavallo
-		if((b->gameboard[number+1][letter+2]==nullptr || b->gameboard[number+1][letter+2]->color!=color) && (number+1<=7 && letter+2<=7)) return true;
-		if((b->gameboard[number+1][letter-2]==nullptr || b->gameboard[number+1][letter-2]->color!=color) && (number+1>=7 && letter-2>=0)) return true;
-		if((b->gameboard[number-1][letter+2]==nullptr || b->gameboard[number-1][letter+2]->color!=color) && (number-1>=0 && letter+2<=7)) return true;
-		if((b->gameboard[number-1][letter-2]==nullptr || b->gameboard[number-1][letter-2]->color!=color) && (number-1>=0 && letter-2>=0)) return true;
-		if((b->gameboard[number+2][letter+1]==nullptr || b->gameboard[number+2][letter+1]->color!=color) && (number+2<=7 && letter+1<=7)) return true;
-		if((b->gameboard[number+2][letter-1]==nullptr || b->gameboard[number+2][letter-1]->color!=color) && (number+2<=7 && letter-1>=0)) return true;
-		if((b->gameboard[number-2][letter+1]==nullptr || b->gameboard[number-2][letter+1]->color!=color) && (number-2>=0 && letter+1<=7)) return true;
-		if((b->gameboard[number-2][letter-1]==nullptr || b->gameboard[number-2][letter-1]->color!=color) && (number-2>=0 && letter-1>=0)) return true;
+		if((b->gameboard[number+1][letter+2]==nullptr || b->gameboard[number+1][letter+2]->color!=color) && (number+1<=7 && letter+2<=7))
+			if(!diventa_scacco(number+1,letter+2,number+1,letter+2)) return true;
+		if((b->gameboard[number+1][letter-2]==nullptr || b->gameboard[number+1][letter-2]->color!=color) && (number+1>=7 && letter-2>=0))
+			if(!diventa_scacco(number+1,letter-2,number+1,letter-2)) return true;
+		if((b->gameboard[number-1][letter+2]==nullptr || b->gameboard[number-1][letter+2]->color!=color) && (number-1>=0 && letter+2<=7))
+			if(!diventa_scacco(number-1,letter+2,number-1,letter+2)) return true;
+		if((b->gameboard[number-1][letter-2]==nullptr || b->gameboard[number-1][letter-2]->color!=color) && (number-1>=0 && letter-2>=0))
+			if(!diventa_scacco(number-1,letter-2,number-1,letter-2)) return true;
+		if((b->gameboard[number+2][letter+1]==nullptr || b->gameboard[number+2][letter+1]->color!=color) && (number+2<=7 && letter+1<=7))
+			if(!diventa_scacco(number+2,letter+1,number+2,letter+1)) return true;
+		if((b->gameboard[number+2][letter-1]==nullptr || b->gameboard[number+2][letter-1]->color!=color) && (number+2<=7 && letter-1>=0))
+			if(!diventa_scacco(number+2,letter-1,number+2,letter-1)) return true;
+		if((b->gameboard[number-2][letter+1]==nullptr || b->gameboard[number-2][letter+1]->color!=color) && (number-2>=0 && letter+1<=7))
+			if(!diventa_scacco(number-2,letter+1,number-2,letter+1)) return true;
+		if((b->gameboard[number-2][letter-1]==nullptr || b->gameboard[number-2][letter-1]->color!=color) && (number-2>=0 && letter-1>=0))
+			if(!diventa_scacco(number-2,letter-1,number-2,letter-1)) return true;
 		
 		return false;  //nessuna mossa è possibile
 	};
@@ -56,7 +64,7 @@ void Knight::move(int n, int l)
 
 bool Knight::try_move(int n, int l)
 {
-		if(!can_move()) return false;
+		
 		if((abs(l-letter)==2 && abs(n-number)==1) || (abs(l-letter)==1 && abs(n-number)==2)){ //controllo se è una delle 8 caselle possibili
 			if(b->gameboard[n][l]==nullptr) return !diventa_scacco(n,l,n,l);
 			if(b->gameboard[n][l]->color==color) return false;	//controllo se è lo stesso colore

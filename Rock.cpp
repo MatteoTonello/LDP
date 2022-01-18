@@ -21,10 +21,10 @@ bool Rock:: can_move()
 	for(int i=-1; i<=1; i=i+2)
 	{
 		if(letter+i>=0 && letter+i<=7 ){
-			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number][letter+i]->color!=color) return true;
+			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number][letter+i]->color!=color) if(!diventa_scacco(number,letter+i,number,letter+i)) return true;
 		}
 		if(number+i>=0 && number+i<=7){
-			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->color!=color) return true;
+			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->color!=color) if(!diventa_scacco(number+i,letter,number+i,letter)) return true;
 		}			
 	}
 	//se non si può muovere su quelle caselle è bloccato
@@ -57,9 +57,9 @@ void Rock:: move(int n, int l)
 }
 
 
-bool Rock::try_move(int n, int l){
+bool Rock::try_move(int n, int l)
+{
 	
-	if(!can_move()) return false;
 	if(letter!=l && number!=n) return false;  //se la casella non è tra quelle della riga o colonna della torre
 	int vertical=number, horizontal=letter ;
 	//controllo movimento sulla colonna

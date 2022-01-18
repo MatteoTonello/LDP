@@ -18,13 +18,14 @@ Queen::Queen(int n, int l, char col, Board* myBoard )
 
 bool Queen:: can_move()
 {
+	//Controllo le 8 caselle circostanti
 	for(int i=-1; i<=1; i++)
 	{
 		if(number+i>=0 && number+i<=7){
 			for(int j=-1;j<=1;j++)
 			{
 				if(letter+j>=0 && letter+j<=7){
-					if(b->gameboard[number+i][letter+j]==nullptr) return true;
+					if(b->gameboard[number+i][letter+j]==nullptr) return true; //
 					if(b->gameboard[number+i][letter+j]->color!=color) return true;
 				}
 			}
@@ -135,19 +136,6 @@ void Queen:: move(int n, int l)
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		/*if(b->is_check(color))
-		{
-			if(temp!=nullptr)
-			{
-				if(color=='w') b->blacks.push_back(temp);
-							else b->whites.push_back(temp);
-			}
-			b->gameboard[n][l]=temp;
-			b->gameboard[save_number][save_letter]=this;
-			number=save_number; letter=save_letter;
-			throw new Illegal_move();
-		}*/
-		
 			remove_en_passant();
 			return;
 		}	

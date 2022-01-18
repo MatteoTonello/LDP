@@ -11,102 +11,99 @@ using namespace std;
       letter=l;
       color=col;
       b=myBoard;
-      if(color=='w') piece='a';
+      if(color=='w') piece='a';  //Assegno la lettera da visualizzare a schermo in base al colore
       else piece='A';
    };
 
    bool Bishop::can_move()
    {
+      //Controllo se si può muovere nelle 4 caselle diagonali
       for(int i=-1; i<=1; i=i+2)
       {
          for(int j=-1;j<=1;j=j+2)
          {
             if(number+i>=0 && number+i<8 && letter+j>=0 && letter+j<8)
             {
-               if(b->gameboard[number+i][letter+j]==nullptr) return true;
-               if(b->gameboard[number+i][letter+j]->color!=color) return true;
+               if(b->gameboard[number+i][letter+j]==nullptr) return true; //true se la casella è vuota
+               if(b->gameboard[number+i][letter+j]->color!=color) return true;  //true se la casella contiene una pedina avversaria
             }
          }
       }
-      return false;
+      return false; //Non ha nessuna possibilità di movimento
    }
 
-   void Bishop::move(int n, int l)
-   {
-	if(try_move(n, l))
-	{
-		int save_number=number, save_letter=letter;
-		Piece* temp=b->gameboard[n][l];
-		b->gameboard[number][letter]=nullptr;
-		letter=l;number=n;
-		b->gameboard[n][l]=this;
-      if(color=='w')
-			for(int i=0;i<b->blacks.size();i++)
-				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
-		if(color=='b')
-			for(int i=0;i<b->whites.size();i++)
-				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		/*if(b->is_check(color))
-		{
-			b->gameboard[n][l]=temp;
-			b->gameboard[save_number][save_letter]=this;
-			number=save_number; letter=save_letter;
-         if(temp!=nullptr)
-			{
-				if(color=='w') b->blacks.push_back(temp);
-							else b->whites.push_back(temp);
-			}
-			throw new Illegal_move();
-		}*/
-         remove_en_passant();
-			return;
-	}	
-	
-   throw new Illegal_move();
-}
+   void Bishop::move(int n, int l){
+      if(try_move(n, l))
+      {
+         Piece* temp=b->gameboard[n][l];  //Salvo il contenuto della casella di arrivo
+         b->gameboard[number][letter]=nullptr; //Azzero la casella di partenza
+         letter=l;number=n;
+         b->gameboard[n][l]=this; //Sposto il pezzo nella casella di arrivo
+
+         //Se c'era un pezzo lo elimino dalla casella di arrivo
+         if(color=='w')
+            for(int i=0;i<b->blacks.size();i++)
+               if(b->blacks[i]==temp){ 
+                  b->blacks.erase(b->blacks.begin()+i);
+                  break;
+               }
+         if(color=='b')
+            for(int i=0;i<b->whites.size();i++)
+               if(b->whites[i]==temp){
+                  b->whites.erase(b->whites.begin()+i);
+                  break;
+               }
+            remove_en_passant(); //Rimuovo la possibilità di fare l'en passant da tutti i pedoni, perché ho fatto una mossa
+            return;
+      }	
+      throw new Illegal_move(); //Se la mossa non era possibile lancio l'eccezione
+   }
 
    bool Bishop::try_move(int n, int l){
-         if(!can_move()) return false;
-         if((abs(l-letter))!=(abs(n-number))) return false;
-               if(n>number)
-            {
-            if(l>letter)
-            {
-               for(int i=number+1, j=letter+1; i<n; i++, j++)
-               {
-                  if(b->gameboard[i][j]!=nullptr) return false;
-               }
-            }
-            else
-            {
-               for(int i=number+1, j=letter-1; i<n; i++, j--)
-               {
-                  if(b->gameboard[i][j]!=nullptr) return false;
-               }
-            }
-         }
-         else
+      if(!can_move()) return false;
+      if((abs(l-letter))!=(abs(n-number))) return false; //Se gli indici non sono uguali non è in diagonale
+
+      if(n>number) // Controllo se la diagonale è verso il basso
+      {
+         if(l>letter)   // Controllo se la diagonale è verso destra
          {
-            if(l>letter)
+            for(int i=number+1, j=letter+1; i<n; i++, j++) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
             {
-               for(int i=number-1, j=letter+1; i>n; i--, j++)
-               {
-                  if(b->gameboard[i][j]!=nullptr) return false;
-               }
-            }
-            else
-            {
-               for(int i=number-1, j=letter-1; i>n; i--, j--)
-               {
-                  if(b->gameboard[i][j]!=nullptr) return false;
-               }
+               if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
             }
          }
-         if(b->gameboard[n][l]!=nullptr)
+         else  // La diagonale è verso sinistra
          {
-            if(b->gameboard[n][l]->color==color)return false;
+            for(int i=number+1, j=letter-1; i<n; i++, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
+            {
+               if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
+            }
          }
-         return !diventa_scacco(n,l,n,l);
+      }
+      else //La diagonale è verso l'alto
+      {
+         if(l>letter) // Controllo se la diagonale è verso destra
+         {
+            for(int i=number-1, j=letter+1; i>n; i--, j++) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
+            {
+               if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
+            }
+         }
+         else // La diagonale è verso sinistra
+         {
+            for(int i=number-1, j=letter-1; i>n; i--, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
+            {
+               if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
+            }
+         }
+      }
+      
+      //Se il movimento è lecito, controllo che la casella di arrivo sia valida
+      if(b->gameboard[n][l]!=nullptr) //Se è vuota procedo, altrimenti controllo
+      {
+         if(b->gameboard[n][l]->color==color)return false; //Se non è vuota e il pezzo non è avversario, false
+      }
+      return !diventa_scacco(n,l,n,l);
    }
    
 

@@ -32,14 +32,10 @@ bool Queen:: can_move()
 	}
 	return false;
 }
-int abs_value(int j)
-{
-	if(j>0) return j;return -j;
-}
 bool Queen::try_move(int n, int l)
 {
 	if(!can_move()) return false;
-	if((letter!=l && number!=n)&&(abs_value(number-n)!=abs_value(letter-l))) return false;
+	if((letter!=l && number!=n)&&(abs(number-n)!=abs(letter-l))) return false;
 	int vertical=number, horizontal=letter;
 	if(number!=n && letter==l)
 	{

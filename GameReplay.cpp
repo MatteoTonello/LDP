@@ -2,6 +2,7 @@
 #define GAMEREPLAY_CPP
 #include "GameReplay.h"
 #include "Piece.h"
+#include "Board.cpp"
 #include <iostream>
 #include <fstream>
 using namespace std;

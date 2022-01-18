@@ -2,6 +2,8 @@
 #define KING_CPP
 #include "King.h"
 #include "Board.cpp"
+#include "Illegal_move.cpp"
+#include <math.h>
 using namespace std;
 
 King::King(int n, int l, char col, Board* myBoard)
@@ -129,7 +131,7 @@ void King::move(int n, int l)
 		if(l==2) long_castling();
 		return;
 	}
-	if(abs_value(n-number)>1 || abs_value(l-letter)>1) throw new Illegal_move();
+	if(abs(n-number)>1 || abs(l-letter)>1) throw new Illegal_move();
 	int save_letter=letter, save_number=number;
 	if(b->gameboard[n][l]==nullptr)
 	{

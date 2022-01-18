@@ -8,6 +8,7 @@
 #include "King.h"
 #include "Bishop.h"
 #include <vector>
+#include <string>
 using namespace std;
 Board::Board()
 {

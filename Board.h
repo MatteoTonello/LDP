@@ -7,22 +7,21 @@
 using namespace std;
 class Piece;
 class King;
+//classe che rappresenta la scacchiera
 class Board
 {
 	public:
-		Board();
-		Piece* gameboard[8][8];
-		vector<Board> last_bs;
-		vector<Piece*> whites;
-		vector<Piece*> blacks;
-		bool is_check_mate(char c);
-		bool is_check(char c);
-		bool is_draw(char c);
-		bool cant_be_mate();
-		King* white_king;
-		King* black_king;
-		void print();
-		string to_String();
+		Board();       				//costruttore scacchiera iniziale
+		Piece* gameboard[8][8];   	//matrice di puntatori a pezzi
+		vector<Piece*> whites;		//vettore contenente tutti i pezzi bianchi
+		vector<Piece*> blacks;		//vettore contenente tutti i pezzi neri
+		bool is_check_mate(char c);	//true se è scacco matto, false altrimenti
+		bool is_check(char c);	//true se è scacco, false altrimenti
+		bool is_draw(char c);	//true se è patta, false altrimenti
+		bool cant_be_mate();	//true se non è possibile fare scacco, false altrimenti
+		King* white_king;		//puntatore al re bianco
+		King* black_king;		//puntatore al re nero
+		string to_String();		//restituisce la scacchiera come stringa
 		
 };
 #endif

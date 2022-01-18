@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
+#include "Board.cpp"
 #include "Illegal_move.cpp"
 #include <stdio.h>
 #include <stdlib.h>    
@@ -42,7 +43,7 @@ Game::Game(Player* n1,Player* n2)
 	last_bs={mainboard->to_String()};
     pawns="PPPPPPPP                                pppppppp";
     fmcount=0;
-    npieces=16;
+    npieces=32;
     
 }
 void Game::startgame()

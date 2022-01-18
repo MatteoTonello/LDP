@@ -75,52 +75,6 @@ bool King::can_move()
 		}
 	}
 	return false;
-	/*int j=-1; int i=-1;
-	int save_letter=letter, save_number=number;
-	while(i<=1)
-		{
-			while(j<=1)
-			{
-				if(b->gameboard[i][j]==nullptr)
-				{
-					b->gameboard[number+i][j]=this;
-					b->gameboard[number][letter]=nullptr;
-					number=number+i; letter=letter+j;
-					if(!b->is_check(color))
-					{
-						b->gameboard[i][j]=nullptr;
-						b->gameboard[save_number][save_letter]=this;
-						letter=save_letter; number=save_number;
-						return false;
-					}
-					b->gameboard[i][j]=nullptr;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
-				}
-				if(b->gameboard[i][j]->color!=color)
-				{
-					Piece* p=b->gameboard[i][j];
-					b->gameboard[i][j]=this;
-					b->gameboard[number][letter]=nullptr;
-					number=i; letter=j;
-					if(!b->is_check(color))
-					{
-						b->gameboard[i][j]=p;
-						b->gameboard[save_number][save_letter]=this;
-						letter=save_letter; number=save_number;
-						return false;
-					}
-					b->gameboard[i][j]=p;
-					b->gameboard[save_number][save_letter]=this;
-					letter=save_letter; number=save_number;
-				}
-				j++;
-			}
-			i++;
-		}
-	return false;
-	*/
-	return false;
 }
 void King::move(int n, int l)
 {

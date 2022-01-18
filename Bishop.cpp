@@ -97,7 +97,7 @@ using namespace std;
             }
          }
       }
-      
+
       //Se il movimento è lecito, controllo che la casella di arrivo sia valida
       if(b->gameboard[n][l]!=nullptr) //Se è vuota procedo, altrimenti controllo
       {

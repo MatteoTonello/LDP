@@ -135,19 +135,7 @@ void Queen:: move(int n, int l)
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-		/*if(b->is_check(color))
-		{
-			if(temp!=nullptr)
-			{
-				if(color=='w') b->blacks.push_back(temp);
-							else b->whites.push_back(temp);
-			}
-			b->gameboard[n][l]=temp;
-			b->gameboard[save_number][save_letter]=this;
-			number=save_number; letter=save_letter;
-			throw new Illegal_move();
-		}*/
-		
+				
 			remove_en_passant();
 			return;
 		}	

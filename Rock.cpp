@@ -17,6 +17,7 @@ Rock::Rock(int n, int l, char col, Board* myBoard )
 
 bool Rock:: can_move()
 {
+	//controllo se si può muovere nelle 4 caselle intorno a lui
 	for(int i=-1; i<=1; i=i+2)
 	{
 		if(letter+i>=0 && letter+i<=7 ){
@@ -26,6 +27,7 @@ bool Rock:: can_move()
 			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->color!=color) return true;
 		}			
 	}
+	//se non si può muovere su quelle caselle è bloccato
 	return false;
 };
 
@@ -33,22 +35,24 @@ void Rock:: move(int n, int l)
 {
 	if(try_move(n, l))
 	{
-		int save_number=number, save_letter=letter;
+		//salva il puntatore al pezzo eliminato/nullptr se casella vuota
 		Piece* temp=b->gameboard[n][l];
+		//completamento mossa
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
+		//rimuove eventuale pedina mangiata
 		if(color=='w')
 			for(int i=0;i<b->blacks.size();i++)
 				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-			is_already_move=true;
-			remove_en_passant();
-			return;
-		}	
-	
+		is_already_move=true; 	//si è appena mosso
+		remove_en_passant();	//rimuovo eventuali en passant
+		return;
+	}	
+	//se mossa non possibile, illegal move
 	throw new Illegal_move();
 }
 
@@ -56,53 +60,57 @@ void Rock:: move(int n, int l)
 bool Rock::try_move(int n, int l){
 	
 	if(!can_move()) return false;
-	if(letter!=l && number!=n) return false;
+	if(letter!=l && number!=n) return false;  //se la casella non è tra quelle della riga o colonna della torre
 	int vertical=number, horizontal=letter ;
+	//controllo movimento sulla colonna
 	if(number!=n && letter==l)
 	{
-		if(n>number)
+		
+		if(n>number) 		//la posizione indicata è più in giù di quella attuale
 		{
 			vertical++;
 			while(vertical<n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical++;
 			}
-			if(vertical!=n) return false;
+			if(vertical!=n) return false;  //se non ha raggiunto la posizione
 		}
-		else
+		else				//la posizione indicata è più in sù di quella attuale
 		{
 			vertical--;
 			while(vertical>n && b->gameboard[vertical][letter]==nullptr)
 			{
 				vertical--;
 			}
-			if(vertical!=n) return false;
+			if(vertical!=n) return false;  //se non ha raggiunto la posizione
 		}
 	}
-	if(letter!=l && number==n)
+	//controllo movimento sulla riga
+	if(letter!=l && number==n)		
 	{
-		if(l>letter)
+		if(l>letter)       //la posizione indicata è più a destra di quella attuale
 		{
 			horizontal++;
 			while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal++;
 			}
-			if(horizontal!=l) return false;
+			if(horizontal!=l) return false;  //se non ha raggiunto la posizione
 		}
-		else
+		else				//la posizione indicata è più a sinistra di quella attuale
 		{
 			horizontal--;
 			while(horizontal>l && b->gameboard[n][horizontal]==nullptr)
 			{
 				horizontal--;
 			}
-			if(horizontal!=l) return false;
+			if(horizontal!=l) return false;   //se non ha raggiunto la posizione
 		}
 	}
+	
 	if(b->gameboard[n][l]!=nullptr)
     {
-        if(b->gameboard[n][l]->color==color)return false;
+        if(b->gameboard[n][l]->color==color)return false;	//controllo che la pedina nella casella non sia dello stesso colore
     }
 	return !diventa_scacco(n, l,n,l);
 }

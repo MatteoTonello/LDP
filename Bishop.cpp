@@ -25,7 +25,7 @@ using namespace std;
             if(number+i>=0 && number+i<8 && letter+j>=0 && letter+j<8)
             {
                if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color) //Se la casella è vuota o contiene una pedina avversaria
-                  if(!diventa_scacco(number+i,letter+j,number+i,letter+j) return true; //Se il movimento non porta uno scacco allora true
+                  if(!diventa_scacco(number+i,letter+j,number+i,letter+j)) return true; //Se il movimento non porta uno scacco allora true
             }
          }
       }

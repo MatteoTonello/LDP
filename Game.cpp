@@ -115,9 +115,14 @@ bool Game::fifty_moves(){
                 if(mainboard->gameboard[i][j]->piece=='p' || mainboard->gameboard[i][j]->piece=='P'){
                     s=s+mainboard->gameboard[i][j]->piece;
                 }
-                else{
+                else
+                {
                     s=s+" ";
                 }
+            }
+            else
+            {
+                s=s+" ";
             }
         }
     }

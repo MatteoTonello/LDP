@@ -13,671 +13,462 @@
 1 7 PPPPPPPP
 2 6         
 3 5         
-4 4     p   
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 PPP PPPP
-2 6         
-3 5    P    
-4 4     p   
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 PPP PPPP
-2 6         
-3 5    p    
 4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 PP  PPPP
-2 6         
-3 5   Pp    
-4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 PP  PPPP
-2 6   p     
-3 5         
-4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6   P     
-3 5         
-4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadract
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6   P     
-3 5  a      
-4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadr ct
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5  P      
-4 4         
-5 3         
-6 2 pppp ppp
-7 1 tcadr ct
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5  P      
-4 4   p     
-5 3         
-6 2 pp p ppp
-7 1 tcadr ct
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4   P     
-5 3         
-6 2 pp p ppp
-7 1 tcadr ct
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4   P     
 5 3    p    
-6 2 pp   ppp
-7 1 tcadr ct
+6 2 ppp pppp
+7 1 tcadract
     ABCDEFGH
     01234567
 
 0 8 TCADRACT
-1 7 P   PPPP
+1 7 PPPP PPP
 2 6         
-3 5         
+3 5     P   
 4 4         
-5 3    P    
-6 2 pp   ppp
-7 1 tcadr ct
+5 3    p    
+6 2 ppp pppp
+7 1 tcadract
     ABCDEFGH
     01234567
 
 0 8 TCADRACT
-1 7 P   PPPP
+1 7 PPPP PPP
 2 6         
-3 5         
+3 5     P   
 4 4         
-5 3    P    
-6 2 pp  cppp
-7 1 tcadr  t
+5 3    p  p 
+6 2 ppp pp p
+7 1 tcadract
     ABCDEFGH
     01234567
 
 0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4         
-5 3         
-6 2 pp  Pppp
-7 1 tcadr  t
-    ABCDEFGH
-    01234567
-
-0 8 TCADRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4         
-5 3         
-6 2 pp  rppp
-7 1 tcad   t
-    ABCDEFGH
-    01234567
-
-0 8 TC DRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4         
-5 3        A
-6 2 pp  rppp
-7 1 tcad   t
-    ABCDEFGH
-    01234567
-
-0 8 TC DRACT
-1 7 P   PPPP
-2 6         
-3 5         
-4 4         
-5 3        p
-6 2 pp  rp p
-7 1 tcad   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DRACT
-1 7 P   PPPP
-2 6   C     
-3 5         
-4 4         
-5 3        p
-6 2 pp  rp p
-7 1 tcad   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DRACT
-1 7 P   PPPP
-2 6   C    a
-3 5         
-4 4         
-5 3        p
-6 2 pp  rp p
-7 1 tc d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DRACT
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4         
-5 3        p
-6 2 pp  rp p
-7 1 tc d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DRACT
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4         
-5 3   c    p
-6 2 pp  rp p
-7 1 t  d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR CT
-1 7 P   PPAP
-2 6   C    P
-3 5         
-4 4         
-5 3   c    p
-6 2 pp  rp p
-7 1 t  d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR CT
-1 7 P   PPAP
-2 6   C    P
-3 5         
-4 4  p      
-5 3   c    p
-6 2 p   rp p
-7 1 t  d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR CT
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4  p      
-5 3   A    p
-6 2 p   rp p
-7 1 t  d   t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR CT
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4  p d    
-5 3   A    p
-6 2 p   rp p
-7 1 t      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR CT
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4  p d    
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR Cd
-1 7 P   PP P
-2 6   C    P
-3 5         
-4 4  p      
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR Cd
-1 7 P   PP P
-2 6        P
-3 5         
-4 4  p C    
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR C 
-1 7 P   PP P
-2 6        P
-3 5         
-4 4  p d    
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR C 
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p d    
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T  DR Cd
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p      
-5 3        p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T   R Cd
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p   rp p
-7 1 A      t
-    ABCDEFGH
-    01234567
-
-0 8 T   R Cd
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8  T  R Cd
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8  T  R d 
-1 7 P   PP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8  T    d 
-1 7 P  RPP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8  d      
-1 7 P  RPP P
-2 6         
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8  d      
-1 7 P  R P P
-2 6         
-3 5     P  P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8         
-1 7 P  R P P
-2 6         
-3 5     d  P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
-    ABCDEFGH
-    01234567
-
-0 8         
-1 7    R P P
+1 7  PPP PPP
 2 6 P       
-3 5     d  P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
+3 5     P   
+4 4         
+5 3    p  p 
+6 2 ppp pp p
+7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8         
-1 7    R P P
+0 8 TCADRACT
+1 7  PPP PPP
 2 6 P       
-3 5  d     P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
+3 5     P   
+4 4         
+5 3 p  p  p 
+6 2  pp pp p
+7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RP P
+0 8 TCADRACT
+1 7  PPP PPP
 2 6 P       
-3 5  d     P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
+3 5         
+4 4     P   
+5 3 p  p  p 
+6 2  pp pp p
+7 1 tcadract
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RP P
-2 6 d       
-3 5        P
-4 4  p      
-5 3    D   p
-6 2 p    p p
-7 1 A   r  t
+0 8 TCADRACT
+1 7  PPP PPP
+2 6 P       
+3 5       a 
+4 4     P   
+5 3 p  p  p 
+6 2  pp pp p
+7 1 tc dract
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RP P
-2 6 d       
-3 5        P
-4 4  p      
-5 3        D
-6 2 p    p p
-7 1 A   r  t
+0 8 TCADR CT
+1 7  PPPAPPP
+2 6 P       
+3 5       a 
+4 4     P   
+5 3 p  p  p 
+6 2  pp pp p
+7 1 tc dract
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RP P
-2 6 d       
-3 5        P
-4 4  p      
-5 3        D
-6 2 p    p p
-7 1 A   r t 
+0 8 TCADR CT
+1 7  PPPAPPP
+2 6 P       
+3 5       a 
+4 4     P   
+5 3 p  p  p 
+6 2  pprpp p
+7 1 tc d act
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RP P
-2 6 d       
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r t 
+0 8 TCADR CT
+1 7  PPPAPPP
+2 6 P       
+3 5       a 
+4 4         
+5 3 p  pP p 
+6 2  pprpp p
+7 1 tc d act
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RPtP
-2 6 d       
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r   
+0 8 TCADR CT
+1 7  PPPAPPP
+2 6 P       
+3 5       a 
+4 4         
+5 3 p  pP p 
+6 2  pp pp p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7     RPt 
-2 6 d      P
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r   
+0 8 TCADR CT
+1 7   PPAPPP
+2 6 P       
+3 5  P    a 
+4 4         
+5 3 p  pP p 
+6 2  pp pp p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7     Rt  
-2 6 d      P
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r   
+0 8 TCADR CT
+1 7   PPAPPP
+2 6 P       
+3 5  P    a 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6 d      P
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r   
+0 8 TCADR CT
+1 7   P APPP
+2 6 P       
+3 5  P P  a 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6        d
-3 5        P
-4 4  p      
-5 3         
-6 2 p    p D
-7 1 A   r   
+0 8 TCADR CT
+1 7   P APPP
+2 6 P       
+3 5  P P  a 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6        d
-3 5        P
-4 4  p      
-5 3       D 
-6 2 p    p  
-7 1 A   r   
+0 8 TCA R CT
+1 7   PDAPPP
+2 6 P       
+3 5  P P  a 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcrd act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6        d
-3 5        P
-4 4  p      
-5 3       p 
-6 2 p       
-7 1 A   r   
+0 8 TCA R CT
+1 7   PDAPPP
+2 6 P       
+3 5  P P  a 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcr dact
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6      A d
-3 5        P
-4 4  p      
-5 3       p 
-6 2 p       
-7 1     r   
+0 8 TCA R CT
+1 7   P APPP
+2 6 P       
+3 5  P P Da 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcr dact
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6      A d
-3 5        P
-4 4  p      
-5 3 p     p 
-6 2         
-7 1     r   
+0 8 TCA R CT
+1 7   P APPP
+2 6 P       
+3 5 dP P Da 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcr  act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6        d
-3 5        P
-4 4  p     A
-5 3 p     p 
-6 2         
-7 1     r   
+0 8 TCA R CT
+1 7   P AP P
+2 6 P     P 
+3 5 dP P Da 
+4 4      p  
+5 3 p  pP p 
+6 2  pp p  p
+7 1 tcr  act
     ABCDEFGH
     01234567
 
-0 8         
-1 7      R  
-2 6        d
-3 5        P
-4 4  p     p
-5 3 p       
-6 2         
-7 1     r   
+0 8 TCA R CT
+1 7   P AP P
+2 6 P     P 
+3 5 dP P Da 
+4 4      p  
+5 3 p cpP p 
+6 2  pp p  p
+7 1 t r  act
     ABCDEFGH
     01234567
 
-0 8       R 
-1 7         
-2 6        d
-3 5        P
-4 4  p     p
-5 3 p       
-6 2         
-7 1     r   
+0 8 TCA R CT
+1 7   P AP P
+2 6 P     P 
+3 5 dP P  a 
+4 4      D  
+5 3 p cpP p 
+6 2  pp p  p
+7 1 t r  act
     ABCDEFGH
     01234567
 
-0 8       R 
-1 7         
-2 6       d 
-3 5        P
-4 4  p     p
-5 3 p       
-6 2         
-7 1     r   
+0 8 TCA R CT
+1 7   P AP P
+2 6 P     P 
+3 5 dP P  a 
+4 4      D  
+5 3 p cpP pa
+6 2  pp p  p
+7 1 t r   ct
     ABCDEFGH
     01234567
 
-0 8        R
-1 7         
-2 6       d 
-3 5        P
-4 4  p     p
-5 3 p       
-6 2         
-7 1     r   
+0 8 TCA R  T
+1 7   P AP P
+2 6 P    CP 
+3 5 dP P  a 
+4 4      D  
+5 3 p cpP pa
+6 2  pp p  p
+7 1 t r   ct
     ABCDEFGH
     01234567
 
-0 8        R
-1 7         
-2 6       d 
-3 5  p     P
-4 4        p
-5 3 p       
-6 2         
-7 1     r   
+0 8 TCA R  T
+1 7   d AP P
+2 6 P    CP 
+3 5  P P  a 
+4 4      D  
+5 3 p cpP pa
+6 2  pp p  p
+7 1 t r   ct
     ABCDEFGH
     01234567
 
+0 8 TC  R  T
+1 7   d AP P
+2 6 P   ACP 
+3 5  P P  a 
+4 4      D  
+5 3 p cpP pa
+6 2  pp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
 
+0 8 TC  R  T
+1 7   d AP P
+2 6 P   ACP 
+3 5  P P  a 
+4 4      D  
+5 3 p  pP pa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TC  RA T
+1 7   d  P P
+2 6 P   ACP 
+3 5  P P  a 
+4 4      D  
+5 3 p  pP pa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TC  RA T
+1 7   d  P P
+2 6 P   ACP 
+3 5  P P    
+4 4      D a
+5 3 p  pP pa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TC  RA T
+1 7   d  P P
+2 6 P   ACP 
+3 5  P P    
+4 4        a
+5 3 p  pPDpa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCd RA T
+1 7      P P
+2 6 P   ACP 
+3 5  P P    
+4 4        a
+5 3 p  pPDpa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCA RA T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4        a
+5 3 p  pPDpa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCA RA T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4        a
+5 3 p  pPDpa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4        a
+5 3 p  pPDpa
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4       pa
+5 3 p  pPD a
+6 2 cpp p  p
+7 1 t r   ct
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4       pa
+5 3 p  pP  a
+6 2 cpp p  p
+7 1 t r   cD
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     pa
+5 3    pP  a
+6 2 cpp p  p
+7 1 t r   cD
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     pa
+5 3    pP  a
+6 2 cpp p  p
+7 1 t r   D 
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     pa
+5 3    pP   
+6 2 cpp p  p
+7 1 t r  aD 
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     pa
+5 3    pP   
+6 2 cpp p  p
+7 1 t r  D  
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     p 
+5 3    pP   
+6 2 cpp p  p
+7 1 t r aD  
+    ABCDEFGH
+    01234567
+
+0 8 TCAR A T
+1 7      P P
+2 6 P    CP 
+3 5  P P    
+4 4 p     p 
+5 3    pP   
+6 2 cpp p  p
+7 1 t r D   
+    ABCDEFGH
+    01234567
+
+VINCITORE NERO

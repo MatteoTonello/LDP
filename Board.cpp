@@ -210,7 +210,7 @@ bool Board::is_check_mate(char c)
 				{
 					if(p->letter<white_king->letter)
 					{
-						for(int i=p->letter;i<white_king->number;i++)
+						for(int i=p->letter;i<white_king->letter;i++)
 						{
 							for(int j=0;j<whites.size();j++)
 							{
@@ -221,7 +221,7 @@ bool Board::is_check_mate(char c)
 					}
 					else
 					{
-						for(int i=p->letter;i>white_king->number;i--)
+						for(int i=p->letter;i>white_king->letter;i--)
 						{
 							for(int j=0;j<whites.size();j++)
 							{

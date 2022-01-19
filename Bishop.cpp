@@ -36,9 +36,10 @@ using namespace std;
       if(try_move(n, l))
       {
          Piece* temp=b->gameboard[n][l];  //Salvo il contenuto della casella di arrivo
-         b->gameboard[number][letter]=nullptr; //Azzero la casella di partenza
+         //Sposto il pezzo nella casella di arrivo
+         b->gameboard[number][letter]=nullptr;
          letter=l;number=n;
-         b->gameboard[n][l]=this; //Sposto il pezzo nella casella di arrivo
+         b->gameboard[n][l]=this;
 
          //Se c'era un pezzo lo elimino dalla casella di arrivo
          if(color=='w')

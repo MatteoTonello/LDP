@@ -299,6 +299,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 				c=prom[0];
 				if(c=='A' || c=='T' || c=='D' || c=='C') break;
 				cout<<"pezzo non valido"<<endl;
+				throw new Illegal_move();
 			}
 			ofstream file(output_file,ios::app);
 			file<<prom<<"\n";

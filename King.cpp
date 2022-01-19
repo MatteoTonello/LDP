@@ -59,7 +59,7 @@ bool King::can_move()
 							letter=save_letter; number=save_number;
 							if(p!=nullptr)
 							if(color=='w') b->blacks.push_back(p);
-							else b->whites.push_back(p);
+								else b->whites.push_back(p);
 							return true;
 						}
 						if(p!=nullptr)

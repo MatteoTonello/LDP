@@ -19,7 +19,29 @@ King::King(int n, int l, char col, Board* myBoard)
 }
 bool King::try_move(int n,int l)
 {
-	return true;
+	if(b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()==color) return false;
+	if(n!=number || l!=letter)
+	{
+		if(abs(l-letter)==2 && !is_already_move && number==n)
+		{
+			if(l==2)
+			{
+				if((b->gameboard[number][0]!=nullptr) && (b->gameboard[number][0]->cpiece()=='t' || b->gameboard[number][0]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
+					return !diventa_scacco(n,l,n,l);
+			}
+			if(l==6)
+			{
+				if((b->gameboard[number][7]!=nullptr) && (b->gameboard[number][7]->cpiece()=='t' || b->gameboard[number][7]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
+					return !diventa_scacco(n,l,n,l);
+			}
+			
+		}
+		if(abs(n-number)<=1 && abs(l-letter)<=1)
+		{
+			return !diventa_scacco(n,l,n,l);
+		}
+	}
+	return false;
 }
 bool King::can_move()
 {
@@ -32,7 +54,7 @@ bool King::can_move()
 			{
 				if(letter+j>=0 && letter+j<=7)
 				{
-					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color)
+					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->col()!=color)
 					{
 						Piece* p=b->gameboard[number+i][letter+j];
 						b->gameboard[number+i][letter+j]=this;
@@ -78,7 +100,7 @@ bool King::can_move()
 }
 void King::move(int n, int l)
 {
-	if(n==number && (l==letter+2 || l==letter-2) )
+	if(n==number && (l==letter+2 || l==letter-2) && (l==2 || l==6))
 	{
 		if(b->is_check(color)) throw new Illegal_move();
 		if(l==6) short_castling();
@@ -102,7 +124,8 @@ void King::move(int n, int l)
 	}
 	else
 	{
-		if(b->gameboard[n][l]->color!=color)
+      if(b->gameboard[n][l]->cpiece()=='r' || b->gameboard[n][l]->cpiece()=='R') throw new Illegal_move();
+		if(b->gameboard[n][l]->col()!=color)
 		{
 			Piece* p=b->gameboard[n][l];
 			b->gameboard[n][l]=this;
@@ -131,7 +154,6 @@ void King::move(int n, int l)
 					else b->whites.push_back(p);
 				throw new Illegal_move();
 			}
-					
 	    }
 		else
 			throw new Illegal_move();
@@ -143,7 +165,7 @@ void King::move(int n, int l)
 }
 void King::short_castling()
 {
-		if((!is_already_move) && (b->gameboard[number][7]!=nullptr) && (b->gameboard[number][7]->piece=='t' || b->gameboard[number][7]->piece=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
+		if((!is_already_move) && (b->gameboard[number][7]!=nullptr) && (b->gameboard[number][7]->cpiece()=='t' || b->gameboard[number][7]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
 		{
 			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]== nullptr)
 			{
@@ -158,10 +180,7 @@ void King::short_castling()
 						throw new Illegal_move();
 					}
 					b->gameboard[number][5]=nullptr;
-					b->gameboard[number][4]=this;
-					letter=4;
 					b->gameboard[number][6]=this;
-					b->gameboard[number][letter]=nullptr;
 					letter=6; 
 					if(b->is_check(color))
 					{
@@ -170,9 +189,13 @@ void King::short_castling()
 						letter=4; 
 						throw new Illegal_move();
 					}
-					b->gameboard[number][5]=b->gameboard[number][7];
-					b->gameboard[number][7]=nullptr;
-					b->gameboard[number][5]->letter=5;
+					b->gameboard[number][4]=this;
+					b->gameboard[number][6]=nullptr;
+					letter=4;
+					b->gameboard[number][7]->move(number,5);
+					b->gameboard[number][6]=this;
+					b->gameboard[number][4]=nullptr;
+					letter=6;
 					return;
 			}
 			
@@ -181,11 +204,11 @@ void King::short_castling()
 }
 void King::long_castling()
 {
-	if((!is_already_move) && (b->gameboard[number][0]!=nullptr) && (b->gameboard[number][0]->piece=='t' || b->gameboard[number][0]->piece=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
+	if((!is_already_move) && (b->gameboard[number][0]!=nullptr) && (b->gameboard[number][0]->cpiece()=='t' || b->gameboard[number][0]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
 		{
 			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
 			{
-				   b->gameboard[number][3]=this;
+				   	b->gameboard[number][3]=this;
 					b->gameboard[number][letter]=nullptr;
 					letter=3;
 					if(b->is_check(color))
@@ -196,10 +219,7 @@ void King::long_castling()
 						throw new Illegal_move();
 					}
 					b->gameboard[number][3]=nullptr;
-					b->gameboard[number][4]=this;
-					letter=4;
 					b->gameboard[number][2]=this;
-					b->gameboard[number][letter]=nullptr;
 					letter=2; 
 					if(b->is_check(color))
 					{
@@ -208,9 +228,13 @@ void King::long_castling()
 						letter=4; 
 						throw new Illegal_move();
 					}
-					b->gameboard[number][3]=b->gameboard[number][0];
-					b->gameboard[number][0]=nullptr;
-					b->gameboard[number][3]->letter=3;
+					b->gameboard[number][4]=this;
+					b->gameboard[number][2]=nullptr;
+					letter=4;
+					b->gameboard[number][0]->move(number,3);
+					b->gameboard[number][2]=this;
+					b->gameboard[number][4]=nullptr;
+					letter=2;
 					return;
 			}
 		}

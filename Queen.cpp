@@ -25,7 +25,7 @@ bool Queen:: can_move()
 			for(int j=-1;j<=1;j++)
 			{
 				if(letter+j>=0 && letter+j<=7){
-					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->color!=color) //Se la casella è vuota o contiene una pedina avversaria
+					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->col()!=color) //Se la casella è vuota o contiene una pedina avversaria
 						if(!diventa_scacco(number+i,letter+j,number+i,letter+j)) return true; //Se il movimento non porta uno scacco allora true
 				}
 			}
@@ -116,7 +116,7 @@ bool Queen::try_move(int n, int l)
 	}
 	if(b->gameboard[n][l]!=nullptr)
 	{
-		if(b->gameboard[n][l]->color==color)return false;
+		if(b->gameboard[n][l]->col()==color)return false;
 	}
 	return !diventa_scacco(n,l,n,l);
 }

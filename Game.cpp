@@ -9,31 +9,39 @@
 #include <stdlib.h>    
 #include <time.h>
 using namespace std;
-Game::Game(Player* n1,Player* n2)
+Game::Game(char type)
 {
+   if(type=='p')
+   {
     srand (time(NULL));
-    if(n1->is_human || n2->is_human)
-    {
-        int r = rand() % 2;
-        if(r==0)
+    int r = rand() % 2;
+    if(r==0)
         {
-            white_player=n1;
-            black_player=n2;
+            white_player=new Player('p');
+            black_player=new Player('c');
         }
         else
         {
-            white_player=n2;
-            black_player=n1;
+            white_player=new Player('c');
+            black_player=new Player('p');
         }
         
     }
-    else
+    if(type=='c')
     {
-        white_player=n1;
-        black_player=n2;
+        white_player=new Player('c');
+        black_player=new Player('c');
     }
-    white_player->color='w';
-    black_player->color='b';
+    if(type=='r')
+    {
+       white_player=new Player('p');
+       white_player->replay=true;
+       black_player=new Player('p');
+       black_player->replay=true;
+    }
+    
+    white_player->setcol('w');
+    black_player->setcol('b');
 	mainboard=new Board();
     white_player->boardgame=mainboard;
     black_player->boardgame=mainboard;
@@ -46,6 +54,20 @@ Game::Game(Player* n1,Player* n2)
     npieces=32;
     
 }
+Game::~Game()
+{
+   delete white_player;
+   delete black_player;
+   delete mainboard;
+}
+void Game::addMove()
+{
+   nmosse++;
+}
+string Game::game_result()
+{
+   return result;
+}
 void Game::startgame()
 {
     cout<<*mainboard<<endl;
@@ -54,12 +76,6 @@ void Game::startgame()
     {
         player_move();
         change_turn();
-        for(int i=0;i<mainboard->whites.size();i++)
-            cout<<mainboard->whites[i]->piece;
-        cout<<endl;
-        for(int i=0;i<mainboard->blacks.size();i++)
-            cout<<mainboard->blacks[i]->piece;
-        cout<<endl;
     }
     cout<<result<<endl;
 }
@@ -82,8 +98,8 @@ void Game::player_move()
         }
         catch(Illegal_move* e)
         {
-            if(is_turn->is_human==true)
-                cout<<"illegal move"<<endl;
+            if(is_turn->human()==true)
+                cout<<"MOSSA INVALIDA"<<endl;
             flag=true;
         }
     }
@@ -101,7 +117,20 @@ bool Game:: draw_for_ripetition()
 				counter++;
 		}
 	}
-	if(counter>=3) return true;
+    if(counter>=5) return true;
+	if(counter>=3)
+    {
+        string decision;
+        if(is_turn->human()==true)
+        {
+            cout<<"POSIZIONE RIPETUTA "+counter<<" VOLTE\nVUOI DICHIARARE PATTA?";
+            getline(cin,decision);
+            if(decision=="SI")
+                return true;
+            else
+                return false;
+        }
+    }
 	return false;
 }
 
@@ -112,8 +141,8 @@ bool Game::fifty_moves(){
     for(int i=1;i<7;i++){
         for(int j=0;j<8;j++){
             if(mainboard->gameboard[i][j]!=nullptr){
-                if(mainboard->gameboard[i][j]->piece=='p' || mainboard->gameboard[i][j]->piece=='P'){
-                    s=s+mainboard->gameboard[i][j]->piece;
+                if(mainboard->gameboard[i][j]->cpiece()=='p' || mainboard->gameboard[i][j]->cpiece()=='P'){
+                    s=s+mainboard->gameboard[i][j]->cpiece();
                 }
                 else
                 {
@@ -127,7 +156,7 @@ bool Game::fifty_moves(){
         }
     }
     int n=mainboard->whites.size()+mainboard->blacks.size();
-    if(s.compare(pawns) && n==npieces){
+    if(s.compare(pawns)==0 && n==npieces){
         fmcount++;
     }
     else{
@@ -141,14 +170,24 @@ bool Game::fifty_moves(){
 bool Game::is_finished()
 {
     bool mate=0;
-    if(nmosse>=100 && (!white_player->is_human) && (!black_player->is_human))
+    if(mainboard->get_draw())
+    {
+        result="PATTA PER DECISIONE";
+        return true;
+    }
+    if(nmosse>=1000 && (!white_player->human()) && (!black_player->human()))
     {
         result="PATTA,LIMITE 100 MOSSE";
         return true;
     }
-    if(mainboard->is_draw(is_turn->color))
+    if(mainboard->cant_be_mate())
     {
-        result="PATTA";
+        result="PATTA PER PEZZI INSUFFICIENTI";
+        return true;
+    }
+    if(mainboard->is_draw(is_turn->col()))
+    {
+        result="PATTA PER STALLO";
         return true;
     }
     if(is_turn==white_player)

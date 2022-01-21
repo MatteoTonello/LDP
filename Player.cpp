@@ -20,6 +20,12 @@ Player::Player(char c)
 	file.clear();
 	file.close();
 };
+char Player::col()
+{return color;}
+bool Player::human()
+{return is_human;}
+void Player::setcol(char c)
+{color=c;}
 void Player::move(string mossa)
 {
 		ofstream file(output_file,ios::app);
@@ -31,10 +37,19 @@ void Player::move(string mossa)
 			cout<<*boardgame<<endl;
 			return;
 		}
+		if(mossa=="PATTA")
+		{
+			boardgame->set_draw();
+			ofstream file(output_file,ios::app);
+			file<<mossa<<"\n";
+			file.close();
+			return;
+		}
 		chari_letter=mossa[0];	//convertiti
 		charf_letter=mossa[3];
 		i_number=mossa[1]-'0';	//da convertire
 		f_number=mossa[4]-'0';
+
 		i_number--;
 		f_number--;
 		if(mossa[2]!=' ') throw new Illegal_move();
@@ -50,21 +65,15 @@ void Player::move(string mossa)
 		if(charf_letter>='a' && charf_letter<='h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
-		cout<<i_number<<" "<<i_letter<<endl;
-		cout<<f_number<<" "<<f_letter<<endl;
-		cout<<"superati controlli limiti"<<endl;
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
-		cout<<"controllo null"<<endl;
-		cout<<color<<" "<<boardgame->gameboard[i_number][i_letter]->color<<endl;
-		if(boardgame->gameboard[i_number][i_letter]->color!=color) throw new Illegal_move();
-		cout<<"controllo colore"<<endl;
+		if(boardgame->gameboard[i_number][i_letter]->col()!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
 		{
-			cout<<"Illegal move"<<endl;
+			cout<<"MOSSA ILLEGALE"<<endl;
+         	throw new Illegal_move();
 		}
 		try
 		{
-			cout<<"inizio mossa"<<endl;
 			try{
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
 			}
@@ -79,11 +88,9 @@ void Player::move(string mossa)
 
 			file<<mossa<<"\n";
 			file.close();
-			cout<<"fine mossa"<<endl;
 		}
 		catch(Illegal_move* e)
 		{
-			cout<<"errore nella mossa"<<boardgame->gameboard[i_number][i_letter]->piece<<endl;
 			throw new Illegal_move();
 		}
 }
@@ -99,9 +106,28 @@ void Player::move()
 		getline(cin,mossa);
 		if(mossa=="XX XX")
 		{
-			cout<<*boardgame<<endl;
+			cout<<*boardgame<<endl<<endl;
 			move();
 			return;
+		}
+		if(mossa=="PATTA")
+		{
+			int patta=rand()%2;
+			if(patta==0)
+			{
+				cout<<"PATTA RIFIUTATA"<<endl;
+				move();
+				return;
+			}
+				
+			if(patta==1)
+			{
+				boardgame->set_draw();
+				ofstream file(output_file,ios::app);
+				file<<mossa<<"\n";
+				file.close();
+				return;
+			}
 		}
 		chari_letter=mossa[0];	//convertiti
 		charf_letter=mossa[3];
@@ -122,30 +148,23 @@ void Player::move()
 		if(charf_letter>='a' && charf_letter<='h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
-		cout<<i_number<<" "<<i_letter<<endl;
-		cout<<f_number<<" "<<f_letter<<endl;
-		cout<<"superati controlli limiti"<<endl;
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
-		cout<<"controllo null"<<endl;
-		cout<<color<<" "<<boardgame->gameboard[i_number][i_letter]->color<<endl;
-		if(boardgame->gameboard[i_number][i_letter]->color!=color) throw new Illegal_move();
-		cout<<"controllo colore"<<endl;
+		if(boardgame->gameboard[i_number][i_letter]->col()!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
 		{
-			cout<<"Illegal move"<<endl;
+			cout<<"MOSSA INVALIDA"<<endl;
 			move();
 			return;
 		}
 		try
 		{
-			cout<<"inizio mossa"<<endl;
 			try{
 			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
 			}
 			catch(Promotion* e)
 			{
 				ofstream file(output_file,ios::app);
-				file<<mossa<<"ciao\n";
+				file<<mossa;
 				file.close();
 				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
 				file.close();
@@ -154,11 +173,9 @@ void Player::move()
 			ofstream file(output_file,ios::app);
 			file<<mossa<<"\n";
 			file.close();
-			cout<<"fine mossa"<<endl;
 		}
 		catch(Illegal_move* e)
 		{
-			cout<<"errore nella mossa"<<boardgame->gameboard[i_number][i_letter]->piece<<endl;
 			throw new Illegal_move();
 		}
 		
@@ -174,8 +191,8 @@ void Player::move()
 				random_number=rand()%8;
 				random_letter=rand()%8;
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
-			//cout<<boardgame->whites[random_piece]->number<<boardgame->whites[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
-			int n=boardgame->whites[random_piece]->number,l=boardgame->whites[random_piece]->letter;
+			
+			int n=boardgame->whites[random_piece]->num(),l=boardgame->whites[random_piece]->let();
 			try{
 				boardgame->whites[random_piece]->move(random_number,random_letter);
 			}
@@ -191,8 +208,6 @@ void Player::move()
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
-			/*random_piece=rand()%boardgame->whites.size();
-			boardgame->whites[random_piece]->random_move();*/
 		}
 		if(color=='b')
 		{
@@ -202,8 +217,8 @@ void Player::move()
 				random_number=rand()%8;
 				random_letter=rand()%8;
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
-			//cout<<boardgame->blacks[random_piece]->number<<boardgame->blacks[random_piece]->letter<<" "<<random_number<<random_letter<<endl<<endl;
-			int n=boardgame->blacks[random_piece]->number,l=boardgame->blacks[random_piece]->letter;
+			
+			int n=boardgame->blacks[random_piece]->num(),l=boardgame->blacks[random_piece]->let();
 			try{
 				boardgame->blacks[random_piece]->move(random_number,random_letter);
 			}
@@ -219,8 +234,6 @@ void Player::move()
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
-			/*random_piece=rand()%boardgame->blacks.size();
-			boardgame->blacks[random_piece]->random_move();*/
 		}
 		
 	}
@@ -244,25 +257,25 @@ void Player:: promotion(Pawn* p,char pezzo)
 	{
 		if(pezzo!=' ')
 		{
-			Piece* tmp=p->b->gameboard[p->number][p->letter];
-			if(pezzo=='A') p->b->gameboard[p->number][p->letter]=new Bishop(p->number,p-> letter, 'b',p->b );
-			if(pezzo=='T') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'b', p->b);
-			if(pezzo=='D') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'b', p->b);	
-			if(pezzo=='C') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'b',p-> b);
-			if(pezzo=='a') p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, 'w', p->b);
-			if(pezzo=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
-			if(pezzo=='d') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'w', p->b);	
-			if(pezzo=='c') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'w', p->b);
+			Piece* tmp=p->b->gameboard[p->num()][p->let()];
+			if(pezzo=='A') p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(),p->let(), 'b',p->b );
+			if(pezzo=='T') p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), 'b', p->b);
+			if(pezzo=='D') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'b', p->b);	
+			if(pezzo=='C') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'b',p-> b);
+			if(pezzo=='a') p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(), p->let(), 'w', p->b);
+			if(pezzo=='t') p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), 'w', p->b);
+			if(pezzo=='d') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'w', p->b);	
+			if(pezzo=='c') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'w', p->b);
 			if(pezzo!='A' && pezzo!='C' && pezzo!='D' && pezzo!='T' && pezzo!='a' && pezzo!='c' && pezzo!='t' && pezzo!='d')
 				throw new Illegal_move();
-			if(p->color=='w')
+			if(p->col()=='w')
 			{
 			for(int i=0;i<p->b->whites.size();i++)
 			{
 				if(p->b->whites[i]==tmp)
 				{
 					p->b->whites.erase(p->b->whites.begin()+i);
-					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
@@ -274,7 +287,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 				if(p->b->blacks[i]==tmp)
 				{
 					p->b->blacks.erase(p->b->blacks.begin()+i);
-					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
@@ -288,7 +301,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 		{
 			throw p;
 		}
-		if(p->color=='b')
+		if(p->col()=='b')
 		{
 			char c;
 			string prom;
@@ -304,18 +317,18 @@ void Player:: promotion(Pawn* p,char pezzo)
 			ofstream file(output_file,ios::app);
 			file<<prom<<"\n";
 			file.close();
-			Piece* tmp=p->b->gameboard[p->number][p->letter];
-			if(c=='A') p->b->gameboard[p->number][p->letter]=new Bishop(p->number,p-> letter, 'b',p->b );
-			if(c=='T') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'b', p->b);
-			if(c=='D') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'b', p->b);	
-			if(c=='C') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'b',p-> b);
+			Piece* tmp=p->b->gameboard[p->num()][p->let()];
+			if(c=='A') p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(),p->let(), 'b',p->b );
+			if(c=='T') p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), 'b', p->b);
+			if(c=='D') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'b', p->b);	
+			if(c=='C') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'b',p-> b);
 			
 			for(int i=0;i<p->b->blacks.size();i++)
 			{
 				if(p->b->blacks[i]==tmp)
 				{
 					p->b->blacks.erase(p->b->blacks.begin()+i);
-					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
@@ -335,18 +348,18 @@ void Player:: promotion(Pawn* p,char pezzo)
 			ofstream file(output_file,ios::app);
 			file<<prom<<"\n";
 			file.close();
-			Piece* tmp=p->b->gameboard[p->number][p->letter];
-			if(c=='a') p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, 'w', p->b);
-			if(c=='t') p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, 'w', p->b);
-			if(c=='d') p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, 'w', p->b);	
-			if(c=='c') p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, 'w', p->b);
+			Piece* tmp=p->b->gameboard[p->num()][p->let()];
+			if(c=='a') p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(), p->let(), 'w', p->b);
+			if(c=='t') p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), 'w', p->b);
+			if(c=='d') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'w', p->b);	
+			if(c=='c') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'w', p->b);
 			
 			for(int i=0;i<p->b->whites.size();i++)
 			{
 				if(p->b->whites[i]==tmp)
 				{
 					p->b->whites.erase(p->b->whites.begin()+i);
-					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
@@ -355,20 +368,20 @@ void Player:: promotion(Pawn* p,char pezzo)
 	else
 	{
 		int random_piece=rand()%4;
-		Piece* tmp=p->b->gameboard[p->number][p->letter];
-			if(random_piece==0) p->b->gameboard[p->number][p->letter]=new Bishop(p->number, p->letter, p->color, p->b);
-			if(random_piece==1) p->b->gameboard[p->number][p->letter]=new Rock(p->number, p->letter, p->color, p->b);
-			if(random_piece==2) p->b->gameboard[p->number][p->letter]=new Queen(p->number, p->letter, p->color, p->b);	
-			if(random_piece==3) p->b->gameboard[p->number][p->letter]=new Knight(p->number, p->letter, p->color, p->b);
+		Piece* tmp=p->b->gameboard[p->num()][p->let()];
+			if(random_piece==0) p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(), p->let(), p->col(), p->b);
+			if(random_piece==1) p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), p->col(), p->b);
+			if(random_piece==2) p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), p->col(), p->b);	
+			if(random_piece==3) p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), p->col(), p->b);
 			
-			if(p->color=='w')
+			if(p->col()=='w')
 			{
 			for(int i=0;i<p->b->whites.size();i++)
 			{
 				if(p->b->whites[i]==tmp)
 				{
 					p->b->whites.erase(p->b->whites.begin()+i);
-					p->b->whites.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
@@ -380,13 +393,14 @@ void Player:: promotion(Pawn* p,char pezzo)
 				if(p->b->blacks[i]==tmp)
 				{
 					p->b->blacks.erase(p->b->blacks.begin()+i);
-					p->b->blacks.push_back(p->b->gameboard[p->number][p->letter]);
+					p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
 					break;
 				}
 			}
 			}
 		ofstream file(output_file,ios::app);
-		string pezzo=to_string(p->b->gameboard[p->number][p->letter]->piece);
+		string pezzo;
+      pezzo.push_back(p->b->gameboard[p->num()][p->let()]->cpiece());
 		file<<pezzo<<"\n";
 		file.close();
 			

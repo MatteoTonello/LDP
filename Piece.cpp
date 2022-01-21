@@ -4,16 +4,24 @@
 #include <fstream>
 using namespace std;
 
+char Piece::col()
+{return color;}
+char Piece::cpiece()
+{return piece;}
+int Piece::num()
+{return number;}
+int Piece::let()
+{return letter;}
 void Piece::remove_en_passant()
 {
     for(int i=0;i<b->whites.size();i++)
     {
-        if(b->whites[i]->piece=='p')
+        if(b->whites[i]->cpiece()=='p')
             ((Pawn*)b->whites[i])->en_passant=false;
     }
     for(int i=0;i<b->blacks.size();i++)
     {
-        if(b->blacks[i]->piece=='P')
+        if(b->blacks[i]->cpiece()=='P')
                 ((Pawn*) b->blacks[i])->en_passant=false;
     }
 

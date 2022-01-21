@@ -2,6 +2,7 @@
 #define GAMEREPLAY_CPP
 #include "GameReplay.h"
 #include "Piece.h"
+#include "windows.h"
 #include "Board.cpp"
 #include <iostream>
 #include <fstream>
@@ -9,23 +10,19 @@ using namespace std;
 
 GameReplay::GameReplay(string in)
 {
-    Player* p1=new Player('p');
-    Player* p2=new Player('p');
-    p1->replay=true;
-    p2->replay=true;
-    game=new Game(p1,p2);
+    game=new Game('r');
     file_input=in;
     file_output="";
 }
 GameReplay::GameReplay(string in,string out)
 {
-    Player* p1=new Player('p');
-    Player* p2=new Player('p');
-    p1->replay=true;
-    p2->replay=true;
-    game=new Game(p1,p2);
+    game=new Game('r');
     file_input=in;
     file_output=out;
+}
+GameReplay::~GameReplay()
+{
+   delete game;
 }
 void GameReplay::replayf()
 {
@@ -39,13 +36,20 @@ void GameReplay::replayf()
         while ( getline (filei,mossa))
         {
             string piece;
-            if(mossa=="-") break;
             if(mossa=="XX XX")  fileo<<*(game->mainboard);
             else
             {
                 try
                 {
-                    game->is_turn->move(mossa);
+                   try
+                   {
+                      game->is_turn->move(mossa);
+                   }
+                   catch(Illegal_move* i)
+                   {
+                      cout<<"MODIFICARE IL FILE DI INPUT"<<endl;
+                   }
+                     
                 }
                 catch(Pawn* e)
                 {
@@ -57,11 +61,11 @@ void GameReplay::replayf()
                 flag=false;
                 game->change_turn();
             }
-            game->nmosse++;
+            game->addMove();
             game->last_bs.push_back(game->mainboard->to_String());
             if(game->is_finished()) break;
         }
-        fileo<<game->result<<"\n";
+        fileo<<game->game_result()<<"\n";
         fileo.close();
         filei.close();
      }
@@ -90,16 +94,18 @@ void GameReplay::replayv()
                     game->is_turn->promotion(e,piece[0]);
                     flag=true;
                 }
+                cout<<*(game->mainboard)<<endl;
                 if(flag)
                     cout<<piece[0]<<"\n\n";
                 flag=false;
+                //Sleep(1000);
                 game->change_turn();
             }
-            game->nmosse++;
+            game->addMove();
             game->last_bs.push_back(game->mainboard->to_String());
             if(game->is_finished()) break;
         }
-        cout<<game->result<<"\n";
+        cout<<game->game_result()<<"\n";
         filei.close();
      }
 }

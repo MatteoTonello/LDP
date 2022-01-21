@@ -21,16 +21,15 @@ bool Rock:: can_move()
 	for(int i=-1; i<=1; i=i+2)
 	{
 		if(letter+i>=0 && letter+i<=7 ){
-			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number][letter+i]->color!=color) if(!diventa_scacco(number,letter+i,number,letter+i)) return true;
+			if(b->gameboard[number][letter+i]==nullptr || b->gameboard[number][letter+i]->col()!=color) if(!diventa_scacco(number,letter+i,number,letter+i)) return true;
 		}
 		if(number+i>=0 && number+i<=7){
-			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->color!=color) if(!diventa_scacco(number+i,letter,number+i,letter)) return true;
+			if(b->gameboard[number+i][letter]==nullptr || b->gameboard[number+i][letter]->col()!=color) if(!diventa_scacco(number+i,letter,number+i,letter)) return true;
 		}			
 	}
 	//se non si può muovere su quelle caselle è bloccato
 	return false;
 };
-
 void Rock:: move(int n, int l)
 {
 	if(try_move(n, l))
@@ -110,7 +109,7 @@ bool Rock::try_move(int n, int l)
 	
 	if(b->gameboard[n][l]!=nullptr)
     {
-        if(b->gameboard[n][l]->color==color)return false;	//controllo che la pedina nella casella non sia dello stesso colore
+        if(b->gameboard[n][l]->col()==color)return false;	//controllo che la pedina nella casella non sia dello stesso colore
     }
 	return !diventa_scacco(n, l,n,l);
 }

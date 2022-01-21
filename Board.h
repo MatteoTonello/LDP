@@ -10,8 +10,10 @@ class King;
 //classe che rappresenta la scacchiera
 class Board
 {
+		bool draw;       		//true se è patta
 	public:
 		Board();       				//costruttore scacchiera iniziale
+      ~Board();
 		Piece* gameboard[8][8];   	//matrice di puntatori a pezzi
 		vector<Piece*> whites;		//vettore contenente tutti i pezzi bianchi
 		vector<Piece*> blacks;		//vettore contenente tutti i pezzi neri
@@ -22,6 +24,7 @@ class Board
 		King* white_king;		//puntatore al re bianco
 		King* black_king;		//puntatore al re nero
 		string to_String();		//restituisce la scacchiera come stringa
-		
+		void set_draw();		//draw diventa true
+		bool get_draw();		//restituisce draw
 };
 #endif

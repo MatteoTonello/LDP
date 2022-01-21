@@ -24,23 +24,23 @@ bool Pawn::can_move()
 	else i=+1;					//se è nero, viceversa
 	if(b->gameboard[number+i][letter]==nullptr) if(!diventa_scacco(number+i,letter,number+i,letter)) return true;				//true se casella davanti al pedone vuota
 	if(letter+1<=7 && b->gameboard[number+i][letter+1]!=nullptr)			
-		if(b->gameboard[number+i][letter+1]->color!=color) if(!diventa_scacco(number+i,letter+1,number+i,letter+1)) return true;		//true se il pedone può mangiare da un lato
+		if(b->gameboard[number+i][letter+1]->col()!=color) if(!diventa_scacco(number+i,letter+1,number+i,letter+1)) return true;		//true se il pedone può mangiare da un lato
 	if(letter-1>=0 && b->gameboard[number+i][letter-1]!=nullptr)
-		if(b->gameboard[number+i][letter-1]->color!=color) if(!diventa_scacco(number+i,letter-1,number+i,letter-1)) return true;		//true se il pedone può mangiare dall'altro lato
+		if(b->gameboard[number+i][letter-1]->col()!=color) if(!diventa_scacco(number+i,letter-1,number+i,letter-1)) return true;		//true se il pedone può mangiare dall'altro lato
 	//controllo se è possibile fare l'en passant(sicuramente la casella dietro il pedone con en passant=true è libera)
 	if(color=='w')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
-	 		if(b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;
+	 		if(b->gameboard[number][letter-1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;
 		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
-	 		if(b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;
+	 		if(b->gameboard[number][letter+1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;
 	}
 	if(color=='b')
 	{
 		if(letter-1>=0 && b->gameboard[number][letter-1]!=nullptr)
-	 		if(b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;;
+	 		if(b->gameboard[number][letter-1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) if(!diventa_scacco(number,letter-1,number,letter-1)) return true;;
 		if(letter+1<=7 && b->gameboard[number][letter+1]!=nullptr)
-	 		if(b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;;
+	 		if(b->gameboard[number][letter+1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) if(!diventa_scacco(number,letter+1,number,letter+1)) return true;;
 	}
 	return false;
 }
@@ -50,30 +50,30 @@ bool Pawn:: try_move(int n, int l)
 	{
 		//controllo en passant
 		if(b->gameboard[number][letter+1]!=nullptr)
-			if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
+			if(n-number==1 && l-letter==1 && b->gameboard[number][letter+1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
 		if(b->gameboard[number][letter-1]!=nullptr)
-			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
+			if(n-number==1 && l-letter==-1 && b->gameboard[number][letter-1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
 		//controllo caselle in avanti
 		if(n-number==1 && l==letter && b->gameboard[n][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		if(n-number==2 && number==1 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n-1][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		//controllo mangiare diagonale
-		if(n-number==1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
-		if(n-number==1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()!=color) return !diventa_scacco(n,l,n,l);
 		
 	}
 	if(color=='w')
 	{
 		//controllo en passant
 		if(b->gameboard[number][letter+1]!=nullptr)
-			if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->piece=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
+			if(n-number==-1 && l-letter==1 && b->gameboard[number][letter+1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true) return !diventa_scacco(number,letter+1,n,l);
 		if(b->gameboard[number][letter-1]!=nullptr)
-			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->piece=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
+			if(n-number==-1 && l-letter==-1 && b->gameboard[number][letter-1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true) return !diventa_scacco(number,letter-1,n,l);
 		//controllo caselle in avanti
 		if(n-number==-1 && l==letter && b->gameboard[n][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		if(n-number==-2 && number==6 && l==letter && b->gameboard[n][l]==nullptr && b->gameboard[n+1][l]==nullptr) return !diventa_scacco(n,l,n,l);
 		//controllo mangiare diagonale
-		if(n-number==-1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
-		if(n-number==-1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->color!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==-1 && l-letter==1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()!=color) return !diventa_scacco(n,l,n,l);
+		if(n-number==-1 && l-letter==-1 && b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()!=color) return !diventa_scacco(n,l,n,l);
 	}
 	return false;
 		
@@ -97,7 +97,6 @@ void Pawn::move(int n, int l)
 				//rimosso pedone mangiato
 				for(int i=0;i<b->whites.size();i++)
 					if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-
 				return;
 			}
 		}
@@ -115,7 +114,6 @@ void Pawn::move(int n, int l)
 				//rimosso pedone mangiato
 				for(int i=0;i<b->blacks.size();i++)
 					if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
-				
 				return;
 			}
 			
@@ -135,21 +133,21 @@ void Pawn::move(int n, int l)
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
 				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-			
+		delete temp;
 		remove_en_passant(); //false tutti gli en passant dei pedoni(perchè mossa finita)
 		//controllo se si è mosso di 2 caselle in avanti e ha un pedone vicino, se sì en passant di questo pedone true
 		if(color=='w' && n-save_number==-2)
 		{
-			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->piece=='P')
+			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->cpiece()=='P')
 				this->en_passant=true;
-			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->piece=='P')
+			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->cpiece()=='P')
 				this->en_passant=true;
 		}
 		if(color=='b' && n-save_number==+2)
 		{
-			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->piece=='p')
+			if(b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->cpiece()=='p')
 				this->en_passant=true;
-			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->piece=='p')
+			if(b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->cpiece()=='p')
 				this->en_passant=true;
 		}
 		//se il pedone arriva in fondo, promozione

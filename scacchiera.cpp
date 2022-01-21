@@ -11,20 +11,8 @@
 #include <iostream>
 using namespace std;
 int main(int args,char *argv[])
-{  
-    if(*argv[1]=='p')
-    {
-        Player* p1 = new Player('p');
-        Player* p2 = new Player('c');
-        Game* g=new Game(p1,p2);
-        g->startgame();
-    }
-    if(*argv[1]=='c')
-    {
-        Player* p1 = new Player('c');
-        Player* p2 = new Player('c');
-        Game* g=new Game(p1,p2);
-        g->startgame();
-    }
+{
+    Game* g=new Game(*argv[1]);
+    g->startgame();
     return 0;
 }

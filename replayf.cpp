@@ -15,7 +15,9 @@ int main()
 {   
         string file_output="logg.txt";
         string file_input="replay.txt";
-        GameReplay* games = new GameReplay(file_input,file_output);
-        games->replayf();
+        GameReplay* games = new GameReplay(file_input);
+        games->replayv();
+        delete games;
+        cout<<"finito";
     return 0;
 }

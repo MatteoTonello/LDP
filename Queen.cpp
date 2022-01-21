@@ -37,10 +37,10 @@ bool Queen::try_move(int n, int l)
 {
 	if((letter!=l && number!=n)&&(abs(number-n)!=abs(letter-l))) return false; //false se non sono su una traiettoria possibile
 	int vertical=number, horizontal=letter;
-	if(number!=n && letter==l) //Se mi muovo in orizzontale
+	if(number!=n && letter==l) //Se mi muovo in verticale
 	{
-		if(n>number)
-		{
+		if(n>number) //Se vado verso il basso
+		{	//Controllo che tutte le caselle che devo attraversare siano vuote
 			vertical++;
 			while(vertical<n && b->gameboard[vertical][letter]==nullptr)
 			{
@@ -49,8 +49,8 @@ bool Queen::try_move(int n, int l)
 			if(vertical!=n) return false;
 			
 		}
-		else
-		{
+		else //Se vado verso l'alto
+		{	//Controllo che tutte le caselle che devo attraversare siano vuote
 			vertical--;
 			while(vertical>n && b->gameboard[vertical][letter]==nullptr)
 			{
@@ -59,10 +59,10 @@ bool Queen::try_move(int n, int l)
 			if(vertical!=n) return false;
 		}
 	}
-	if(letter!=l && number==n)
+	if(letter!=l && number==n) //Se mi muovo in orizzontale
 	{
-		if(l>letter)
-		{
+		if(l>letter)//Se vado verso destra
+		{	//Controllo che tutte le caselle che devo attraversare siano vuote
 			horizontal++;
 			while(horizontal<l && b->gameboard[n][horizontal]==nullptr)
 			{
@@ -70,8 +70,8 @@ bool Queen::try_move(int n, int l)
 			}
 			if(horizontal!=l) return false;
 		}
-		else
-		{
+		else //Se vado verso sinistra
+		{	//Controllo che tutte le caselle che devo attraversare siano vuote
 			horizontal--;
 			while(horizontal>l && b->gameboard[n][horizontal]==nullptr)
 			{
@@ -80,43 +80,44 @@ bool Queen::try_move(int n, int l)
 			if(horizontal!=l) return false;
 		}
 	}
-	if(n>number)
+	if(n>number) // Controllo se la diagonale è verso il basso
 	{
-		if(l>letter)
+		if(l>letter)   // Controllo se la diagonale è verso destra
 		{
-			for(int i=number+1, j=letter+1; i<n; i++, j++)
+			for(int i=number+1, j=letter+1; i<n; i++, j++) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{
-				if(b->gameboard[i][j]!=nullptr) return false;
+				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
-		if(l<letter)
+		else  // La diagonale è verso sinistra
 		{
-			for(int i=number+1, j=letter-1; i<n; i++, j--)
+			for(int i=number+1, j=letter-1; i<n; i++, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{
-				if(b->gameboard[i][j]!=nullptr) return false;
+				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
 	}
-	else
+   else //La diagonale è verso l'alto
 	{
-		if(l>letter)
+		if(l>letter) // Controllo se la diagonale è verso destra
 		{
-			for(int i=number-1, j=letter+1; i>n; i--, j++)
+			for(int i=number-1, j=letter+1; i>n; i--, j++) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{
-				if(b->gameboard[i][j]!=nullptr) return false;
+				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
-		if(l<letter)
+		else // La diagonale è verso sinistra
 		{
-			for(int i=number-1, j=letter-1; i>n; i--, j--)
+			for(int i=number-1, j=letter-1; i>n; i--, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{
-				if(b->gameboard[i][j]!=nullptr) return false;
+				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
 	}
-	if(b->gameboard[n][l]!=nullptr)
+	//Se il movimento è lecito, controllo che la casella di arrivo sia valida
+	if(b->gameboard[n][l]!=nullptr) //Se è non è vuota controllo
 	{
-		if(b->gameboard[n][l]->col()==color)return false;
+		if(b->gameboard[n][l]->col()==color)return false; //Se il pezzo non è avversario, false
 	}
 	return !diventa_scacco(n,l,n,l);
 }
@@ -124,18 +125,27 @@ void Queen:: move(int n, int l)
 {
 	if(try_move(n, l))
 	{
-		int save_number=number, save_letter=letter;
+		//Salvo il contenuto della casella di arrivo
 		Piece* temp=b->gameboard[n][l];
+		//Sposto il pezzo nella casella di arrivo
 		b->gameboard[number][letter]=nullptr;
 		letter=l;number=n;
 		b->gameboard[n][l]=this;
+
+		//Se c'era un pezzo lo elimino dalla casella di arrivo
 		if(color=='w')
 			for(int i=0;i<b->blacks.size();i++)
-				if(b->blacks[i]==temp){ b->blacks.erase(b->blacks.begin()+i); break;}
+				if(b->blacks[i]==temp){
+					b->blacks.erase(b->blacks.begin()+i);
+					break;
+				}
 		if(color=='b')
 			for(int i=0;i<b->whites.size();i++)
-				if(b->whites[i]==temp){ b->whites.erase(b->whites.begin()+i); break;}
-			remove_en_passant();
+				if(b->whites[i]==temp){
+					b->whites.erase(b->whites.begin()+i);
+					break;
+				}
+			remove_en_passant(); //Rimuovo la possibilità di fare l'en passant da tutti i pedoni, perché ho fatto una mossa
 			return;
 		}	
 	

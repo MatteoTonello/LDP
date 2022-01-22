@@ -121,7 +121,7 @@ bool Game:: draw_for_ripetition()
 	if(counter>=3)
     {
         string decision;
-        if(is_turn->human()==true)
+        if(is_turn->human()==true && (white_player->human()==false || black_player->human()==false))
         {
             cout<<"POSIZIONE RIPETUTA "+counter<<" VOLTE\nVUOI DICHIARARE PATTA?";
             getline(cin,decision);
@@ -175,9 +175,9 @@ bool Game::is_finished()
         result="PATTA PER DECISIONE";
         return true;
     }
-    if(nmosse>=1000 && (!white_player->human()) && (!black_player->human()))
+    if(nmosse>=150 && (!white_player->human()) && (!black_player->human()))
     {
-        result="PATTA,LIMITE 100 MOSSE";
+        result="PATTA,LIMITE 150 MOSSE";
         return true;
     }
     if(mainboard->cant_be_mate())

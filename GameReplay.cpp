@@ -48,6 +48,7 @@ void GameReplay::replayf()
                    catch(Illegal_move* i)
                    {
                       cout<<"MODIFICARE IL FILE DI INPUT"<<endl;
+                      cout<<mossa;
                    }
                      
                 }

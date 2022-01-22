@@ -205,6 +205,10 @@ void Player::move()
 				file.close();
 				return;
 			}
+			ofstream ofile("loog.txt",ios::app);
+			ofile<<*boardgame<<endl;
+			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
+			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
@@ -231,6 +235,10 @@ void Player::move()
 				file.close();
 				return;
 			}
+			ofstream ofile("loog.txt",ios::app);
+			ofile<<*boardgame<<endl;
+			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
+			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();

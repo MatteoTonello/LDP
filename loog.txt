@@ -3,20 +3,12 @@
  6         
  5         
  4         
- 3         
- 2 pppppppp
- 1 tcadract
-   ABCDEFGH
-
- 8 TCADRACT
- 7 PPPPPPPP
- 6         
- 5         
- 4         
  3      p  
  2 ppppp pp
  1 tcadract
    ABCDEFGH
+
+f2 f3
 
  8 TCADRACT
  7 PPP PPPP
@@ -27,6 +19,8 @@
  2 ppppp pp
  1 tcadract
    ABCDEFGH
+
+d7 d6
 
  8 TCADRACT
  7 PPP PPPP
@@ -37,6 +31,8 @@
  2  pppp pp
  1 tcadract
    ABCDEFGH
+
+a2 a4
 
  8 TC DRACT
  7 PPP PPPP
@@ -47,6 +43,8 @@
  2  pppp pp
  1 tcadract
    ABCDEFGH
+
+c8 f5
 
  8 TC DRACT
  7 PPP PPPP
@@ -57,6 +55,8 @@
  2  pp p pp
  1 tcadract
    ABCDEFGH
+
+d2 d3
 
  8 TC DRACT
  7 PPP PP P
@@ -67,6 +67,8 @@
  2  pp p pp
  1 tcadract
    ABCDEFGH
+
+g7 g5
 
  8 TC DRACT
  7 PPP PP P
@@ -77,6 +79,8 @@
  2  pp prpp
  1 tcad act
    ABCDEFGH
+
+e1 f2
 
  8 TC DRACT
  7 PPP P  P
@@ -87,6 +91,8 @@
  2  pp prpp
  1 tcad act
    ABCDEFGH
+
+f7 f6
 
  8 TC DRACT
  7 PPP P  P
@@ -97,6 +103,8 @@
  2   p prpp
  1 tcad act
    ABCDEFGH
+
+b2 b3
 
  8 TC DRACT
  7 PP  P  P
@@ -107,6 +115,8 @@
  2   p prpp
  1 tcad act
    ABCDEFGH
+
+c7 c5
 
  8 TC DRACT
  7 PP  P  P
@@ -117,6 +127,8 @@
  2   pcprpp
  1 t ad act
    ABCDEFGH
+
+b1 d2
 
  8 TC DRACT
  7 PP  P  P
@@ -128,6 +140,8 @@
  1 t ad act
    ABCDEFGH
 
+f5 g4
+
  8 TC DRACT
  7 PP  P  P
  6    P P  
@@ -138,6 +152,8 @@
  1 t ad act
    ABCDEFGH
 
+h2 h4
+
  8 TC DRACT
  7 PP  P  P
  6    PAP  
@@ -148,6 +164,8 @@
  1 t ad act
    ABCDEFGH
 
+g4 e6
+
  8 TC DRACT
  7 PP  P  P
  6    PAP  
@@ -158,6 +176,8 @@
  1 t a dact
    ABCDEFGH
 
+d1 e1
+
  8 TC  RACT
  7 PP  P  P
  6    PAP  
@@ -168,6 +188,8 @@
  1 t a dact
    ABCDEFGH
 
+d8 a5
+
  8 TC  RACT
  7 PP  P  P
  6    PAP  
@@ -178,6 +200,8 @@
  1 t a dact
    ABCDEFGH
 
+c2 c3
+
  8 TC  RACT
  7 PP  P  P
  6    PAP  
@@ -188,6 +212,8 @@
  1 t a dact
    ABCDEFGH
 
+a5 b5
+
  8 TC  RACT
  7 PP  P  P
  6    PAP  
@@ -198,6 +224,8 @@
  1 t a dac 
    ABCDEFGH
 
+h1 h3
+
  8 TC  RACT
  7 P   P  P
  6  P PAP  
@@ -208,6 +236,8 @@
  1 t a dac 
    ABCDEFGH
 
+b7 b6
+
  8 TC  RACT
  7 P   P  P
  6  P PAP  
@@ -217,6 +247,8 @@
  2    c rp 
  1 t a dac 
    ABCDEFGH
+
+e2 e3
 
  8 TC  RACT
  7 P   P  P
@@ -228,6 +260,8 @@
  1 t a dac 
    ABCDEFGH
 
+b5 b4
+
  8 TC  RACT
  7 P   P  P
  6  P PAP  
@@ -238,6 +272,8 @@
  1 t a dac 
    ABCDEFGH
 
+d2 e4
+
  8 TC  RACT
  7 P   P  P
  6  P PAP  
@@ -248,6 +284,8 @@
  1 t a dac 
    ABCDEFGH
 
+g5 h4
+
  8 TC  RACT
  7 P   P  P
  6  P PAP  
@@ -257,6 +295,8 @@
  2     drp 
  1 t a  ac 
    ABCDEFGH
+
+e1 e2
 
  8 TC  RACT
  7 P   P  P
@@ -268,6 +308,8 @@
  1 t a  ac 
    ABCDEFGH
 
+b4 a4
+
  8 TC  RACT
  7 P   P  P
  6  P PAc  
@@ -278,6 +320,8 @@
  1 t a  ac 
    ABCDEFGH
 
+e4 f6
+
  8 TC   ACT
  7 P   PR P
  6  P PAc  
@@ -287,6 +331,8 @@
  2     drp 
  1 t a  ac 
    ABCDEFGH
+
+e8 f7
 
  8 TC   ACT
  7 P   PR P
@@ -298,6 +344,8 @@
  1 t a  ac 
    ABCDEFGH
 
+f6 d5
+
  8 TC   ACT
  7 P   PR  
  6  P PA  P
@@ -307,6 +355,8 @@
  2     drp 
  1 t a  ac 
    ABCDEFGH
+
+h7 h6
 
  8 TC   ACT
  7 P   PR  
@@ -318,6 +368,8 @@
  1 t a  ac 
    ABCDEFGH
 
+d5 b6
+
  8 TC   ACT
  7 P   P   
  6  c PAR P
@@ -328,6 +380,8 @@
  1 t a  ac 
    ABCDEFGH
 
+f7 f6
+
  8 TC   ACT
  7 P   P   
  6  c PAR P
@@ -338,6 +392,8 @@
  1   a  ac 
    ABCDEFGH
 
+a1 a3
+
  8 TC   ACT
  7     P   
  6  P PAR P
@@ -348,6 +404,8 @@
  1   a  ac 
    ABCDEFGH
 
+a7 b6
+
  8 TC   ACT
  7     P   
  6  P PAR P
@@ -358,6 +416,8 @@
  1      ac 
    ABCDEFGH
 
+c1 d2
+
  8 TC   ACT
  7     P R 
  6  P PA  P
@@ -368,6 +428,8 @@
  1      ac 
    ABCDEFGH
 
+f6 g7
+
  8 TC   ACT
  7     P R 
  6  P PA  P
@@ -378,6 +440,8 @@
  1      ac 
    ABCDEFGH
 
+g2 g3
+
  8 TC   ACT
  7     P R 
  6  P PA  P
@@ -387,6 +451,8 @@
  2    adr  
  1      ac 
    ABCDEFGH
+
+a4 f4
 
  8 TC   ACT
  7     P R 
@@ -398,6 +464,8 @@
  1      act
    ABCDEFGH
 
+h3 h1
+
  8 TC   ACT
  7     P R 
  6  P PA  P
@@ -408,6 +476,8 @@
  1      act
    ABCDEFGH
 
+f4 e3
+
  8 TC   ACT
  7     P R 
  6  P PA  P
@@ -418,6 +488,8 @@
  1      act
    ABCDEFGH
 
+f2 e3
+
  8 T    ACT
  7    CP R 
  6  P PA  P
@@ -428,6 +500,8 @@
  1      act
    ABCDEFGH
 
+b8 d7
+
  8 T    ACT
  7    CP R 
  6  P PA  P
@@ -438,6 +512,8 @@
  1      act
    ABCDEFGH
 
+e3 f2
+
  8 T    ACT
  7    CP R 
  6  P P   P
@@ -447,6 +523,8 @@
  2    adr  
  1      act
    ABCDEFGH
+
+e6 d5
 
  8 T    ACT
  7    CP R 
@@ -458,6 +536,8 @@
  1 t    act
    ABCDEFGH
 
+a3 a1
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -468,6 +548,8 @@
  1 T    act
    ABCDEFGH
 
+a8 a1
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -478,6 +560,8 @@
  1 T    act
    ABCDEFGH
 
+f2 g2
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -488,6 +572,8 @@
  1      act
    ABCDEFGH
 
+a1 a4
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -498,6 +584,8 @@
  1      act
    ABCDEFGH
 
+d2 e3
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -508,6 +596,8 @@
  1      act
    ABCDEFGH
 
+a4 g4
+
  8      ACT
  7    CP R 
  6  P P   P
@@ -518,6 +608,8 @@
  1      act
    ABCDEFGH
 
+e3 c5
+
  8      ACT
  7    CP  R
  6  P P   P
@@ -528,6 +620,8 @@
  1      act
    ABCDEFGH
 
+g7 h7
+
  8      ACT
  7    CP  R
  6  P P   P
@@ -538,6 +632,8 @@
  1      a t
    ABCDEFGH
 
+g1 h3
+
  8      ACT
  7     P  R
  6  P P   P
@@ -548,6 +644,8 @@
  1      a t
    ABCDEFGH
 
+d7 c5
+
  8      ACT
  7     P  R
  6  P P   P
@@ -558,6 +656,8 @@
  1      a t
    ABCDEFGH
 
+e2 a2
+
  8      ACT
  7     P  R
  6  P P   P
@@ -568,6 +668,8 @@
  1      a t
    ABCDEFGH
 
+g4 c4
+
  8      ACT
  7     P  R
  6  P P   P
@@ -577,6 +679,8 @@
  2 d     r 
  1      at 
    ABCDEFGH
+
+h1 g1
 
  8      ACT
  7     P  R
@@ -588,6 +692,8 @@
  1      at 
    ABCDEFGH
 
+c5 e4
+
  8      ACT
  7     P  R
  6  P P   P
@@ -598,6 +704,8 @@
  1      at 
    ABCDEFGH
 
+f3 f4
+
  8      ACT
  7     P  R
  6  P P   P
@@ -607,6 +715,8 @@
  2 d     r 
  1      at 
    ABCDEFGH
+
+c4 d4
 
  8      ACT
  7     P  R
@@ -618,6 +728,8 @@
  1      atr
    ABCDEFGH
 
+g2 h1
+
  8       CT
  7     P AR
  6  P P   P
@@ -628,6 +740,8 @@
  1      atr
    ABCDEFGH
 
+f8 g7
+
  8       CT
  7     P AR
  6  P P   P
@@ -637,6 +751,8 @@
  2 d     r 
  1      at 
    ABCDEFGH
+
+h1 g2
 
  8       CT
  7     P AR
@@ -648,6 +764,8 @@
  1      at 
    ABCDEFGH
 
+d4 a4
+
  8       CT
  7     P AR
  6  P P   P
@@ -658,6 +776,8 @@
  1      at 
    ABCDEFGH
 
+b3 b4
+
  8       CT
  7     P AR
  6  P P C P
@@ -667,6 +787,8 @@
  2 d     r 
  1      at 
    ABCDEFGH
+
+e4 f6
 
  8       CT
  7     P AR
@@ -678,6 +800,8 @@
  1      at 
    ABCDEFGH
 
+a2 d5
+
  8       CT
  7     P AR
  6  P P   P
@@ -687,6 +811,8 @@
  2       r 
  1      at 
    ABCDEFGH
+
+f6 d5
 
  8       CT
  7     P AR
@@ -698,6 +824,8 @@
  1      at 
    ABCDEFGH
 
+d3 d4
+
  8 T     CT
  7     P AR
  6  P P   P
@@ -707,6 +835,8 @@
  2       r 
  1      at 
    ABCDEFGH
+
+a4 a8
 
  8 T     CT
  7     P AR
@@ -718,6 +848,8 @@
  1      at 
    ABCDEFGH
 
+h3 g5
+
  8 T     CT
  7     P AR
  6  P P    
@@ -728,6 +860,8 @@
  1      at 
    ABCDEFGH
 
+h6 g5
+
  8 T     CT
  7     P AR
  6  P P    
@@ -738,6 +872,8 @@
  1      at 
    ABCDEFGH
 
+g2 f3
+
  8 T     CT
  7     P AR
  6  P P    
@@ -748,6 +884,8 @@
  1      at 
    ABCDEFGH
 
+g5 f4
+
  8 T     CT
  7     P AR
  6  P P    
@@ -758,6 +896,8 @@
  1      at 
    ABCDEFGH
 
+g3 f4
+
  8 T     CT
  7     P AR
  6    P    
@@ -768,6 +908,8 @@
  1      at 
    ABCDEFGH
 
+b6 b5
+
  8 T     CT
  7     P AR
  6    P    
@@ -777,6 +919,8 @@
  2      r  
  1      at 
    ABCDEFGH
+
+f3 f2
 
  8 T    ACT
  7     P  R
@@ -788,6 +932,8 @@
  1      at 
    ABCDEFGH
 
+g7 f8
+
  8 T    ACT
  7     P tR
  6    P    
@@ -798,6 +944,8 @@
  1      a  
    ABCDEFGH
 
+g1 g7
+
  8 T     CT
  7     P AR
  6    P    
@@ -808,6 +956,8 @@
  1      a  
    ABCDEFGH
 
+f8 g7
+
  8 T     CT
  7     P AR
  6    P    
@@ -818,6 +968,8 @@
  1      a  
    ABCDEFGH
 
+c3 c4
+
  8       CT
  7 T   P AR
  6    P    
@@ -828,6 +980,8 @@
  1      a  
    ABCDEFGH
 
+a8 a7
+
  8       CT
  7 T   P AR
  6    P    
@@ -838,6 +992,8 @@
  1      a  
    ABCDEFGH
 
+c4 b5
+
  8       CT
  7 T     AR
  6    PP   
@@ -847,6 +1003,8 @@
  2      r  
  1      a  
    ABCDEFGH
+
+e7 e6
 
  8       CT
  7 T     AR
@@ -858,6 +1016,8 @@
  1         
    ABCDEFGH
 
+f1 e2
+
  8       CT
  7       AR
  6    PP   
@@ -868,145 +1028,175 @@
  1         
    ABCDEFGH
 
+a7 a2
+
  8       CT
  7       AR
  6    PP   
  5  p C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2 T   a   
  1         
    ABCDEFGH
 
+f2 f3
+
  8       CT
  7       AR
  6 T  PP   
  5  p C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2     a   
  1         
    ABCDEFGH
 
+a2 a6
+
  8       CT
  7       AR
  6 Tp PP   
  5    C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2     a   
  1         
    ABCDEFGH
+
+b5 b6
 
  8        T
  7     C AR
  6 Tp PP   
  5    C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2     a   
  1         
    ABCDEFGH
+
+g8 e7
 
  8        T
  7     C AR
  6 ap PP   
  5    C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2         
  1         
    ABCDEFGH
+
+e2 a6
 
  8       RT
  7     C A 
  6 ap PP   
  5    C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2         
  1         
    ABCDEFGH
+
+h7 g8
 
  8       RT
  7     C A 
  6  p PP   
  5    C    
- 4  p p P P
+ 4  p p p P
  3      r  
  2     a   
  1         
    ABCDEFGH
+
+a6 e2
 
  8       RT
  7     C A 
  6  p P    
  5    CP   
- 4  p p P P
+ 4  p p p P
  3      r  
  2     a   
  1         
    ABCDEFGH
 
+e6 e5
+
  8       RT
  7     C A 
  6 ap P    
  5    CP   
- 4  p p P P
+ 4  p p p P
  3      r  
  2         
  1         
    ABCDEFGH
 
+e2 a6
+
  8       R 
  7     C AT
  6 ap P    
  5    CP   
- 4  p p P P
+ 4  p p p P
  3      r  
  2         
  1         
    ABCDEFGH
 
+h8 h7
+
  8       R 
  7     C AT
  6 ap P    
  5    CP   
- 4  p prP P
+ 4  p prp P
  3         
  2         
  1         
    ABCDEFGH
 
- 8       R 
- 7     C A 
- 6 ap P   T
- 5    CP   
- 4  p prP P
- 3         
- 2         
- 1         
-   ABCDEFGH
+f3 e4
 
  8       R 
  7     C A 
  6 ap P   T
  5    CP   
- 4  p prP P
+ 4  p prp P
  3         
  2         
  1         
    ABCDEFGH
 
+h7 h6
+
  8       R 
  7     C A 
  6 ap P   T
- 5    CP   
- 4  p pr  P
+ 5    Cp   
+ 4  p p   P
+ 3         
+ 2         
+ 1         
+   ABCDEFGH
+
+f4 e5
+
+ 8       R 
+ 7     C A 
+ 6 ap P   T
+ 5    Cp   
+ 4  p p   P
  3      P  
  2         
  1         
    ABCDEFGH
+
+f4 f3
 
  8       R 
  7     C A 
@@ -1018,6 +1208,8 @@
  1      a  
    ABCDEFGH
 
+a6 f1
+
  8       R 
  7     C A 
  6  p P   T
@@ -1028,6 +1220,8 @@
  1      a  
    ABCDEFGH
 
+e5 d4
+
  8       R 
  7  p  C A 
  6    P   T
@@ -1038,388 +1232,478 @@
  1      a  
    ABCDEFGH
 
+b6 b7
+
  8        R
  7  p  C A 
  6    P   T
- 5    C    
+ 5         
  4  p Pr  P
  3      P  
  2         
  1      a  
    ABCDEFGH
 
+g8 h8
+
  8        R
  7  p  C A 
  6    P   T
- 5    C    
- 4  p Pr  P
+ 5    p    
+ 4  p  r  P
  3      P  
  2         
  1      a  
    ABCDEFGH
+
+d4 d5
 
  8        R
  7  p  C A 
  6    P C T
  5         
- 4  p Pr  P
+ 4  p  r  P
  3      P  
  2         
  1      a  
    ABCDEFGH
+
+d5 f6
 
  8        R
  7  p  C A 
  6    P C T
  5         
- 4  p P r P
+ 4  p   r P
  3      P  
  2         
  1      a  
    ABCDEFGH
 
+e4 f4
+
  8        R
  7  p  C A 
  6    P   T
  5    C    
- 4  p P r P
+ 4  p   r P
  3      P  
  2         
  1      a  
    ABCDEFGH
 
+f6 d5
+
  8        R
  7  p  C A 
  6    P   T
  5    C    
- 4  p P   P
+ 4  p     P
  3      r  
  2         
  1      a  
    ABCDEFGH
 
+f4 f3
+
  8        R
  7  p  C A 
  6    P   T
  5         
- 4  C P   P
+ 4  C     P
  3      r  
  2         
  1      a  
    ABCDEFGH
 
+d5 b4
+
  8        R
  7  p  C A 
  6    P   T
  5         
- 4  C P r P
+ 4  C   r P
  3         
  2         
  1      a  
    ABCDEFGH
 
+f3 f4
+
  8        R
  7  p  C A 
  6    P  T 
  5         
- 4  C P r P
+ 4  C   r P
  3         
  2         
  1      a  
    ABCDEFGH
 
+h6 g6
+
  8        R
  7  p  C A 
  6    P  T 
  5         
- 4  C P r P
+ 4  C   r P
  3        a
  2         
  1         
    ABCDEFGH
 
+f1 h3
+
  8   C    R
  7  p    A 
  6    P  T 
  5         
- 4  C P r P
+ 4  C   r P
  3        a
  2         
  1         
    ABCDEFGH
 
+e7 c8
+
  8   C    R
  7  p    A 
  6    P  T 
  5         
- 4  C P raP
+ 4  C   raP
  3         
  2         
  1         
    ABCDEFGH
 
- 8   C    R
- 7  p    A 
- 6    P  T 
- 5         
- 4    P raP
- 3         
- 2 C       
- 1         
-   ABCDEFGH
+h3 g4
 
  8   C    R
  7  p    A 
  6    P  T 
  5         
- 4    Pr aP
+ 4      raP
  3         
  2 C       
  1         
    ABCDEFGH
+
+b4 a2
+
+ 8   C    R
+ 7  p    A 
+ 6    P  T 
+ 5         
+ 4     r aP
+ 3         
+ 2 C       
+ 1         
+   ABCDEFGH
+
+f4 e4
 
  8   C    R
  7  p      
  6    P  TA
  5         
- 4    Pr aP
+ 4     r aP
  3         
  2 C       
  1         
    ABCDEFGH
 
+g7 h6
+
  8   C    R
  7  p      
  6    Pa TA
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+g4 e6
 
  8   C     
  7  p     R
  6    Pa TA
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+h8 h7
 
  8   a     
  7  p     R
  6    P  TA
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+e6 c8
 
  8   a     
  7  p     R
  6    P   A
  5       T 
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+g6 g5
 
  8   a     
  7  p     R
- 6    P   A
+ 6    Pp  A
  5       T 
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+e5 e6
 
  8   a    R
  7  p      
- 6    P   A
+ 6    Pp  A
  5       T 
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
 
+h7 h8
+
  8   a    R
- 7  p      
+ 7  p  p   
  6    P   A
  5       T 
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
 
+e6 e7
+
  8   a    R
- 7  p    T 
+ 7  p  p T 
  6    P   A
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
+
+g5 g7
 
  8        R
- 7  p    T 
+ 7  p  p T 
  6    Pa  A
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
 
+c8 e6
+
  8       TR
- 7  p      
+ 7  p  p   
  6    Pa  A
  5         
- 4    Pr  P
+ 4     r  P
  3         
  2 C       
  1         
    ABCDEFGH
 
+g7 g8
+
  8       TR
- 7  p      
+ 7  p  p   
  6    Pa  A
  5         
- 4    P   P
+ 4        P
  3    r    
  2 C       
  1         
    ABCDEFGH
 
+e4 d3
+
  8        R
- 7  p      
+ 7  p  p   
  6    Pa  A
  5       T 
- 4    P   P
+ 4        P
  3    r    
  2 C       
  1         
    ABCDEFGH
 
+g8 g5
+
  8        R
- 7  p      
+ 7  p  p   
  6    Pa  A
  5       T 
- 4    P   P
+ 4        P
  3         
  2 C  r    
  1         
    ABCDEFGH
 
+d3 d2
+
  8        R
- 7  p      
+ 7  p  p   
  6    Pa  A
  5       T 
- 4    P    
+ 4         
  3        P
  2 C  r    
  1         
    ABCDEFGH
 
+h4 h3
+
  8        R
- 7  p      
+ 7  p  p   
  6    Pa  A
  5       T 
- 4    P    
+ 4         
  3    r   P
  2 C       
  1         
    ABCDEFGH
 
+d2 d3
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6    Pa   
  5       T 
- 4    P    
+ 4         
  3    r   P
  2 C       
  1         
    ABCDEFGH
 
+h6 g7
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6    P    
  5       T 
- 4    P    
+ 4         
  3    r   a
  2 C       
  1         
    ABCDEFGH
 
+e6 h3
+
  8        R
- 7  p      
+ 7  p  p   
  6    P A  
  5       T 
- 4    P    
+ 4         
  3    r   a
  2 C       
  1         
    ABCDEFGH
 
+g7 f6
+
  8        R
- 7  p      
+ 7  p  p   
  6    P A  
  5       T 
- 4    P    
+ 4         
  3        a
  2 C  r    
  1         
    ABCDEFGH
 
+d3 d2
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6    P    
  5       T 
- 4    P    
+ 4         
  3        a
  2 C  r    
  1         
    ABCDEFGH
 
+f6 g7
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6    P    
  5       T 
- 4    P    
+ 4         
  3    r   a
  2 C       
  1         
    ABCDEFGH
 
+d2 d3
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6         
  5    P  T 
- 4    P    
+ 4         
  3    r   a
  2 C       
  1         
    ABCDEFGH
 
+d6 d5
+
  8        R
- 7  p    A 
+ 7  p  p A 
  6         
  5    P  T 
- 4    P    
+ 4         
  3    r    
  2 C     a 
  1         
    ABCDEFGH
+
+h3 g2
 
  8      A R
- 7  p      
+ 7  p  p   
+ 6         
+ 5    P  T 
+ 4         
+ 3    r    
+ 2 C     a 
+ 1         
+   ABCDEFGH
+
+g7 f8
+
+ 8      a  
+ 7  p     R
  6         
  5    P  T 
  4    P    
@@ -1428,44 +1712,77 @@
  1         
    ABCDEFGH
 
- 8      A R
- 7  p      
+h8 h7
+
+ 8      a  
+ 7  p     R
  6         
- 5    P  T 
+ 5    a  T 
  4    P    
  3    r    
- 2 C     a 
+ 2 C       
  1         
    ABCDEFGH
 
- 8      A R
- 7  p      
+g2 d5
+
+ 8      a  
+ 7  p     R
  6         
- 5    P  T 
+ 5    a   T
  4    P    
  3    r    
- 2 C     a 
+ 2 C       
  1         
    ABCDEFGH
 
- 8      A R
- 7  p      
+g5 h5
+
+ 8      aa 
+ 7  p     R
  6         
- 5    P  T 
+ 5        T
  4    P    
  3    r    
- 2 C     a 
+ 2 C       
  1         
    ABCDEFGH
 
- 8      A R
+d5 g8
+
+ 8      aa 
  7  p      
- 6         
- 5    P  T 
+ 6       R 
+ 5        T
  4    P    
  3    r    
- 2 C     a 
+ 2 C       
  1         
    ABCDEFGH
 
-PATTA PER RIPETIZIONE DI MOSSE
+h7 g6
+
+ 8      aa 
+ 7  p      
+ 6       R 
+ 5        T
+ 4    Pr   
+ 3         
+ 2 C       
+ 1         
+   ABCDEFGH
+
+d3 e4
+
+ 8      aa 
+ 7  p      
+ 6         
+ 5       RT
+ 4    Pr   
+ 3         
+ 2 C       
+ 1         
+   ABCDEFGH
+
+g6 g5
+

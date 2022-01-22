@@ -16,9 +16,7 @@ Player::Player(char c)
 	color='n';
 	replay=false;
 	output_file="log.txt";
-	ofstream file(output_file);
-	file.clear();
-	file.close();
+	
 };
 char Player::col()
 {return color;}
@@ -28,28 +26,13 @@ void Player::setcol(char c)
 {color=c;}
 void Player::move(string mossa)
 {
-		ofstream file(output_file,ios::app);
 		int i_letter,f_letter;
 		char chari_letter,charf_letter;
 		int i_number,f_number;
-		if(mossa=="XX XX")
-		{
-			cout<<*boardgame<<endl;
-			return;
-		}
-		if(mossa=="PATTA")
-		{
-			boardgame->set_draw();
-			ofstream file(output_file,ios::app);
-			file<<mossa<<"\n";
-			file.close();
-			return;
-		}
 		chari_letter=mossa[0];	//convertiti
 		charf_letter=mossa[3];
 		i_number=mossa[1]-'0';	//da convertire
 		f_number=mossa[4]-'0';
-
 		i_number--;
 		f_number--;
 		if(mossa[2]!=' ') throw new Illegal_move();
@@ -79,15 +62,9 @@ void Player::move(string mossa)
 			}
 			catch(Promotion* e)
 			{
-				file<<mossa<<"\n";
 				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
-				file.close();
 				return;
 			}
-			
-
-			file<<mossa<<"\n";
-			file.close();
 		}
 		catch(Illegal_move* e)
 		{
@@ -185,16 +162,26 @@ void Player::move()
 		int random_letter=0,random_number=0,random_piece=0;
 		if(color=='w')
 		{
+			Piece* t;
 			do
 			{
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
+				t=boardgame->whites[random_piece];
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			
 			int n=boardgame->whites[random_piece]->num(),l=boardgame->whites[random_piece]->let();
 			try{
-				boardgame->whites[random_piece]->move(random_number,random_letter);
+				try{
+					boardgame->whites[random_piece]->move(random_number,random_letter);
+				}
+				catch(Illegal_move* i)
+				{
+					move();
+					return;
+				}
+				
 			}
 			catch(Promotion* e)
 			{
@@ -208,6 +195,7 @@ void Player::move()
 			ofstream ofile("loog.txt",ios::app);
 			ofile<<*boardgame<<endl;
 			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
+			ofile<<t->cpiece()<<endl;
 			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
@@ -215,16 +203,25 @@ void Player::move()
 		}
 		if(color=='b')
 		{
+			Piece* t;
 			do
 			{
 				random_piece=rand()%boardgame->blacks.size();
 				random_number=rand()%8;
 				random_letter=rand()%8;
+				t=boardgame->blacks[random_piece];
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			
 			int n=boardgame->blacks[random_piece]->num(),l=boardgame->blacks[random_piece]->let();
 			try{
-				boardgame->blacks[random_piece]->move(random_number,random_letter);
+				try{
+					boardgame->blacks[random_piece]->move(random_number,random_letter);
+				}
+				catch(Illegal_move* i)
+				{
+					move();
+					return;
+				}
 			}
 			catch(Promotion* e)
 			{
@@ -238,6 +235,7 @@ void Player::move()
 			ofstream ofile("loog.txt",ios::app);
 			ofile<<*boardgame<<endl;
 			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
+			ofile<<t->cpiece()<<endl;
 			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
@@ -300,9 +298,6 @@ void Player:: promotion(Pawn* p,char pezzo)
 				}
 			}
 			}
-			ofstream file(output_file,ios::app);
-			file<<pezzo<<"\n";
-			file.close();
 			return;
 		}
 		if(replay)

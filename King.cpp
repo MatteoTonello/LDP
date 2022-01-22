@@ -18,8 +18,10 @@ King::King(int n, int l, char col, Board* myBoard)
 	is_not_check=false;
 }
 bool King::try_move(int n,int l)
-{
+{	//Controlli sulla casella di arrivo per occupazione
 	if(b->gameboard[n][l]!=nullptr && b->gameboard[n][l]->col()==color) return false;
+
+	//Controlli sulla possibilità di arrocco
 	if(n!=number || l!=letter)
 	{
 		if(abs(l-letter)==2 && !is_already_move && number==n)
@@ -36,6 +38,8 @@ bool King::try_move(int n,int l)
 			}
 			
 		}
+
+		//Controllo che sia nel range di azione del Re
 		if(abs(n-number)<=1 && abs(l-letter)<=1)
 		{
 			return !diventa_scacco(n,l,n,l);
@@ -43,10 +47,13 @@ bool King::try_move(int n,int l)
 	}
 	return false;
 }
+
 bool King::can_move()
 {
 	int save_letter=letter;
 	int save_number=number;
+
+	//Controllo se nelle 8 caselle circostanti potrei muovermi (Se sono occupate, se posso mangiare, se le caselle non sono sotto scacco)
 	for(int i=-1; i<=1; i++)
 	{
 		if(number+i>=0 && number+i<=7){
@@ -56,10 +63,13 @@ bool King::can_move()
 				{
 					if(b->gameboard[number+i][letter+j]==nullptr || b->gameboard[number+i][letter+j]->col()!=color)
 					{
+						//Salvo l'eventuale pezzo nella casella di arrivo e sposto il Re
 						Piece* p=b->gameboard[number+i][letter+j];
 						b->gameboard[number+i][letter+j]=this;
 						b->gameboard[number][letter]=nullptr;
 						number=number+i; letter=letter+j;
+
+						//Elimino dagli array dei pezzi l'eventuale pezzo rimosso
 						if(color=='w')
 						{
 							for(int i=0;i<b->blacks.size();i++)
@@ -74,18 +84,22 @@ bool King::can_move()
 								if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
 							}
 						}
+
+						//Restituisce true se la nuova posizione non lo mette in scacco, torno indietro, reinserisco il pezzo nell'array
 						if(!(b->is_check(color)))
 						{
 							b->gameboard[number][letter]=p;
 							b->gameboard[save_number][save_letter]=this;
 							letter=save_letter; number=save_number;
 							if(p!=nullptr)
-							if(color=='w') b->blacks.push_back(p);
+								if(color=='w') b->blacks.push_back(p);
 								else b->whites.push_back(p);
 							return true;
 						}
+
+						//Se la nuova posizione lo mette in scacco, torno indietro, reinserisco il pezzo nell'array
 						if(p!=nullptr)
-						if(color=='w') b->blacks.push_back(p);
+							if(color=='w') b->blacks.push_back(p);
 							else b->whites.push_back(p);
 						b->gameboard[number][letter]=p;
 						b->gameboard[save_number][save_letter]=this;
@@ -98,10 +112,13 @@ bool King::can_move()
 	}
 	return false;
 }
+
 void King::move(int n, int l)
 {
+	//Controlli per l'arrocco
 	if(n==number && (l==letter+2 || l==letter-2) && (l==2 || l==6))
 	{
+		//Se non c'è lo scacco vado a fare l'arrocco
 		if(b->is_check(color)) throw new Illegal_move();
 		if(l==6) short_castling();
 		if(l==2) long_castling();

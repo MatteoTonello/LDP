@@ -14,14 +14,14 @@ int Piece::let()
 {return letter;}
 void Piece::remove_en_passant()
 {
-    for(int i=0;i<b->whites.size();i++)
+    for(int i=0;i<b->whites.size();i++)   //Controllo tutti i pezzi bianchi
     {
-        if(b->whites[i]->cpiece()=='p')
+        if(b->whites[i]->cpiece()=='p')   //Se è un pedone, setto "en_passant" a falso
             ((Pawn*)b->whites[i])->en_passant=false;
     }
-    for(int i=0;i<b->blacks.size();i++)
+    for(int i=0;i<b->blacks.size();i++)   //Controllo tutti i pezzi neri
     {
-        if(b->blacks[i]->cpiece()=='P')
+        if(b->blacks[i]->cpiece()=='P')   //Se è un pedone, setto "en_passant" a falso
                 ((Pawn*) b->blacks[i])->en_passant=false;
     }
 

@@ -20,10 +20,10 @@ class Piece
 	public:
 				 
 		Board* b;		//scacchiera nel quale si trova il pezzo
-		int num();
-      int let();
-      char col();
-      char cpiece();
+		int num();	//restituisce il numero
+      int let();	//restituisce la lettera
+      char col();	//restituisce il colore
+      char cpiece();	//restituisce il carattere del pezzo
 		virtual void move(int n, int l) =0;   //permette al pezzo di muoversi nella matrice alla riga n e colonna l
 		virtual bool try_move(int n,int l)=0;  //true se il pezzo può muoversi in quella posizione, false altrimenti
 		virtual bool can_move() =0;    //true se il pezzo ha mosse disponibili, false altrimenti

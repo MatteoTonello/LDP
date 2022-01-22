@@ -118,19 +118,23 @@ void King::move(int n, int l)
 	//Controlli per l'arrocco
 	if(n==number && (l==letter+2 || l==letter-2) && (l==2 || l==6))
 	{
-		//Se non c'è lo scacco vado a fare l'arrocco
+		//Se non c'è lo scacco vado a fare l'arrocco corto o lungo
 		if(b->is_check(color)) throw new Illegal_move();
 		if(l==6) short_castling();
 		if(l==2) long_castling();
 		return;
 	}
+	//Controllo che rientri nel range di movimento canonico
 	if(abs(n-number)>1 || abs(l-letter)>1) throw new Illegal_move();
+	
+	//Se la casella di arrivo è vuota, faccio un tentativo di movimento
 	int save_letter=letter, save_number=number;
 	if(b->gameboard[n][l]==nullptr)
 	{
 		b->gameboard[n][l]=this;
 		b->gameboard[number][letter]=nullptr;
 		letter=l; number=n;
+		//Se diventa scacco, torno indietro
 		if(b->is_check(color))
 		{
 			b->gameboard[n][l]=nullptr;
@@ -139,11 +143,14 @@ void King::move(int n, int l)
 			throw new Illegal_move();
 		}
 	}
-	else
+	else //Se non è vuota
 	{
+		//Controllo che non sia il re avversario
       if(b->gameboard[n][l]->cpiece()=='r' || b->gameboard[n][l]->cpiece()=='R') throw new Illegal_move();
+		//Controllo che sia del colore avversario
 		if(b->gameboard[n][l]->col()!=color)
 		{
+			//Salvo l'elemento catturato e lo elimino dalla lista dei pezzi
 			Piece* p=b->gameboard[n][l];
 			b->gameboard[n][l]=this;
 			b->gameboard[number][letter]=nullptr;
@@ -162,6 +169,7 @@ void King::move(int n, int l)
 					if(b->whites[i]==p){ b->whites.erase(b->whites.begin()+i); break;}
 				}
 			}
+			//Se la nuova posizione provoca uno scacco, rimetto le pedine al loro posto
 			if(b->is_check(color))
 			{
 				b->gameboard[n][l]=p;
@@ -171,7 +179,7 @@ void King::move(int n, int l)
 					else b->whites.push_back(p);
 				throw new Illegal_move();
 			}
-	    }
+	   }
 		else
 			throw new Illegal_move();
 
@@ -182,11 +190,15 @@ void King::move(int n, int l)
 }
 void King::short_castling()
 {
+		//Controllo condizioni necessarie per l'arrocco corto:
+		//Torre e re mai mossi, casella di arrivo giusta
 		if((!is_already_move) && (b->gameboard[number][7]!=nullptr) && (b->gameboard[number][7]->cpiece()=='t' || b->gameboard[number][7]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][7]))->is_already_move))
 		{
-			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]== nullptr)
+			//Se le caselle che attraversa il Re e la torre sono vuote
+			if(b->gameboard[number][5]==nullptr && b->gameboard[number][6]==nullptr)
 			{
-				    b->gameboard[number][5]=this;
+				//Tento il movimento casella per casella e controllo che non sia sotto scacco il Re
+				   b->gameboard[number][5]=this;
 					b->gameboard[number][letter]=nullptr;
 					letter=5;
 					if(b->is_check(color))
@@ -209,6 +221,7 @@ void King::short_castling()
 					b->gameboard[number][4]=this;
 					b->gameboard[number][6]=nullptr;
 					letter=4;
+					//Superati i controlli sposto la torre
 					b->gameboard[number][7]->move(number,5);
 					b->gameboard[number][6]=this;
 					b->gameboard[number][4]=nullptr;
@@ -221,38 +234,43 @@ void King::short_castling()
 }
 void King::long_castling()
 {
+	//Controllo condizioni necessarie per l'arrocco lungo:
+		//Torre e re mai mossi, casella di arrivo giusta
 	if((!is_already_move) && (b->gameboard[number][0]!=nullptr) && (b->gameboard[number][0]->cpiece()=='t' || b->gameboard[number][0]->cpiece()=='T') && !(((Rock*)(b->gameboard[number][0]))->is_already_move))
 		{
-			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]== nullptr && b->gameboard[number][3]==nullptr)
+			//Se le caselle che attraversano il Re e la torre sono vuote
+			if(b->gameboard[number][1]==nullptr && b->gameboard[number][2]==nullptr && b->gameboard[number][3]==nullptr)
 			{
-				   	b->gameboard[number][3]=this;
-					b->gameboard[number][letter]=nullptr;
-					letter=3;
-					if(b->is_check(color))
-					{
-						b->gameboard[number][3]=nullptr;
-						b->gameboard[number][4]=this;
-						letter=4;
-						throw new Illegal_move();
-					}
+				//Tento il movimento casella per casella e controllo che non sia sotto scacco il Re
+				b->gameboard[number][3]=this;
+				b->gameboard[number][letter]=nullptr;
+				letter=3;
+				if(b->is_check(color))
+				{
 					b->gameboard[number][3]=nullptr;
-					b->gameboard[number][2]=this;
-					letter=2; 
-					if(b->is_check(color))
-					{
-						b->gameboard[number][2]=nullptr;
-						b->gameboard[number][4]=this;
-						letter=4; 
-						throw new Illegal_move();
-					}
 					b->gameboard[number][4]=this;
-					b->gameboard[number][2]=nullptr;
 					letter=4;
-					b->gameboard[number][0]->move(number,3);
-					b->gameboard[number][2]=this;
-					b->gameboard[number][4]=nullptr;
-					letter=2;
-					return;
+					throw new Illegal_move();
+				}
+				b->gameboard[number][3]=nullptr;
+				b->gameboard[number][2]=this;
+				letter=2; 
+				if(b->is_check(color))
+				{
+					b->gameboard[number][2]=nullptr;
+					b->gameboard[number][4]=this;
+					letter=4; 
+					throw new Illegal_move();
+				}
+				b->gameboard[number][4]=this;
+				b->gameboard[number][2]=nullptr;
+				letter=4;
+				//Superati i controlli sposto la torre
+				b->gameboard[number][0]->move(number,3);
+				b->gameboard[number][2]=this;
+				b->gameboard[number][4]=nullptr;
+				letter=2;
+				return;
 			}
 		}
 		throw new Illegal_move();

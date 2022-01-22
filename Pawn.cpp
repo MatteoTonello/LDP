@@ -85,8 +85,8 @@ void Pawn::move(int n, int l)
 		Piece* temp;  //variabile dove salvare il puntatore al pezzo eliminato/nullptr se casella vuota
 		if(color=='b')
 		{
-			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
+			if(n-number==1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->cpiece()=='P' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				//completamento mossa en passant
 				temp=b->gameboard[n-1][l];
@@ -102,8 +102,8 @@ void Pawn::move(int n, int l)
 		}
 		if(color=='w')
 		{
-			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
-			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
+			if(n-number==-1 && ((l-letter==1 && b->gameboard[number][letter+1]!=nullptr && b->gameboard[number][letter+1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter+1])->en_passant==true
+			) || (l-letter==-1 && b->gameboard[number][letter-1]!=nullptr && b->gameboard[number][letter-1]->cpiece()=='p' && ((Pawn*)b->gameboard[number][letter-1])->en_passant==true)))
 			{
 				//completamento mossa en passant
 				temp=b->gameboard[n+1][l];

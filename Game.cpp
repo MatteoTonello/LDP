@@ -175,7 +175,7 @@ bool Game::is_finished()
         result="PATTA PER DECISIONE";
         return true;
     }
-    if(nmosse>=150 && (!white_player->human()) && (!black_player->human()))
+    if(nmosse>=150)
     {
         result="PATTA,LIMITE 150 MOSSE";
         return true;

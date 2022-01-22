@@ -6,6 +6,7 @@
 #include "Board.cpp"
 #include "Illegal_move.cpp"
 #include <stdio.h>
+#include <fstream>
 #include <stdlib.h>    
 #include <time.h>
 using namespace std;
@@ -24,6 +25,9 @@ Game::Game(char type)
         {
             white_player=new Player('c');
             black_player=new Player('p');
+            ofstream file("log.txt");
+	file.clear();
+	file.close();
         }
         
     }
@@ -31,6 +35,9 @@ Game::Game(char type)
     {
         white_player=new Player('c');
         black_player=new Player('c');
+        ofstream file("log.txt");
+	file.clear();
+	file.close();
     }
     if(type=='r')
     {

@@ -6,6 +6,7 @@
 #include "Board.cpp"
 #include <iostream>
 #include <fstream>
+#include "Illegal_move.cpp"
 using namespace std;
 
 GameReplay::GameReplay(string in)
@@ -35,10 +36,16 @@ void GameReplay::replayf()
         fileo<<*(game->mainboard)<<"\n";
         while ( getline (filei,mossa))
         {
-            string piece;
+            string piece="";
             if(mossa=="XX XX")  fileo<<*(game->mainboard);
             else
             {
+                if(mossa=="PATTA")
+                {
+                    game->mainboard->set_draw();
+                    fileo<<mossa<<"\n";
+                    break;
+                }
                 try
                 {
                    try
@@ -59,6 +66,10 @@ void GameReplay::replayf()
                     flag=true;
                 }
                 fileo<<*(game->mainboard)<<"\n";
+                if(piece!="")
+                    fileo<<piece[0]<<endl<<endl;
+                piece="";
+                fileo<<mossa<<endl;
                 flag=false;
                 game->change_turn();
             }
@@ -96,6 +107,7 @@ void GameReplay::replayv()
                     flag=true;
                 }
                 cout<<*(game->mainboard)<<endl;
+                cout<<mossa<<endl;
                 if(flag)
                     cout<<piece[0]<<"\n\n";
                 flag=false;

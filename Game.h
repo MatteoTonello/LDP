@@ -17,7 +17,7 @@ class Game
    public:
 		Game(char type);   	//costruttore per partita giocatore n1 contro n2
       ~Game();
-		void addMove();
+		void addMove();		//Incrementa il numero di mosse
       string game_result();
 		Board* mainboard;				//puntatore alla scacchiera della partita	
 		Player* is_turn;				//puntatore al giocatore che deve fare la mossa

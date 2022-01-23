@@ -11,14 +11,14 @@ using namespace std;
 
 GameReplay::GameReplay(string in)   //Costruttore per solo file in input
 {
-    game=new Game('r');
+    game=new Game('r');         //nuova partita con parametro replay
     file_input=in;
     file_output="";
 }
 
 GameReplay::GameReplay(string in,string out)    //Costruttore per input e output
 {
-    game=new Game('r');
+    game=new Game('r');         //nuova partita con parametro replay
     file_input=in;
     file_output=out;
 }
@@ -31,55 +31,48 @@ GameReplay::~GameReplay()
 void GameReplay::replayf()
 {
     string mossa;
-    bool flag=false;
     ofstream fileo(file_output);
     ifstream filei (file_input);
     if (filei.is_open())
     {
-        fileo<<*(game->mainboard)<<"\n";
+        fileo<<*(game->mainboard)<<"\n";            //stampa la scacchiera nel file
         while ( getline (filei,mossa))
         {
             string piece="";
-            if(mossa=="XX XX")  fileo<<*(game->mainboard);
+            if(mossa=="PATTA")
+            {
+                game->mainboard->set_draw();        //variabile draw diventa true
+            }
             else
             {
-                if(mossa=="PATTA")
-                {
-                    game->mainboard->set_draw();
-                }
-                else
+                try
                 {
                     try
                     {
-                        try
-                        {
-                            game->is_turn->move(mossa);
-                        }
-                        catch(Illegal_move* i)
-                        {
-                            cout<<"MODIFICARE IL FILE DI INPUT"<<endl;
-                        }
-                            
+                        game->is_turn->move(mossa);
                     }
-                    catch(Pawn* e)
+                    catch(Illegal_move* i)
                     {
-                        getline (filei,piece);
-                        game->is_turn->promotion(e,piece[0]);
-                        flag=true;
+                        cout<<"MODIFICARE IL FILE DI INPUT"<<endl;  //messaggio di errore in output
                     }
-                    fileo<<*(game->mainboard)<<"\n";
-                    if(piece!="")
-                        fileo<<piece[0]<<endl<<endl;
-                    piece="";
-                    flag=false;
-                    game->change_turn();
-                }  
-            }
-            game->addMove();
-            game->last_bs.push_back(game->mainboard->to_String());
-            if(game->is_finished()) break;
+                        
+                }
+                catch(Pawn* e)                      //se viene lanciato un Pawn* vuol dire che bisogna ricevere in input il carattere del pedone
+                {
+                    getline (filei,piece);                      
+                    game->is_turn->promotion(e,piece[0]);       //richiamato la funzione promozione con il pedone e il carattere ricevuto in input
+                }
+                fileo<<*(game->mainboard)<<"\n";            //stampa la scacchiera nel file
+                if(piece!="")                   //se c'è stata promozione
+                    fileo<<piece[0]<<endl<<endl;        //stampa del carattere della pedina promossa nel file
+                piece="";                   //imposta nuovamente piece a ""
+                game->change_turn();
+            }  
+            game->addMove();            //incrementato il contatore delle mosse
+            game->last_bs.push_back(game->mainboard->to_String());          //inserita la scacchiera nel vettore delle vecchie scacchiere
+            if(game->is_finished()) break;              //se è finita la partita esce dal ciclo
         }
-        fileo<<game->game_result()<<"\n";
+        fileo<<game->game_result()<<"\n";           //stampa il risultato nel file
         fileo.close();
         filei.close();
      }
@@ -88,43 +81,44 @@ void GameReplay::replayf()
 void GameReplay::replayv()
 {
     string mossa;
-    string piece;
-    bool flag;
+    string piece="";
     ifstream filei (file_input);
     if (filei.is_open())
     {
         while ( getline (filei,mossa) )
         {
-            if(mossa=="XX XX")  cout<<*(game->mainboard);
-            else
+            if(mossa=="PATTA")
             {
-                if(mossa=="PATTA")
-                {
-                    game->mainboard->set_draw();
-                    break;
-                }
-                try
-                {
-                    game->is_turn->move(mossa);
-                }
-                catch(Pawn* e)
-                {
-                    getline (filei,piece);
-                    game->is_turn->promotion(e,piece[0]);
-                    flag=true;
-                }
-                cout<<*(game->mainboard)<<endl;
-                if(flag)
-                    cout<<"\n"<<piece[0]<<"\n\n";
-                flag=false;
-                Sleep(1000);
-                game->change_turn();
+                game->mainboard->set_draw();            //variabile draw diventa true
+                break;
             }
-            game->addMove();
-            game->last_bs.push_back(game->mainboard->to_String());
-            if(game->is_finished()) break;
+            try
+            {
+                try
+                    {
+                        game->is_turn->move(mossa);
+                    }
+                    catch(Illegal_move* i)
+                    {
+                        cout<<"MODIFICARE IL FILE DI INPUT"<<endl;  //messaggio di errore in output
+                    }
+            }
+            catch(Pawn* e)      //se viene lanciato un Pawn* vuol dire che bisogna ricevere in input il carattere del pedone
+            {
+                getline (filei,piece);
+                game->is_turn->promotion(e,piece[0]);       //richiamato la funzione promozione con il pedone e il carattere ricevuto in input
+            }
+            cout<<*(game->mainboard)<<endl;     //stampata in output la scacchiera
+            if(piece!="")                      //se c'è stata promozione
+                cout<<"\n"<<piece[0]<<"\n\n";        //stampa del carattere della pedina promossa
+            piece="";                   //imposta nuovamente piece a ""
+            Sleep(1000);
+            game->change_turn();
+            game->addMove();            //incrementato il contatore delle mosse
+            game->last_bs.push_back(game->mainboard->to_String());          //inserita la scacchiera nel vettore delle vecchie scacchiere
+            if(game->is_finished()) break;          //se è finita la partita esce dal ciclo
         }
-        cout<<game->game_result()<<"\n";
+        cout<<game->game_result()<<"\n";            //stampa in output il risultato
         filei.close();
      }
 }

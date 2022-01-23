@@ -359,18 +359,21 @@ void Player::promotion(Pawn* p,char pezzo)
 				}
 			}
 		}
-		else
+		else	//Promozione del pedone bianco
 		{
 			char c;
 			string prom;
 			cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale minuscola del pezzo che vuoi scegliere"<<endl;
 			while(true)
 			{
+				//Lettura della scelta di promozione da tastiera
 				getline(cin, prom);
 				c=prom[0];
 				if(c=='a' || c=='t' || c=='d' || c=='c') break;
 				cout<<"pezzo non valido"<<endl;
 			}
+
+			//Sostituzione del pezzo
 			ofstream file(output_file,ios::app);
 			file<<prom<<"\n";
 			file.close();
@@ -429,7 +432,7 @@ void Player::promotion(Pawn* p,char pezzo)
 			}
 		ofstream file(output_file,ios::app);
 		string pezzo;
-      	pezzo.push_back(p->b->gameboard[p->num()][p->let()]->cpiece());
+      pezzo.push_back(p->b->gameboard[p->num()][p->let()]->cpiece());
 		file<<pezzo<<"\n";
 		file.close();
 			

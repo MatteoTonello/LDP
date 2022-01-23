@@ -9,22 +9,25 @@
 #include "Illegal_move.cpp"
 using namespace std;
 
-GameReplay::GameReplay(string in)
+GameReplay::GameReplay(string in)   //Costruttore per solo file in input
 {
     game=new Game('r');
     file_input=in;
     file_output="";
 }
-GameReplay::GameReplay(string in,string out)
+
+GameReplay::GameReplay(string in,string out)    //Costruttore per input e output
 {
     game=new Game('r');
     file_input=in;
     file_output=out;
 }
+
 GameReplay::~GameReplay()
 {
    delete game;
 }
+
 void GameReplay::replayf()
 {
     string mossa;
@@ -81,6 +84,7 @@ void GameReplay::replayf()
         filei.close();
      }
 }
+
 void GameReplay::replayv()
 {
     string mossa;

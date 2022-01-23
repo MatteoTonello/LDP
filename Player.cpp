@@ -18,12 +18,16 @@ Player::Player(char c)
 	output_file=OFILE_DEFAULT;
 	
 };
+
 char Player::col()
 {return color;}
+
 bool Player::human()
 {return is_human;}
+
 void Player::setcol(char c)
 {color=c;}
+
 void Player::move(string mossa)
 {
 		int i_letter,f_letter;
@@ -35,6 +39,7 @@ void Player::move(string mossa)
 		f_number=mossa[4]-'0';
 		i_number--;
 		f_number--;
+		//Conversione del sistema di riferimento degli indici da matrice a scacchiera (numeri in ordine opposto)
 		if(mossa[2]!=' ') throw new Illegal_move();
 		if(i_number<0 || i_number>=8) throw new Illegal_move();
 		if(f_number<0 || f_number>=8) throw new Illegal_move();
@@ -48,6 +53,8 @@ void Player::move(string mossa)
 		if(charf_letter>='a' && charf_letter<='h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
+
+		//Condizioni per il movimento
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
 		if(boardgame->gameboard[i_number][i_letter]->col()!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
@@ -71,6 +78,7 @@ void Player::move(string mossa)
 			throw new Illegal_move();
 		}
 }
+
 void Player::move()
 {
 	if(is_human)
@@ -233,6 +241,7 @@ void Player::move()
 	}
 	
 }
+
 string Player::output_random_move(int num,int let,int n,int l)
 {
     char fl='a'+l;
@@ -241,10 +250,12 @@ string Player::output_random_move(int num,int let,int n,int l)
     int in=7-num+1;
     return il+to_string(in)+" "+fl+to_string(fn);
 }
+
 void Player::set_output_file(string file)
 {
 	output_file=file;
 }
+
 void Player:: promotion(Pawn* p,char pezzo)
 {
 	if(is_human)

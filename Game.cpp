@@ -184,7 +184,7 @@ bool Game::fifty_moves(){
         fmcount++;
     }
     else{
-        Azzero i counter
+        //Azzero i counter
         pawns=s;
         npieces=n;
         fmcount=0;

@@ -15,7 +15,7 @@ Player::Player(char c)
 	if(c=='c')is_human=false;
 	color='n';
 	replay=false;
-	output_file="log.txt";
+	output_file=OFILE_DEFAULT;
 	
 };
 char Player::col()
@@ -189,14 +189,8 @@ void Player::move()
 				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 				file.close();
 				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
-				file.close();
 				return;
 			}
-			ofstream ofile("loog.txt",ios::app);
-			ofile<<*boardgame<<endl;
-			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
-			ofile<<t->cpiece()<<endl;
-			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
@@ -229,14 +223,8 @@ void Player::move()
 				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 				file.close();
 				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
-				file.close();
 				return;
 			}
-			ofstream ofile("loog.txt",ios::app);
-			ofile<<*boardgame<<endl;
-			ofile<<output_random_move(n,l,random_number,random_letter)<<endl<<endl;
-			ofile<<t->cpiece()<<endl;
-			ofile.close();
 			ofstream file(output_file,ios::app);
 			file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 			file.close();
@@ -403,7 +391,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 			}
 		ofstream file(output_file,ios::app);
 		string pezzo;
-      pezzo.push_back(p->b->gameboard[p->num()][p->let()]->cpiece());
+      	pezzo.push_back(p->b->gameboard[p->num()][p->let()]->cpiece());
 		file<<pezzo<<"\n";
 		file.close();
 			

@@ -43,35 +43,34 @@ void GameReplay::replayf()
                 if(mossa=="PATTA")
                 {
                     game->mainboard->set_draw();
-                    fileo<<mossa<<"\n";
-                    break;
                 }
-                try
+                else
                 {
-                   try
-                   {
-                      game->is_turn->move(mossa);
-                   }
-                   catch(Illegal_move* i)
-                   {
-                      cout<<"MODIFICARE IL FILE DI INPUT"<<endl;
-                      cout<<mossa;
-                   }
-                     
-                }
-                catch(Pawn* e)
-                {
-                    getline (filei,piece);
-                    game->is_turn->promotion(e,piece[0]);
-                    flag=true;
-                }
-                fileo<<*(game->mainboard)<<"\n";
-                if(piece!="")
-                    fileo<<piece[0]<<endl<<endl;
-                piece="";
-                fileo<<mossa<<endl;
-                flag=false;
-                game->change_turn();
+                    try
+                    {
+                        try
+                        {
+                            game->is_turn->move(mossa);
+                        }
+                        catch(Illegal_move* i)
+                        {
+                            cout<<"MODIFICARE IL FILE DI INPUT"<<endl;
+                        }
+                            
+                    }
+                    catch(Pawn* e)
+                    {
+                        getline (filei,piece);
+                        game->is_turn->promotion(e,piece[0]);
+                        flag=true;
+                    }
+                    fileo<<*(game->mainboard)<<"\n";
+                    if(piece!="")
+                        fileo<<piece[0]<<endl<<endl;
+                    piece="";
+                    flag=false;
+                    game->change_turn();
+                }  
             }
             game->addMove();
             game->last_bs.push_back(game->mainboard->to_String());
@@ -92,10 +91,14 @@ void GameReplay::replayv()
     {
         while ( getline (filei,mossa) )
         {
-            if(mossa=="-") break;
             if(mossa=="XX XX")  cout<<*(game->mainboard);
             else
             {
+                if(mossa=="PATTA")
+                {
+                    game->mainboard->set_draw();
+                    break;
+                }
                 try
                 {
                     game->is_turn->move(mossa);
@@ -107,9 +110,8 @@ void GameReplay::replayv()
                     flag=true;
                 }
                 cout<<*(game->mainboard)<<endl;
-                cout<<mossa<<endl;
                 if(flag)
-                    cout<<piece[0]<<"\n\n";
+                    cout<<"\n"<<piece[0]<<"\n\n";
                 flag=false;
                 //Sleep(1000);
                 game->change_turn();

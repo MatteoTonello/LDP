@@ -8,13 +8,15 @@ class Player
 {
         string output_file;      //nome file di output
         string output_random_move(int num,int let,int n,int l);    //restituisce la mossa con la notazione corretta per la scacchiera
-   
+        
+
         char color;       //colore dei pezzi del giocatore
         bool is_human;    //true se è umano, false se è computer
                     //true se si sta facendo un replay, false se è una partita
         
     public:
-        bool replay;
+        const string OFILE_DEFAULT="log.txt";   //nome del file di log di default
+        bool replay;            //true se è un giocatore di un replay
         Player(char c);         //costruttore di un giocatore con pezzi di colore c
         Board* boardgame; //scacchiera su cui giocano i giocatori
         bool human();

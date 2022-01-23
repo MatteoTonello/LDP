@@ -12,11 +12,11 @@
 using namespace std;
 Game::Game(char type)
 {
-   if(type=='p')
-   {
-    srand (time(NULL));
-    int r = rand() % 2;
-    if(r==0)
+    if(type=='p')
+    {
+        srand (time(NULL));
+        int r = rand() % 2;
+        if(r==0)
         {
             white_player=new Player('p');
             black_player=new Player('c');
@@ -25,19 +25,18 @@ Game::Game(char type)
         {
             white_player=new Player('c');
             black_player=new Player('p');
-            ofstream file("log.txt");
-	file.clear();
-	file.close();
         }
-        
+        ofstream file(white_player->OFILE_DEFAULT);
+        file.clear();
+        file.close();
     }
     if(type=='c')
     {
         white_player=new Player('c');
         black_player=new Player('c');
-        ofstream file("log.txt");
-	file.clear();
-	file.close();
+        ofstream file(white_player->OFILE_DEFAULT);
+	    file.clear();
+	    file.close();
     }
     if(type=='r')
     {

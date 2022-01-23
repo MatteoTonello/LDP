@@ -54,7 +54,7 @@ void Player::move(string mossa)
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
 
-		//Condizioni per il movimento
+		//Condizioni per il movimento e controllo se la mossa è legale
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
 		if(boardgame->gameboard[i_number][i_letter]->col()!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
@@ -65,10 +65,12 @@ void Player::move(string mossa)
 		try
 		{
 			try{
-			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+				//Tenta il movimento
+				boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
 			}
 			catch(Promotion* e)
-			{
+			{	
+				//Eccezione della promozione del pedone
 				promotion((Pawn*)(boardgame->gameboard[f_number][f_letter]),' ');
 				return;
 			}
@@ -83,21 +85,22 @@ void Player::move()
 {
 	if(is_human)
 	{
+		//Mossa inserita manualmente dal giocatore
 		int i_letter,f_letter;
 		char chari_letter,charf_letter;
 		int i_number,f_number;
 		string mossa="";
 		cout<<"inserisci mossa"<<endl;
 		getline(cin,mossa);
-		if(mossa=="XX XX")
+		if(mossa=="XX XX")	//Stampa della scacchiera se scrive XX XX
 		{
 			cout<<*boardgame<<endl<<endl;
 			move();
 			return;
 		}
-		if(mossa=="PATTA")
+		if(mossa=="PATTA")	//Comando per richiedere il pareggio concordato
 		{
-			int patta=rand()%2;
+			int patta=rand()%2;	//Scelta casuale della risposta del computer, 0 rifiuta, 1 accetta
 			if(patta==0)
 			{
 				cout<<"PATTA RIFIUTATA"<<endl;
@@ -120,6 +123,7 @@ void Player::move()
 		f_number=mossa[4]-'0';
 		i_number--;
 		f_number--;
+		//Conversione del sistema di riferimento degli indici da matrice a scacchiera (numeri in ordine opposto)
 		if(mossa[2]!=' ') throw new Illegal_move();
 		if(i_number<0 || i_number>=8) throw new Illegal_move();
 		if(f_number<0 || f_number>=8) throw new Illegal_move();
@@ -133,6 +137,8 @@ void Player::move()
 		if(charf_letter>='a' && charf_letter<='h') f_letter=charf_letter-'a';
 		i_number=7-i_number; //conversione numeri per la matrice
 		f_number=7-f_number;
+
+		//Condizioni per il movimento e controllo se la mossa è legale
 		if(boardgame->gameboard[i_number][i_letter]==nullptr) throw new Illegal_move();
 		if(boardgame->gameboard[i_number][i_letter]->col()!=color) throw new Illegal_move();
 		if(!(boardgame->gameboard[i_number][i_letter]->try_move(f_number,f_letter)))
@@ -144,10 +150,12 @@ void Player::move()
 		try
 		{
 			try{
-			boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
+				//Tenta il movimento
+				boardgame->gameboard[i_number][i_letter]->move(f_number,f_letter);
 			}
 			catch(Promotion* e)
 			{
+				//Eccezione della promozione del pedone
 				ofstream file(output_file,ios::app);
 				file<<mossa;
 				file.close();
@@ -155,6 +163,7 @@ void Player::move()
 				file.close();
 				return;
 			}
+			//Scrive la mossa sul file
 			ofstream file(output_file,ios::app);
 			file<<mossa<<"\n";
 			file.close();
@@ -165,13 +174,13 @@ void Player::move()
 		}
 		
 	}
-	else
+	else	//Mossa del computer
 	{
 		int random_letter=0,random_number=0,random_piece=0;
 		if(color=='w')
 		{
 			Piece* t;
-			do
+			do	//Crea una mossa randomica per il pezzo bianco, finchè non è valida	
 			{
 				random_piece=rand()%boardgame->whites.size();
 				random_number=rand()%8;
@@ -179,6 +188,7 @@ void Player::move()
 				t=boardgame->whites[random_piece];
 			}while(!(boardgame->whites[random_piece]->try_move(random_number,random_letter)));
 			
+			//Prova la mossa
 			int n=boardgame->whites[random_piece]->num(),l=boardgame->whites[random_piece]->let();
 			try{
 				try{
@@ -193,9 +203,11 @@ void Player::move()
 			}
 			catch(Promotion* e)
 			{
+				//Scrive la mossa sul file
 				ofstream file(output_file,ios::app);
 				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 				file.close();
+				//Promuove il pedone
 				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
 				return;
 			}
@@ -206,7 +218,7 @@ void Player::move()
 		if(color=='b')
 		{
 			Piece* t;
-			do
+			do	//Crea una mossa randomica per il pezzo nero, finchè non è valida
 			{
 				random_piece=rand()%boardgame->blacks.size();
 				random_number=rand()%8;
@@ -214,6 +226,7 @@ void Player::move()
 				t=boardgame->blacks[random_piece];
 			}while(!(boardgame->blacks[random_piece]->try_move(random_number,random_letter)));
 			
+			//Prova la mossa
 			int n=boardgame->blacks[random_piece]->num(),l=boardgame->blacks[random_piece]->let();
 			try{
 				try{
@@ -227,9 +240,11 @@ void Player::move()
 			}
 			catch(Promotion* e)
 			{
+				//Scrive la mossa sul file
 				ofstream file(output_file,ios::app);
 				file<<output_random_move(n,l,random_number,random_letter)<<"\n";
 				file.close();
+				//Promuove il pedone
 				promotion((Pawn*)(boardgame->gameboard[random_number][random_letter]),' ');
 				return;
 			}

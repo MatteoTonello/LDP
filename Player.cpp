@@ -259,6 +259,7 @@ void Player::move()
 
 string Player::output_random_move(int num,int let,int n,int l)
 {
+	//Conversione della mossa random a stringa
     char fl='a'+l;
     char il='a'+let;
     int fn=7-n+1;
@@ -271,12 +272,13 @@ void Player::set_output_file(string file)
 	output_file=file;
 }
 
-void Player:: promotion(Pawn* p,char pezzo)
+void Player::promotion(Pawn* p,char pezzo)
 {
-	if(is_human)
+	if(is_human)	//Promozione per il giocatore umano
 	{
 		if(pezzo!=' ')
 		{
+			//Crea il pezzo scelto al posto del pedone promosso
 			Piece* tmp=p->b->gameboard[p->num()][p->let()];
 			if(pezzo=='A') p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(),p->let(), 'b',p->b );
 			if(pezzo=='T') p->b->gameboard[p->num()][p->let()]=new Rock(p->num(), p->let(), 'b', p->b);
@@ -288,29 +290,31 @@ void Player:: promotion(Pawn* p,char pezzo)
 			if(pezzo=='c') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'w', p->b);
 			if(pezzo!='A' && pezzo!='C' && pezzo!='D' && pezzo!='T' && pezzo!='a' && pezzo!='c' && pezzo!='t' && pezzo!='d')
 				throw new Illegal_move();
+			
+			//Elimina il pedone promosso dalle liste di pezzi e aggiunge il nuovo pezzo creato
 			if(p->col()=='w')
 			{
-			for(int i=0;i<p->b->whites.size();i++)
-			{
-				if(p->b->whites[i]==tmp)
+				for(int i=0;i<p->b->whites.size();i++)
 				{
-					p->b->whites.erase(p->b->whites.begin()+i);
-					p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
-					break;
+					if(p->b->whites[i]==tmp)
+					{
+						p->b->whites.erase(p->b->whites.begin()+i);
+						p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
+						break;
+					}
 				}
-			}
 			}
 			else
 			{
 				for(int i=0;i<p->b->blacks.size();i++)
-			{
-				if(p->b->blacks[i]==tmp)
 				{
-					p->b->blacks.erase(p->b->blacks.begin()+i);
-					p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
-					break;
+					if(p->b->blacks[i]==tmp)
+					{
+						p->b->blacks.erase(p->b->blacks.begin()+i);
+						p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
+						break;
+					}
 				}
-			}
 			}
 			return;
 		}
@@ -318,19 +322,23 @@ void Player:: promotion(Pawn* p,char pezzo)
 		{
 			throw p;
 		}
-		if(p->col()=='b')
+
+		if(p->col()=='b')	//Promozione del pedone nero
 		{
 			char c;
 			string prom;
-			cout<<"hai promosso il pedone, scegli il pezzo: scrivi l'iniziale maiuscola del pezzo che vuoi scegliere"<<endl;
+			cout<<"Hai promosso il pedone, scegli il pezzo: scrivi l'iniziale maiuscola del pezzo che vuoi scegliere"<<endl;
 			while(true)
 			{
+				//Lettura della scelta di promozione da tastiera
 				getline(cin,prom);
 				c=prom[0];
 				if(c=='A' || c=='T' || c=='D' || c=='C') break;
 				cout<<"pezzo non valido"<<endl;
 				throw new Illegal_move();
 			}
+			
+			//Sostituzione del pezzo
 			ofstream file(output_file,ios::app);
 			file<<prom<<"\n";
 			file.close();
@@ -340,6 +348,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 			if(c=='D') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'b', p->b);	
 			if(c=='C') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'b',p-> b);
 			
+			//Elimina il pedone promosso dalla lista di pezzi e aggiunge il nuovo pezzo creato
 			for(int i=0;i<p->b->blacks.size();i++)
 			{
 				if(p->b->blacks[i]==tmp)
@@ -371,6 +380,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 			if(c=='d') p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), 'w', p->b);	
 			if(c=='c') p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), 'w', p->b);
 			
+			//Elimina il pedone promosso dalla lista di pezzi e aggiunge il nuovo pezzo creato
 			for(int i=0;i<p->b->whites.size();i++)
 			{
 				if(p->b->whites[i]==tmp)
@@ -384,6 +394,7 @@ void Player:: promotion(Pawn* p,char pezzo)
 	}
 	else
 	{
+		//Promozione randomica fatta dal computer
 		int random_piece=rand()%4;
 		Piece* tmp=p->b->gameboard[p->num()][p->let()];
 			if(random_piece==0) p->b->gameboard[p->num()][p->let()]=new Bishop(p->num(), p->let(), p->col(), p->b);
@@ -391,29 +402,30 @@ void Player:: promotion(Pawn* p,char pezzo)
 			if(random_piece==2) p->b->gameboard[p->num()][p->let()]=new Queen(p->num(), p->let(), p->col(), p->b);	
 			if(random_piece==3) p->b->gameboard[p->num()][p->let()]=new Knight(p->num(), p->let(), p->col(), p->b);
 			
+			//Elimina il pedone promosso dalle liste di pezzi e aggiunge il nuovo pezzo creato
 			if(p->col()=='w')
 			{
-			for(int i=0;i<p->b->whites.size();i++)
-			{
-				if(p->b->whites[i]==tmp)
+				for(int i=0;i<p->b->whites.size();i++)
 				{
-					p->b->whites.erase(p->b->whites.begin()+i);
-					p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
-					break;
+					if(p->b->whites[i]==tmp)
+					{
+						p->b->whites.erase(p->b->whites.begin()+i);
+						p->b->whites.push_back(p->b->gameboard[p->num()][p->let()]);
+						break;
+					}
 				}
-			}
 			}
 			else
 			{
 				for(int i=0;i<p->b->blacks.size();i++)
-			{
-				if(p->b->blacks[i]==tmp)
 				{
-					p->b->blacks.erase(p->b->blacks.begin()+i);
-					p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
-					break;
+					if(p->b->blacks[i]==tmp)
+					{
+						p->b->blacks.erase(p->b->blacks.begin()+i);
+						p->b->blacks.push_back(p->b->gameboard[p->num()][p->let()]);
+						break;
+					}
 				}
-			}
 			}
 		ofstream file(output_file,ios::app);
 		string pezzo;

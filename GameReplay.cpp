@@ -117,7 +117,7 @@ void GameReplay::replayv()
                 if(flag)
                     cout<<"\n"<<piece[0]<<"\n\n";
                 flag=false;
-                //Sleep(1000);
+                Sleep(1000);
                 game->change_turn();
             }
             game->addMove();

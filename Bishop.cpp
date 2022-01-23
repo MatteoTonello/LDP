@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef BISHOP_CPP
 #define BISHOP_CPP
 #include "Illegal_move.cpp"

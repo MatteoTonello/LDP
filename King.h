@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef KING_H
 #define KING_H
 #include <iostream>

@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef PIECE_CPP
 #define PIECE_CPP
 #include "Piece.h"

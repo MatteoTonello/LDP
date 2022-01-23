@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef PAWN_H
 #define PAWN_H
 #include <iostream>

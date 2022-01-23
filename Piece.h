@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef PIECE_H
 #define PIECE_H
 #include "Board.h"

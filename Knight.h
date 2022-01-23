@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef KNIGHT_H
 #define KNIGHT_H
 #include <iostream>

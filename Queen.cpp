@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef QUEEN_CPP
 #define QUEEN_CPP
 #include "Illegal_move.cpp"

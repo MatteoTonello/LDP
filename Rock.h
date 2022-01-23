@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef ROCK_H
 #define ROCK_H
 #include <iostream>

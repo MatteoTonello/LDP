@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef BISHOP_H
 #define BISHOP_H
 #include <iostream>

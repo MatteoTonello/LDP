@@ -1,3 +1,5 @@
+//FRANCESCATO DANIELE 2000167
+
 #ifndef KING_CPP
 #define KING_CPP
 #include "King.h"

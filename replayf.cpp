@@ -1,4 +1,4 @@
-//PRIOLI GIACOMO 2016259
+#include "Piece.h"
 #include "Board.cpp"
 #include "Pawn.cpp"
 #include "Rock.cpp"
@@ -11,10 +11,12 @@
 #include "GameReplay.cpp"
 #include <iostream>
 using namespace std;
-int main(int args,char *argv[])
-{
-    Game* g=new Game(*argv[1]);
-    g->startgame();
-    delete g;
+int main()
+{ 
+        string file_input="log.txt";
+        GameReplay* games = new GameReplay(file_input);
+        games->replayv();
+        delete games;
+        cout<<"finito";
     return 0;
 }

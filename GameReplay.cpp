@@ -1,8 +1,10 @@
+//TONELLO MATTEO 2008596
 #ifndef GAMEREPLAY_CPP
 #define GAMEREPLAY_CPP
 #include "GameReplay.h"
 #include "Piece.h"
-#include "windows.h"
+#include <chrono>
+#include <thread>
 #include "Board.cpp"
 #include <iostream>
 #include <fstream>
@@ -112,7 +114,7 @@ void GameReplay::replayv()
             if(piece!="")                      //se c'è stata promozione
                 cout<<"\n"<<piece[0]<<"\n\n";        //stampa del carattere della pedina promossa
             piece="";                   //imposta nuovamente piece a ""
-            Sleep(1000);
+            this_thread::sleep_for(1000ms);
             game->change_turn();
             game->addMove();            //incrementato il contatore delle mosse
             game->last_bs.push_back(game->mainboard->to_String());          //inserita la scacchiera nel vettore delle vecchie scacchiere

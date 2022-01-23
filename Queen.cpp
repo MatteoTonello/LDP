@@ -89,7 +89,7 @@ bool Queen::try_move(int n, int l)
 				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
-		else  // La diagonale è verso sinistra
+		if(l<letter)  // La diagonale è verso sinistra
 		{
 			for(int i=number+1, j=letter-1; i<n; i++, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{
@@ -106,7 +106,7 @@ bool Queen::try_move(int n, int l)
 				if(b->gameboard[i][j]!=nullptr) return false; //Se c'è un pezzo nel mezzo è false
 			}
 		}
-		else // La diagonale è verso sinistra
+		if(l<letter) // La diagonale è verso sinistra
 		{
 			for(int i=number-1, j=letter-1; i>n; i--, j--) //Controllo progressivamente tutta la diagonale che attraversa nel movimento
 			{

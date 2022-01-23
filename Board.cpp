@@ -1,3 +1,4 @@
+//PRIOLI GIACOMO 2016259
 #ifndef BOARD_CPP
 #define BOARD_CPP
 #include "Board.h"

@@ -1,4 +1,3 @@
-//PRIOLI GIACOMO 2016259
 #include "Board.cpp"
 #include "Pawn.cpp"
 #include "Rock.cpp"
@@ -8,13 +7,15 @@
 #include "Bishop.cpp"
 #include "Game.cpp"
 #include "Player.cpp"
-#include "GameReplay.cpp"
 #include <iostream>
 using namespace std;
-int main(int args,char *argv[])
+int main()
 {
-    Game* g=new Game(*argv[1]);
+    Game* g=new Game('p');
+    cout<<"INIZIO"<<endl;
     g->startgame();
+    cout<<"FINITO";
     delete g;
+    
     return 0;
 }

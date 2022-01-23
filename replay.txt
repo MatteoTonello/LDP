@@ -1,0 +1,181 @@
+ 8 TCADRACT
+ 7 PPPPPPPP
+ 6         
+ 5         
+ 4         
+ 3         
+ 2 pppppppp
+ 1 tcadract
+   ABCDEFGH
+
+ 8 TCADRACT
+ 7 PPPPPPPP
+ 6         
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tcadract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPPPPPP
+ 6      C  
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tcadract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPPPPPP
+ 6      C  
+ 5         
+ 4         
+ 3   p     
+ 2 ppdppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPP PPP
+ 6     PC  
+ 5         
+ 4         
+ 3   p     
+ 2 ppdppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPP PPd
+ 6     PC  
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADR  T
+ 7 PPPP PPd
+ 6    APC  
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADR  T
+ 7 PPPP Pd 
+ 6    APC  
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPP Pd 
+ 6     PC  
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADRA T
+ 7 PPPP P  
+ 6     PC d
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADR  T
+ 7 PPPP PA 
+ 6     PC d
+ 5         
+ 4         
+ 3   p     
+ 2 pp ppppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCADR  T
+ 7 PPPP PA 
+ 6     PC d
+ 5         
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCA R  T
+ 7 PPPPDPA 
+ 6     PC d
+ 5         
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCA R  T
+ 7 PPPPDPAd
+ 6     PC  
+ 5         
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCA R  T
+ 7 PPPPDPAd
+ 6     P   
+ 5    C    
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tca ract
+   ABCDEFGH
+
+ 8 TCA R  T
+ 7 PPPPDPAd
+ 6     P  a
+ 5    C    
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tc  ract
+   ABCDEFGH
+
+ 8 TCA  R T
+ 7 PPPPDPAd
+ 6     P  a
+ 5    C    
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tc  ract
+   ABCDEFGH
+
+ 8 TCA  R d
+ 7 PPPPDPA 
+ 6     P  a
+ 5    C    
+ 4         
+ 3   pp    
+ 2 pp  pppp
+ 1 tc  ract
+   ABCDEFGH
+
+VINCITORE BIANCO

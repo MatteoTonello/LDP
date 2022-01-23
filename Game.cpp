@@ -1,3 +1,4 @@
+//TONELLO MATTEO 2008596
 #ifndef GAME_CPP
 #define GAME_CPP
 #include <iostream>
@@ -81,7 +82,12 @@ string Game::game_result()
 void Game::startgame()
 {
     //Stampa la scacchiera
-    cout<<*mainboard<<endl;
+    if(white_player->human() || black_player->human())
+        cout<<*mainboard<<endl;
+    if(white_player->human())
+        cout<<"SEI IL GIOCATORE BIANCO"<<endl<<endl;
+    if(black_player->human())
+        cout<<"SEI IL GIOCATORE NERO"<<endl<<endl;
     srand(time(NULL));
     //Se la partita può continuare, fa eseguire la mossa e cambia il turno
     while(!(is_finished()))
@@ -89,6 +95,7 @@ void Game::startgame()
         player_move();
         change_turn();
     }
+    cout<<*mainboard<<endl;
     cout<<result<<endl;
 }
 void Game::change_turn()
@@ -119,7 +126,7 @@ void Game::player_move()
     //Fatta la mossa, aggiorna i dati
     nmosse++;
 	last_bs.push_back(mainboard->to_String());
-    cout<<*mainboard<<endl;
+    //cout<<*mainboard<<endl;
 }
 bool Game:: draw_for_ripetition()
 {

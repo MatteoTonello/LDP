@@ -40,7 +40,7 @@ Game::Game(char type)
 	    file.clear();
 	    file.close();
     }
-    if(type=='r')
+    if(type=='r')   //Se la partita è un replay
     {
        white_player=new Player('p');
        white_player->replay=true;
@@ -81,9 +81,9 @@ string Game::game_result()
 }
 void Game::startgame()
 {
-    //Stampa la scacchiera
+    
     if(white_player->human() || black_player->human())
-        cout<<*mainboard<<endl;
+        cout<<*mainboard<<endl;                 //Stampa la scacchiera
     if(white_player->human())
         cout<<"SEI IL GIOCATORE BIANCO"<<endl<<endl;
     if(black_player->human())

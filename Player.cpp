@@ -1,3 +1,4 @@
+//TONELLO MATTEO 2008596
 #ifndef PLAYER_CPP
 #define PLAYER_CPP
 #include <stdlib.h>
@@ -92,9 +93,10 @@ void Player::move()
 		string mossa="";
 		cout<<"inserisci mossa"<<endl;
 		getline(cin,mossa);
+		cout<<endl;
 		if(mossa=="XX XX")	//Stampa della scacchiera se scrive XX XX
 		{
-			cout<<*boardgame<<endl<<endl;
+			cout<<*boardgame<<endl;
 			move();
 			return;
 		}

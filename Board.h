@@ -1,3 +1,4 @@
+//PRIOLI GIACOMO 2016259
 #ifndef BOARD_H
 #define BOARD_H
 #include <vector>

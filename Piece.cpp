@@ -3,6 +3,8 @@
 #ifndef PIECE_CPP
 #define PIECE_CPP
 #include "Piece.h"
+#include "Pawn.h"
+#include "King.h"
 #include <fstream>
 using namespace std;
 

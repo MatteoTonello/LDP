@@ -1,3 +1,4 @@
+//PRIOLI GIACOMO 2016259
 #include "Board.cpp"
 #include "Pawn.cpp"
 #include "Rock.cpp"
@@ -17,6 +18,7 @@ int main(int args,char *argv[])
         string file_input=argv[2];
         GameReplay* game = new GameReplay(file_input);
         game->replayv();
+        delete game;
     }
     if(*argv[1]=='f')					//controllo argomento riga di comando: se *argv[1] è uguale a "f", allora stampa su file
     {
@@ -24,6 +26,7 @@ int main(int args,char *argv[])
         string file_input=argv[2];
         GameReplay* game = new GameReplay(file_input,file_output);
         game->replayf();
+        delete game;
     }
     return 0;
 }
